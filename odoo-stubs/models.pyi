@@ -1,6 +1,7 @@
-from typing import Any
+from typing import *
 
-from . import api
+from . import api, fields
+from .modules.registry import Registry
 
 
 class MetaModel(api.Meta):
@@ -10,9 +11,18 @@ class MetaModel(api.Meta):
 
 
 class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
-    _ids: list
+    _id: int
+    _ids: List[int]
+    _fields: Dict[str, fields.Field]
+    _inherit_children: Set[str]
+    pool: Registry
+    env: api.Environment
+
+    __bases__: Tuple[BaseModel, ...]
     def __iter__(self) -> BaseModel: ...
-    def _browse(self) -> BaseModel: ...
+
+    def browse(self, ids: Optional[Union[Iterable[int], int]]) -> BaseModel: ...
+    def search(self, args: List, offset: Optional[int] = 0, limit=Optional[int], order=Optional[str], count=Optional[int]) -> BaseModel: ...
 
 
 AbstractModel = BaseModel
