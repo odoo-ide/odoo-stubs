@@ -37,7 +37,7 @@ LOG_ACCESS_COLUMNS: Any
 MAGIC_COLUMNS: Any
 VALID_AGGREGATE_FUNCTIONS: Any
 
-class BaseModel:
+class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     _id: int
     _name: str
     _description: str
