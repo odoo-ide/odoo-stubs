@@ -14,19 +14,6 @@ SUPERUSER_ID: int
 
 def registry(database_name: Optional[Any] = ...): ...
 
-from . import addons
-from . import conf
-from . import loglevels
-from . import modules
-from . import netsvc
-from . import osv
-from . import release
-from . import service
-from . import sql_db
-from . import tools
-from . import models
-from . import fields
-from . import api
-from . import cli
-from . import http
+from . import (addons, exceptions, conf, loglevels, modules, netsvc, osv, release,
+               service, sql_db, tools, models, fields, api, cli, http)
 from .tools.translate import _ as _
