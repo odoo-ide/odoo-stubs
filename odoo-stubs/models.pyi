@@ -1,6 +1,7 @@
-from . import api, fields
 from collections import MutableMapping
 from typing import Any, Optional, List, Union, Sequence, Tuple, Dict, Generator
+
+from . import api, fields
 
 SearchDomain = List[Union[str, Sequence[str]]]
 RecordValue = Dict[str, Any]
