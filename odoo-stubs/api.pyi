@@ -5,6 +5,8 @@
 from collections import Mapping
 from typing import Any, Optional
 
+from werkzeug.local import Local
+
 from .sql_db import Cursor
 
 class Params:
