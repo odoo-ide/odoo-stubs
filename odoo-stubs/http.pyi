@@ -13,7 +13,7 @@ from .sql_db import Cursor
 rpc_request: Any
 rpc_response: Any
 STATIC_CACHE: Any
-request: Union['WebRequest', 'HttpRequest']
+request: Union['HttpRequest', 'JsonRequest']
 
 def replace_request_password(args: Any): ...
 
