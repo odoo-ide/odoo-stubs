@@ -46,7 +46,6 @@ MAGIC_COLUMNS: Any
 VALID_AGGREGATE_FUNCTIONS: Any
 
 class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
-    _id: int
     _name: str
     _description: str
     _sql_constraints: List
@@ -58,14 +57,14 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     _context: Dict
     _cr: Cursor
     _uid: int
-    id: int
     env: Environment = ...
     pool: Registry
-    display_name: str
-    create_uid = env['res.users']
-    create_date: datetime.datetime
-    write_uid = env['res.users']
-    write_date = datetime.datetime
+    id = fields.Id()
+    display_name: fields.Char()
+    create_uid = fields.Many2one('res.users')
+    create_date: fields.Datetime()
+    write_uid = fields.Many2one('res.users')
+    write_date = fields.Datetime()
     CONCURRENCY_CHECK_FIELD: str = ...
     def view_init(self, fields_list: Any) -> None: ...
     def compute_concurrency_field(self) -> None: ...
