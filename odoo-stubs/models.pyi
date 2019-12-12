@@ -59,7 +59,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     _cr: Cursor
     _uid: int
     id: int
-    env: Environment
+    env: Environment = ...
     pool: Registry
     display_name: str
     create_uid = env['res.users']
