@@ -10,6 +10,8 @@ import werkzeug.wrappers
 from .api import Environment
 from .sql_db import Cursor
 
+_env = Environment()
+
 rpc_request: Any
 rpc_response: Any
 STATIC_CACHE: Any
@@ -30,6 +32,7 @@ class WebRequest:
     endpoint: Any = ...
     endpoint_arguments: Any = ...
     auth_method: Any = ...
+    website = _env['website']
     def __init__(self, httprequest: Any) -> None: ...
     @property
     def cr(self) -> Cursor: ...
