@@ -60,7 +60,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     env: Environment = ...
     pool: Registry
     id = fields.Id()
-    display_name: fields.Char()
+    display_name = fields.Char()
     create_uid = fields.Many2one('res.users')
     create_date = fields.Datetime()
     write_uid = fields.Many2one('res.users')
