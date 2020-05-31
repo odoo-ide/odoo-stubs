@@ -1,0 +1,3 @@
+from typing import Any
+
+def merge_pdf(pdf_data: Any): ...

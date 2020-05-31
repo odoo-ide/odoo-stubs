@@ -1,0 +1,16 @@
+from . import security as security
+from ..tools import lazy as lazy, traverse_containers as traverse_containers
+from odoo.exceptions import QWebException as QWebException, UserError as UserError, ValidationError as ValidationError
+from odoo.models import check_method_name as check_method_name
+from odoo.tools.translate import _ as _, translate as translate
+from typing import Any, Optional
+
+_logger: Any
+PG_CONCURRENCY_ERRORS_TO_RETRY: Any
+MAX_TRIES_ON_CONCURRENCY_FAILURE: int
+
+def dispatch(method: Any, params: Any): ...
+def check(f: Any): ...
+def execute_cr(cr: Any, uid: Any, obj: Any, method: Any, *args: Any, **kw: Any): ...
+def execute_kw(db: Any, uid: Any, obj: Any, method: Any, args: Any, kw: Optional[Any] = ...): ...
+def execute(db: Any, uid: Any, obj: Any, method: Any, *args: Any, **kw: Any): ...

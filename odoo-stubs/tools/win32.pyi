@@ -1,0 +1,3 @@
+from typing import Any
+
+def nl_langinfo(param: Any): ...
