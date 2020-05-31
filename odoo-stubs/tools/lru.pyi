@@ -1,4 +1,3 @@
-from .func import synchronized as synchronized
 from typing import Any, Optional
 
 __all__: Any

@@ -1,6 +1,3 @@
-from . import security as security
-from odoo.exceptions import AccessDenied as AccessDenied
-from odoo.tools.translate import _ as _
 from typing import Any, Optional
 
 _logger: Any

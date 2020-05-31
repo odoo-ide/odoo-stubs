@@ -1,5 +1,4 @@
 from odoo import SUPERUSER_ID as SUPERUSER_ID, api as api
-from odoo.tools import pycompat as pycompat
 from operator import itemgetter as itemgetter
 from typing import Any, Optional
 

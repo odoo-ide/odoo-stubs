@@ -1,4 +1,3 @@
-from . import pycompat as pycompat
 from typing import Any, Optional
 
 __version_info__: Any

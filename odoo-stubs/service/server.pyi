@@ -1,9 +1,4 @@
 import werkzeug.serving
-from odoo.modules import get_modules as get_modules
-from odoo.modules.module import get_test_modules as get_test_modules, run_unit_tests as run_unit_tests
-from odoo.modules.registry import Registry as Registry
-from odoo.release import nt_service_name as nt_service_name
-from odoo.tools import config as config, dumpstacks as dumpstacks, log_ormcache_stats as log_ormcache_stats, stripped_sys_argv as stripped_sys_argv
 from typing import Any, Optional
 
 INOTIFY_LISTEN_EVENTS: Any

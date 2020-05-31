@@ -1,6 +1,5 @@
 import code
-from . import Command as Command
-from odoo.tools import config as config
+from . import Command
 from typing import Any, Optional
 
 _logger: Any

@@ -1,8 +1,5 @@
-from .. import SUPERUSER_ID as SUPERUSER_ID
 from collections import Mapping, defaultdict as defaultdict
-from odoo.sql_db import TestCursor as TestCursor
-from odoo.tools import OrderedSet as OrderedSet, assertion_report as assertion_report, config as config, existing_tables as existing_tables, lazy_classproperty as lazy_classproperty, lazy_property as lazy_property, table_exists as table_exists, topological_sort as topological_sort
-from odoo.tools.lru import LRU as LRU
+from odoo.tools import table_exists as table_exists
 from typing import Any, Optional
 
 _logger: Any

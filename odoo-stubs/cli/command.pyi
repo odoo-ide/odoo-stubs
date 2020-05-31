@@ -1,4 +1,3 @@
-from odoo.modules import get_module_path as get_module_path, get_modules as get_modules
 from typing import Any
 
 commands: Any

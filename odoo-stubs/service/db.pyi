@@ -1,9 +1,4 @@
 from functools import wraps as wraps
-from odoo import SUPERUSER_ID as SUPERUSER_ID
-from odoo.exceptions import AccessDenied as AccessDenied
-from odoo.release import version_info as version_info
-from odoo.sql_db import db_connect as db_connect
-from odoo.tools import pycompat as pycompat
 from typing import Any, Optional
 
 _logger: Any

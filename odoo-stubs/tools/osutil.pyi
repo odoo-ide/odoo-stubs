@@ -1,5 +1,4 @@
 import ctypes
-from odoo.release import nt_service_name as nt_service_name
 from typing import Any, Optional
 
 def listdir(dir: Any, recursive: bool = ...): ...

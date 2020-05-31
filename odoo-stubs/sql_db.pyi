@@ -1,7 +1,4 @@
 import psycopg2.extensions
-from . import tools as tools
-from .tools import pycompat as pycompat, ustr as ustr
-from .tools.func import frame_codeinfo as frame_codeinfo
 from typing import Any, Optional
 
 _logger: Any

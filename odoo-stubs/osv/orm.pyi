@@ -1,7 +1,5 @@
 from ..exceptions import except_orm as except_orm
-from ..models import AbstractModel as AbstractModel, BaseModel as BaseModel, LOG_ACCESS_COLUMNS as LOG_ACCESS_COLUMNS, MAGIC_COLUMNS as MAGIC_COLUMNS, MetaModel as MetaModel, Model as Model, TransientModel as TransientModel
-from odoo.tools import pycompat as pycompat
-from odoo.tools.safe_eval import safe_eval as safe_eval
+from ..models import AbstractModel as AbstractModel, BaseModel, LOG_ACCESS_COLUMNS as LOG_ACCESS_COLUMNS, MAGIC_COLUMNS as MAGIC_COLUMNS, MetaModel as MetaModel, Model as Model, TransientModel as TransientModel
 from typing import Any, Optional
 
 browse_record_list = BaseModel

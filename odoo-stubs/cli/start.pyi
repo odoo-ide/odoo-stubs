@@ -1,7 +1,4 @@
-from . import Command as Command
-from .server import main as main
-from odoo.modules.module import MANIFEST_NAMES as MANIFEST_NAMES, get_module_root as get_module_root
-from odoo.service.db import DatabaseExists as DatabaseExists, _create_empty_database as _create_empty_database
+from . import Command
 from typing import Any
 
 class Start(Command):

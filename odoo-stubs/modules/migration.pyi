@@ -1,6 +1,3 @@
-from odoo.modules.module import get_resource_path as get_resource_path
-from odoo.tools import pycompat as pycompat
-from odoo.tools.parse_version import parse_version as parse_version
 from typing import Any
 
 def load_script(path: Any, module_name: Any): ...

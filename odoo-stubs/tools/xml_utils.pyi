@@ -1,4 +1,3 @@
-from odoo.exceptions import UserError as UserError
 from odoo.tools.misc import file_open as file_open
 from typing import Any, Optional
 

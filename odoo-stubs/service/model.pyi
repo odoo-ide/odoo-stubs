@@ -1,8 +1,3 @@
-from . import security as security
-from ..tools import lazy as lazy, traverse_containers as traverse_containers
-from odoo.exceptions import QWebException as QWebException, UserError as UserError, ValidationError as ValidationError
-from odoo.models import check_method_name as check_method_name
-from odoo.tools.translate import _ as _, translate as translate
 from typing import Any, Optional
 
 _logger: Any

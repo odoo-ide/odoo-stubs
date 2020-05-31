@@ -1,5 +1,3 @@
-from . import pycompat as pycompat
-from .misc import ustr as ustr
 from typing import Any, Optional
 
 unsafe_eval = eval

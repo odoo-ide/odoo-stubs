@@ -1,5 +1,3 @@
-from odoo import SUPERUSER_ID as SUPERUSER_ID, api as api
-from odoo.modules.module import adapt_version as adapt_version, initialize_sys_path as initialize_sys_path, load_openerp_module as load_openerp_module
 from typing import Any, Optional
 
 _logger: Any

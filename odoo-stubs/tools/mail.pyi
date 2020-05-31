@@ -1,6 +1,4 @@
 from lxml.html import clean
-from odoo.loglevels import ustr as ustr
-from odoo.tools import misc as misc, pycompat as pycompat
 from typing import Any, Optional
 
 _logger: Any

@@ -1,4 +1,4 @@
-from . import Command as Command
+from . import Command
 from typing import Any
 
 __author__: Any

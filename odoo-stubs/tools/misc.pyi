@@ -2,13 +2,9 @@ from .cache import *
 import pickle as pickle_
 import xlsxwriter
 import xlwt
-from . import pycompat as pycompat
-from .config import config as config
-from .parse_version import parse_version as parse_version
-from .which import which as which
 from collections import Mapping, MutableMapping, MutableSet, defaultdict
 from itertools import repeat as repeat
-from odoo.loglevels import exception_to_unicode as exception_to_unicode, get_encodings as get_encodings, ustr as ustr
+from odoo.loglevels import exception_to_unicode as exception_to_unicode, get_encodings as get_encodings
 from typing import Any, Optional
 
 _logger: Any

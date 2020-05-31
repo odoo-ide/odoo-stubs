@@ -1,8 +1,3 @@
-from . import assertion_report as assertion_report, pycompat as pycompat
-from .config import config as config
-from .misc import SKIPPED_ELEMENT_TYPES as SKIPPED_ELEMENT_TYPES, file_open as file_open, unquote as unquote, ustr as ustr
-from .translate import _ as _
-from odoo import SUPERUSER_ID as SUPERUSER_ID
 from typing import Any, Optional
 
 _logger: Any

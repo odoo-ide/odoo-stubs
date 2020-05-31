@@ -1,4 +1,3 @@
-from . import pycompat as pycompat
 from typing import Any, Optional
 
 unsafe_eval = eval

@@ -1,7 +1,9 @@
 import datetime
+
+from dateutil.relativedelta import relativedelta as relativedelta
 from typing import Any, Optional
 
-from .tools import date_utils
+from odoo.tools import date_utils
 
 DATE_LENGTH: Any
 DATETIME_LENGTH: Any
@@ -267,6 +269,7 @@ class Datetime(Field):
     def convert_to_cache(self, value: Any, record: Any, validate: bool = ...): ...
     def convert_to_export(self, value: Any, record: Any): ...
     def convert_to_display_name(self, value: Any, record: Any): ...
+_BINARY = memoryview
 
 class Binary(Field):
     type: str = ...

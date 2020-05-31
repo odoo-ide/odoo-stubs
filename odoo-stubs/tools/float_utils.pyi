@@ -1,4 +1,3 @@
-from odoo.tools import pycompat as pycompat
 from typing import Any, Optional
 
 def round(f: Any): ...

@@ -1,4 +1,3 @@
-from odoo import tools as tools
 from typing import Any
 
 _logger: Any

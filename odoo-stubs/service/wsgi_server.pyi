@@ -1,4 +1,3 @@
-from odoo.tools import config as config
 from typing import Any
 
 _logger: Any

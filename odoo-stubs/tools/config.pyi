@@ -1,6 +1,4 @@
 import optparse
-from . import appdirs as appdirs, pycompat as pycompat
-from .. import conf as conf, loglevels as loglevels, release as release
 from typing import Any, Optional
 
 crypt_context: Any

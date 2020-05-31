@@ -1,4 +1,3 @@
-from .tools.func import frame_codeinfo as frame_codeinfo
 from typing import Any, Optional
 
 _logger: Any

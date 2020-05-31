@@ -1,6 +1,5 @@
-from ..models import BaseModel as BaseModel, MAGIC_COLUMNS as MAGIC_COLUMNS
+from ..models import MAGIC_COLUMNS as MAGIC_COLUMNS
 from functools import partial as partial
-from odoo.tools import pycompat as pycompat
 from typing import Any, Optional
 
 NOT_OPERATOR: str

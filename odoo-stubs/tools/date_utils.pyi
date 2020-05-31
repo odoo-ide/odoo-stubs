@@ -1,5 +1,3 @@
-from . import ustr as ustr
-from .func import lazy as lazy
 from typing import Any
 
 def get_month(date: Any): ...

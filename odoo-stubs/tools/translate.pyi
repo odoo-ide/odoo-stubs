@@ -1,7 +1,4 @@
 import csv
-from . import config as config, pycompat as pycompat
-from .misc import SKIPPED_ELEMENT_TYPES as SKIPPED_ELEMENT_TYPES, file_open as file_open, get_iso_codes as get_iso_codes
-from .osutil import walksymlinks as walksymlinks
 from typing import Any, Optional
 
 _logger: Any
