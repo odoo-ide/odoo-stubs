@@ -1,0 +1,16 @@
+import ctypes
+from typing import Any, Optional
+
+_logger: Any
+
+def listdir(dir: Any, recursive: bool = ...): ...
+def walksymlinks(top: Any, topdown: bool = ..., onerror: Optional[Any] = ...): ...
+def tempdir() -> None: ...
+def zip_dir(path: Any, stream: Any, include_dir: bool = ..., fnct_sort: Optional[Any] = ...) -> None: ...
+
+getppid: Any
+is_running_as_nt_service: Any
+_TH32CS_SNAPPROCESS: int
+
+class _PROCESSENTRY32(ctypes.Structure):
+    _fields_: Any = ...
