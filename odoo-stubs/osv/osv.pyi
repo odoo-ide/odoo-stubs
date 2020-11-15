@@ -1,7 +1,7 @@
-from ..exceptions import UserError
+from ..exceptions import except_orm
 from ..models import AbstractModel, Model, TransientModel
 
-except_osv = UserError
+except_osv = except_orm
 osv = Model
 osv_memory = TransientModel
 osv_abstract = AbstractModel
