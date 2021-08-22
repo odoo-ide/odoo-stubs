@@ -1,6 +1,6 @@
 from . import api, fields
 from collections.abc import MutableMapping
-from typing import Any, Optional, List, Generator
+from typing import Any, Optional, List, Dict, Generator
 
 from .api import Environment
 from .modules.registry import Registry
@@ -81,6 +81,7 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     _depends: Any = ...
     _transient_max_count: Any = ...
     _transient_max_hours: Any = ...
+    _fields: Dict[str, fields.Field]
     env: Environment = ...
     pool: Registry
     id = fields.Id()
