@@ -24,13 +24,6 @@ BOLD_SEQ: str
 COLOR_PATTERN: Any
 LEVEL_COLOR_MAPPING: Any
 
-class PerfFilter(logging.Filter):
-    def format_perf(self, query_count: Any, query_time: Any, remaining_time: Any): ...
-    def filter(self, record: Any): ...
-
-class ColoredPerfFilter(PerfFilter):
-    def format_perf(self, query_count: Any, query_time: Any, remaining_time: Any): ...
-
 class DBFormatter(logging.Formatter):
     def format(self, record: Any): ...
 

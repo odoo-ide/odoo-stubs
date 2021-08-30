@@ -1,7 +1,5 @@
 from typing import Any, Optional
 
-__all__: Any
-
 class LRUNode:
     __slots__: Any = ...
     prev: Any = ...
