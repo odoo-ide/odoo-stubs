@@ -1,28 +1,33 @@
-from collections import namedtuple
-from typing import Any
+from typing import Any, NamedTuple
 
 __all__: Any
 _logger: Any
 _ooxml_dirs: Any
 
-def _check_ooxml(data: Any): ...
+def _check_ooxml(data): ...
 
 _mime_validator: Any
 
-def _check_open_container_format(data: Any): ...
+def _check_open_container_format(data): ...
 
 _xls_pattern: Any
 _ppt_pattern: Any
 
-def _check_olecf(data: Any): ...
-def _check_svg(data: Any): ...
+def _check_olecf(data): ...
+def _check_svg(data): ...
 
-_Entry = namedtuple('_Entry', ['mimetype', 'signatures', 'discriminants'])
+class _Entry(NamedTuple):
+    mimetype: Any
+    signatures: Any
+    discriminants: Any
 _mime_mappings: Any
 
-def guess_mimetype(bin_data: Any, default: str = ...): ...
+def _odoo_guess_mimetype(bin_data, default: str = ...): ...
 
-guess_mimetype: Any
+_guesser: Any
 ms: Any
 
-def neuter_mimetype(mimetype: Any, user: Any): ...
+def guess_mimetype(bin_data, default: Any | None = ...): ...
+guess_mimetype = _odoo_guess_mimetype
+
+def neuter_mimetype(mimetype, user): ...
