@@ -11,7 +11,7 @@ def find_stubs(package):
 
 
 setup(
-    name="odoo12-stubs",
+    name="odoo11-stubs",
     url="https://github.com/trinhanhngoc/odoo-stubs",
     author="Trinh Anh Ngoc",
     author_email="atw1990@gmail.com",
