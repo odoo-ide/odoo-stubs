@@ -1,12 +1,15 @@
 import logging.handlers
-from typing import Any, Optional
+from typing import Any
 
 _logger: Any
 
-def log(logger: Any, level: Any, prefix: Any, msg: Any, depth: Optional[Any] = ...) -> None: ...
+def log(logger, level, prefix, msg, depth: Any | None = ...) -> None: ...
+def LocalService(name): ...
+
+path_prefix: Any
 
 class PostgreSQLHandler(logging.Handler):
-    def emit(self, record: Any) -> None: ...
+    def emit(self, record) -> None: ...
 
 BLACK: Any
 RED: Any
@@ -25,10 +28,10 @@ COLOR_PATTERN: Any
 LEVEL_COLOR_MAPPING: Any
 
 class DBFormatter(logging.Formatter):
-    def format(self, record: Any): ...
+    def format(self, record): ...
 
 class ColoredFormatter(DBFormatter):
-    def format(self, record: Any): ...
+    def format(self, record): ...
 
 _logger_init: bool
 

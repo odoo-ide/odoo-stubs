@@ -1,0 +1,3 @@
+open_openerp_namespace: bool
+allow_local_service: bool
+allow_report_int_registration: bool
