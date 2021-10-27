@@ -1,6 +1,8 @@
 from collections import Mapping
 from typing import Any
 
+from odoo.sql_db import Cursor
+
 __all__: Any
 _logger: Any
 WRAPPED_ATTRS: Any
@@ -50,6 +52,9 @@ def call_kw(model, name, args, kwargs): ...
 
 class Environment(Mapping):
     _local: Any
+    cr: Cursor = ...
+    uid: int = ...
+    context: dict = ...
     @classmethod
     @property
     def envs(cls) -> Environments: ...
