@@ -1,6 +1,8 @@
 import psycopg2.extensions
 from typing import Any
 
+from odoo.tools import Callbacks
+
 _logger: Any
 
 def unbuffer(symb, cr): ...
@@ -16,10 +18,10 @@ sql_counter: int
 def check(f, self, *args, **kwargs): ...
 
 class BaseCursor:
-    precommit: Any
-    postcommit: Any
-    prerollback: Any
-    postrollback: Any
+    precommit: Callbacks
+    postcommit: Callbacks
+    prerollback: Callbacks
+    postrollback: Callbacks
     transaction: Any
     def __init__(self) -> None: ...
     def flush(self) -> None: ...
