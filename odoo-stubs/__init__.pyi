@@ -1,6 +1,6 @@
 from . import api as api, fields as fields, models as models
-from odoo.modules.registry import Registry
-from odoo.tools.translate import _ as _
+from .modules.registry import Registry
+from .tools.translate import _ as _
 from typing import Any
 
 evented: bool

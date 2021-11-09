@@ -1,6 +1,7 @@
-import werkzeug.wsgi
-import werkzeug.contrib.sessions
 from typing import Any, Union
+
+import werkzeug.contrib.sessions
+import werkzeug.wsgi
 
 from .api import Environment
 from .modules.registry import Registry
