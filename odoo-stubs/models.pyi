@@ -1,6 +1,6 @@
 from collections.abc import MutableMapping
 from psycopg2.extensions import AsIs as AsIs
-from typing import Any, Generator
+from typing import Any, Generator, List
 
 from odoo import api, fields
 from odoo.api import Environment
@@ -86,6 +86,8 @@ class BaseModel(metaclass=MetaModel):
     _transient_max_count: Any
     _transient_max_hours: Any
     _fields: dict[str, fields.Field]
+    _ids: List[int]
+    _prefetch_ids: List[int]
     env: Environment = ...
     pool: Registry
     id = fields.Id()
