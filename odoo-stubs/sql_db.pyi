@@ -1,6 +1,7 @@
 import psycopg2.extensions
 from typing import Any
 
+from odoo.api import Transaction
 from odoo.tools import Callbacks
 
 _logger: Any
@@ -22,7 +23,7 @@ class BaseCursor:
     postcommit: Callbacks
     prerollback: Callbacks
     postrollback: Callbacks
-    transaction: Any
+    transaction: Transaction
     def __init__(self) -> None: ...
     def flush(self) -> None: ...
     def clear(self) -> None: ...
