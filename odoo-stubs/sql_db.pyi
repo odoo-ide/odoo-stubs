@@ -1,5 +1,6 @@
-import psycopg2.extensions
 from typing import Any, Optional
+
+import psycopg2.extensions
 
 _logger: Any
 types_mapping: Any

@@ -1,6 +1,5 @@
 import datetime
 
-from dateutil.relativedelta import relativedelta as relativedelta
 from typing import Any, Optional
 
 DATE_LENGTH: Any

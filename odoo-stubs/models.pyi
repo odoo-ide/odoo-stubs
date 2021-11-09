@@ -1,10 +1,10 @@
+from collections import MutableMapping
+from typing import Any, Optional, List, Dict, Generator
+
 from . import api, fields
 from .api import Environment
 from .modules.registry import Registry
 from .sql_db import Cursor
-from .tools.safe_eval import safe_eval as safe_eval
-from collections import MutableMapping
-from typing import Any, Optional, List, Dict, Generator
 
 _logger: Any
 _schema: Any

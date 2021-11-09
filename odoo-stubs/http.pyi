@@ -1,11 +1,10 @@
-import werkzeug.wsgi
-import werkzeug.contrib.sessions
-from datetime import date as date
-from odoo import fields as fields
 from typing import Any, Optional, Union
 
-from odoo.api import Environment
-from odoo.sql_db import Cursor
+import werkzeug.contrib.sessions
+import werkzeug.wsgi
+
+from .api import Environment
+from .sql_db import Cursor
 
 _logger: Any
 rpc_request: Any
