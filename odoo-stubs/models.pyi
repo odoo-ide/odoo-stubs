@@ -1,12 +1,10 @@
 from collections.abc import MutableMapping
-from psycopg2.extensions import AsIs as AsIs
 from typing import Any, Generator, List
 
-from odoo import api, fields
-from odoo.api import Environment
-from odoo.modules.registry import Registry
-from odoo.sql_db import Cursor
-from odoo.tools import Collector as Collector
+from . import api, fields
+from .api import Environment
+from .modules.registry import Registry
+from .sql_db import Cursor
 
 _logger: Any
 _schema: Any

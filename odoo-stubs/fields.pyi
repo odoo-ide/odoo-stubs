@@ -2,7 +2,7 @@ import datetime
 import enum
 from typing import Any
 
-from odoo.tools import date_utils
+from .tools import date_utils
 
 DATE_LENGTH: Any
 DATETIME_LENGTH: Any

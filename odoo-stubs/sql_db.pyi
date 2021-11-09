@@ -1,8 +1,9 @@
-import psycopg2.extensions
 from typing import Any
 
-from odoo.api import Transaction
-from odoo.tools import Callbacks
+import psycopg2.extensions
+
+from .api import Transaction
+from .tools import Callbacks
 
 _logger: Any
 

@@ -1,6 +1,6 @@
 from . import addons as addons, api as api, cli as cli, conf as conf, fields as fields, http as http, loglevels as loglevels, models as models, netsvc as netsvc, osv as osv, release as release, service as service, sql_db as sql_db, tools as tools, upgrade as upgrade
-from odoo.fields import Command as Command
-from odoo.tools.translate import _ as _, _lt as _lt
+from .fields import Command as Command
+from .tools.translate import _ as _, _lt as _lt
 from typing import Any
 
 __path__: Any

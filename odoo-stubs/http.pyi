@@ -1,11 +1,11 @@
-import werkzeug.wrappers
-from datetime import date as date
 from typing import Any, Union
-from odoo.api import Environment
-from odoo.modules.registry import Registry
-from odoo.sql_db import Cursor
-from odoo.tools import pycompat as pycompat
-from odoo.tools._vendor import sessions
+
+import werkzeug.wrappers
+
+from .api import Environment
+from .modules.registry import Registry
+from .sql_db import Cursor
+from .tools._vendor import sessions
 
 _logger: Any
 rpc_request: Any
