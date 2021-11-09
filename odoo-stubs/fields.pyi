@@ -1,9 +1,7 @@
 import datetime
-
-from dateutil.relativedelta import relativedelta as relativedelta
 from typing import Any, Optional
 
-from odoo.tools import date_utils
+from .tools import date_utils
 
 DATE_LENGTH: Any
 DATETIME_LENGTH: Any
