@@ -2,9 +2,9 @@ import collections
 import unittest
 from typing import Any, Optional
 
-from odoo.api import Environment
-from odoo.modules.registry import Registry
-from odoo.sql_db import Cursor
+from ..api import Environment
+from ..modules.registry import Registry
+from ..sql_db import Cursor
 
 _logger: Any
 ADDONS_PATH: Any
