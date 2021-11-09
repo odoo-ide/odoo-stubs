@@ -1,7 +1,7 @@
-from . import api, fields
 from collections.abc import MutableMapping
 from typing import Any, Optional, List, Dict, Generator
 
+from . import api, fields
 from .api import Environment
 from .modules.registry import Registry
 from .sql_db import Cursor

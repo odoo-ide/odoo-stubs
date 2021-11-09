@@ -1,11 +1,10 @@
 import werkzeug.wrappers
+import werkzeug.wrappers
+from typing import Any, Optional, Union
 
 from .api import Environment
 from .sql_db import Cursor
 from .tools._vendor import sessions
-from datetime import date as date
-from odoo import fields as fields
-from typing import Any, Optional, Union
 
 _logger: Any
 rpc_request: Any

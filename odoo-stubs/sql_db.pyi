@@ -1,7 +1,7 @@
 import psycopg2.extensions
 from typing import Any, Optional
 
-from odoo.tools import Callbacks
+from .tools import Callbacks
 
 _logger: Any
 
