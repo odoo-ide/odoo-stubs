@@ -1,5 +1,5 @@
 from collections.abc import MutableMapping
-from typing import Any, Optional, List, Dict, Generator
+from typing import Any, Optional, List, Dict, Generator, OrderedDict
 
 from . import api, fields
 from .api import Environment
@@ -55,6 +55,7 @@ VALID_AGGREGATE_FUNCTIONS: Any
 
 class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     __slots__: Any = ...
+    __bases__: List[BaseModel | Any]
     _auto: bool = ...
     _register: bool = ...
     _abstract: bool = ...
@@ -84,6 +85,9 @@ class BaseModel(MetaModel('DummyModel', (object,), {'_register': False})):
     _fields: Dict[str, fields.Field]
     _ids: List[int]
     _prefetch_ids: List[int]
+    _log_access: bool
+    _inherit_children: OrderedDict
+    _inherits_children: set
     env: Environment = ...
     pool: Registry
     id = fields.Id()
