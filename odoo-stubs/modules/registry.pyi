@@ -1,8 +1,9 @@
 from collections import Mapping, defaultdict as defaultdict
 
-from odoo.sql_db import Cursor
 from odoo.tools import table_exists as table_exists
 from typing import Any, Optional
+
+from ..sql_db import Cursor
 
 _logger: Any
 
