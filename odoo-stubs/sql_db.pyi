@@ -1,9 +1,11 @@
-from typing import Any
+from typing import Any, TypeVar
 
 import psycopg2.extensions
 
 from .api import Transaction
 from .tools import Callbacks
+
+_T = TypeVar('_T')
 
 _logger: Any
 
@@ -30,7 +32,7 @@ class BaseCursor:
     def clear(self) -> None: ...
     def reset(self) -> None: ...
     def savepoint(self, flush: bool = ...) -> None: ...
-    def __enter__(self): ...
+    def __enter__(self: _T) -> _T: ...
     def __exit__(self, exc_type, exc_value, traceback) -> None: ...
 
 class Cursor(BaseCursor):
