@@ -1,7 +1,9 @@
 import psycopg2.extensions
-from typing import Any, Optional
+from typing import Any, Optional, TypeVar
 
 from .tools import Callbacks
+
+_T = TypeVar('_T')
 
 _logger: Any
 
@@ -24,7 +26,7 @@ class BaseCursor:
     postrollback: Callbacks
     def __init__(self) -> None: ...
     def savepoint(self, flush: bool = ...) -> None: ...
-    def __enter__(self): ...
+    def __enter__(self: _T) -> _T: ...
     def __exit__(self, exc_type: Any, exc_value: Any, traceback: Any) -> None: ...
 
 class Cursor(BaseCursor):

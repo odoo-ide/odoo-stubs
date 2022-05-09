@@ -1,7 +1,7 @@
 from collections.abc import Mapping
 from typing import Any, Optional
 
-from odoo.sql_db import Cursor
+from ..sql_db import Cursor
 
 _logger: Any
 _schema: Any
