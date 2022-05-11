@@ -54,6 +54,7 @@ class Environment(Mapping):
     @classmethod
     def manage(cls) -> None: ...
     def reset(self) -> None: ...
+    all: Transaction
     transaction: Transaction
     registry: Registry
     cache: Cache
