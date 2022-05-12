@@ -30,6 +30,7 @@ class WebRequest:
     endpoint_arguments: Any
     auth_method: Any
     website = Environment['website']
+    lang = Environment['res.lang']
     _cr: Cursor
     _uid: int
     _context: dict
