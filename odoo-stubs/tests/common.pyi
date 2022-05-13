@@ -1,12 +1,14 @@
 import collections
 import logging
-import requests
 import unittest
-from odoo import api
-from odoo.modules.registry import Registry
-from odoo.sql_db import BaseCursor, Cursor
 from typing import Any
 from xmlrpc import client as xmlrpclib
+
+import requests
+
+from ..api import Environment
+from ..modules.registry import Registry
+from ..sql_db import BaseCursor, Cursor
 
 _logger: Any
 ADDONS_PATH: Any
@@ -59,7 +61,7 @@ class BaseCase(unittest.TestCase, metaclass=MetaCase):
     def cursor(self) -> Cursor: ...
     @property
     def uid(self) -> int: ...
-    env: api.Environment
+    env: Environment
     @uid.setter
     def uid(self, user) -> None: ...
     def ref(self, xid): ...
@@ -83,7 +85,7 @@ savepoint_seq: Any
 
 class TransactionCase(BaseCase):
     registry: Registry
-    env: api.Environment
+    env: Environment
     cr: Cursor
     @classmethod
     def setUpClass(cls) -> None: ...
@@ -96,7 +98,7 @@ class SavepointCase(TransactionCase):
 
 class SingleTransactionCase(BaseCase):
     registry: Registry
-    env: api.Environment
+    env: Environment
     cr: Cursor
     @classmethod
     def __init_subclass__(cls) -> None: ...
@@ -162,15 +164,15 @@ class Transport(xmlrpclib.Transport):
 
 class HttpCase(TransactionCase):
     registry_test_mode: bool
-    browser: Any
+    browser: ChromeBrowser
     browser_size: str
     _logger: logging.Logger
     @classmethod
     def setUpClass(cls) -> None: ...
-    xmlrpc_common: Any
-    xmlrpc_db: Any
-    xmlrpc_object: Any
-    opener: Any
+    xmlrpc_common: xmlrpclib.ServerProxy
+    xmlrpc_db: xmlrpclib.ServerProxy
+    xmlrpc_object: xmlrpclib.ServerProxy
+    opener: Opener
     def setUp(self) -> None: ...
     @classmethod
     def start_browser(cls) -> None: ...
