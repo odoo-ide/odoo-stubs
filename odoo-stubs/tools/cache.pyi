@@ -1,8 +1,11 @@
 from collections import defaultdict
-from typing import Any, Callable
+from typing import Any, Callable, TypeVar
 
 from .lru import LRU
 from ..models import BaseModel
+
+_T = TypeVar('_T')
+_CallableT = TypeVar('_CallableT')
 
 unsafe_eval = eval
 
@@ -21,7 +24,7 @@ class ormcache:
     skiparg: Any
     def __init__(self, *args, **kwargs) -> None: ...
     method: Callable
-    def __call__(self, method: Callable): ...
+    def __call__(self, method: _CallableT) -> _CallableT: ...
     key: Any
     def determine_key(self): ...
     def lru(self, model: BaseModel) -> tuple[LRU, tuple[str, Callable], ormcache_counter]: ...

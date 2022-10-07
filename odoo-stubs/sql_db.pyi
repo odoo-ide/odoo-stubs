@@ -4,6 +4,7 @@ from threading import Lock, RLock
 from typing import Any, Callable, Iterable, Iterator, Literal, NoReturn, Sequence, TypeVar
 
 import psycopg2.extensions
+from decorator import decorator
 
 from .api import Transaction
 from .tools import Callbacks
@@ -21,6 +22,7 @@ re_from: Pattern
 re_into: Pattern
 sql_counter: int
 
+@decorator
 def check(f: Callable[..., _T], self: Cursor, *args, **kwargs) -> _T: ...
 
 class BaseCursor:
@@ -94,7 +96,7 @@ class TestCursor(BaseCursor):
 class PsycoConnection(psycopg2.extensions.connection): ...
 
 class ConnectionPool:
-    def locked(fun: Callable) -> Callable: ...
+    def locked(fun: Callable[..., _T]) -> Callable[..., _T]: ...
     _connections: list[tuple[psycopg2.extensions.connection, bool]]
     _maxconn: int
     _lock: Lock
