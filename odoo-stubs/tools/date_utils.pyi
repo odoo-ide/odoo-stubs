@@ -1,7 +1,7 @@
 import datetime
-from dateutil.relativedelta import relativedelta
-
 from typing import Tuple, Iterator, TypeVar
+
+from dateutil.relativedelta import relativedelta
 
 _DateTimeT = TypeVar('_DateTimeT', datetime.date, datetime.datetime)
 
