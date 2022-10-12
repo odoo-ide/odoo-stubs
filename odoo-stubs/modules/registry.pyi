@@ -12,7 +12,7 @@ from ..tests.runner import OdooTestResult
 from ..tools import Collector
 from ..tools.lru import LRU
 
-class Registry(Mapping):
+class Registry(Mapping[str, type[BaseModel]]):
     _lock: RLock
     _saved_lock: RLock | None
     registries: ClassVar[LRU]
