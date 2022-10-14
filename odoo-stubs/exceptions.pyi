@@ -31,6 +31,3 @@ class except_orm(UserError):
 
 class Warning(UserError):
     def __init__(self, *args, **kwargs) -> None: ...
-
-class QWebException(Exception):
-    def __init__(self, *args, **kwargs) -> None: ...
