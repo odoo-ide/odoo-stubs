@@ -1,5 +1,5 @@
 import threading
-from collections import deque
+from collections import defaultdict, deque
 from collections.abc import Mapping
 from threading import RLock
 from typing import Any, Callable, ClassVar, Iterable, Iterator
@@ -24,7 +24,7 @@ class Registry(Mapping[str, type[BaseModel]]):
     _init: bool
     _assertion_report: OdooTestResult
     _fields_by_model: Any
-    _ordinary_tables: Any
+    _ordinary_tables: set[str] | None
     _constraint_queue: deque
     __cache: LRU
     _init_modules: set[str]
@@ -39,8 +39,8 @@ class Registry(Mapping[str, type[BaseModel]]):
     field_depends: Collector
     field_depends_context: Collector
     field_inverses: Collector
-    registry_sequence: Any
-    cache_sequence: Any
+    registry_sequence: int | None
+    cache_sequence: int | None
     _invalidation_flags: threading.local
     has_unaccent: bool
     has_trigram: bool
@@ -57,7 +57,7 @@ class Registry(Mapping[str, type[BaseModel]]):
     def __delitem__(self, model_name: str) -> None: ...
     def descendants(self, model_names: Iterable[str], *kinds) -> set[str]: ...
     def load(self, cr: Cursor, module: Node) -> set[str]: ...
-    _m2m: Any
+    _m2m: defaultdict[Any, list]
     def setup_models(self, cr: Cursor) -> None: ...
     @property
     def field_computed(self) -> dict[Field, list[Field]]: ...

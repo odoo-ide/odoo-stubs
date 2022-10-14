@@ -1,16 +1,16 @@
-from typing import Any
+from werkzeug.middleware.proxy_fix import ProxyFix as ProxyFix_
+from typing import Callable
 
-_logger: Any
 RPC_FAULT_CODE_CLIENT_ERROR: int
 RPC_FAULT_CODE_APPLICATION_ERROR: int
 RPC_FAULT_CODE_WARNING: int
 RPC_FAULT_CODE_ACCESS_DENIED: int
 RPC_FAULT_CODE_ACCESS_ERROR: int
 
-def xmlrpc_handle_exception_int(e): ...
-def xmlrpc_handle_exception_string(e): ...
+def xmlrpc_handle_exception_int(e: Exception) -> str: ...
+def xmlrpc_handle_exception_string(e: Exception) -> str: ...
 def application_unproxied(environ, start_response): ...
 
-ProxyFix: Any
+ProxyFix: Callable[..., ProxyFix_]
 
 def application(environ, start_response): ...
