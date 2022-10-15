@@ -1,6 +1,6 @@
 import datetime
 import enum
-from typing import Any, Callable, Iterator, Sequence, TypeVar, Union
+from typing import Any, Callable, Collection, Iterator, Sequence, TypeVar, Union
 
 import psycopg2
 from markupsafe import Markup
@@ -38,7 +38,7 @@ class Field(metaclass=MetaField):
     column_format: str
     column_cast_from: tuple[str, ...]
     write_sequence: int
-    args: Any
+    args: dict[str, Any] | None
     _module: str
     _modules: tuple[str, ...]
     _setup_done: bool
@@ -57,8 +57,8 @@ class Field(metaclass=MetaField):
     index: bool
     manual: bool
     copy: bool
-    _depends: tuple[Field, ...] | None
-    _depends_context: tuple[str, ...] | None
+    _depends: Collection[str, ...] | None
+    _depends_context: Collection[str, ...] | None
     recursive: bool
     compute: str | Callable | None
     compute_sudo: bool
