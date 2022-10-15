@@ -1,6 +1,6 @@
 import datetime
 import enum
-from typing import Any, Callable, Container, Collection, Iterable, Iterator, Sequence, TypeVar, Union
+from typing import Any, Callable, Container, Collection, Iterator, Sequence, TypeVar, Union
 
 import psycopg2
 from markupsafe import Markup
