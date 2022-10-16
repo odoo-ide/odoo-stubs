@@ -1,9 +1,9 @@
 from typing import Any, Callable
 
-from .query import Query
 from ..fields import Field
 from ..models import BaseModel, MAGIC_COLUMNS as MAGIC_COLUMNS
 from ..sql_db import Cursor
+from ..tools.query import Query
 
 _Domain = list
 

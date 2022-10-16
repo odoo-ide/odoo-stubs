@@ -8,8 +8,8 @@ from . import api, fields
 from .api import Environment
 from .fields import Field
 from .modules.registry import Registry
-from .osv.query import Query
 from .sql_db import Cursor
+from .tools.query import Query
 
 _T = TypeVar('_T')
 _ModelT = TypeVar('_ModelT', bound=BaseModel)
