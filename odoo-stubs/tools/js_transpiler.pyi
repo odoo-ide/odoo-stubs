@@ -59,6 +59,11 @@ IMPORT_DEFAULT: Pattern
 
 def convert_default_import(content: str) -> str: ...
 
+IS_PATH_LEGACY_RE: Pattern
+IMPORT_DEFAULT_AND_NAMED_RE: Pattern
+
+def convert_default_and_named_import(content: str) -> str: ...
+
 RELATIVE_REQUIRE_RE: Pattern
 
 def convert_relative_require(url: str, content: str) -> str: ...
@@ -66,6 +71,10 @@ def convert_relative_require(url: str, content: str) -> str: ...
 IMPORT_STAR: Pattern
 
 def convert_star_import(content: str) -> str: ...
+
+IMPORT_DEFAULT_AND_STAR: Pattern
+
+def convert_default_and_star_import(content: str) -> str: ...
 
 IMPORT_UNNAMED_RELATIVE_RE: Pattern
 
