@@ -1,0 +1,6 @@
+from typing import Iterable, Iterator
+
+from ..sql_db import Cursor
+
+def get_installed_modules(cursor: Cursor) -> list[str]: ...
+def get_neutralization_queries(modules: Iterable[str]) -> Iterator[str]: ...
