@@ -67,21 +67,21 @@ class FSWatcherInotify(FSWatcherBase):
 
 class CommonServer:
     app: Any
-    _on_stop_funcs: Any
-    interface: Any
-    port: Any
-    pid: Any
+    _on_stop_funcs: list[Callable]
+    interface: str
+    port: int
+    pid: int
     def __init__(self, app) -> None: ...
-    def close_socket(self, sock) -> None: ...
-    def on_stop(self, func) -> None: ...
+    def close_socket(self, sock: socket_) -> None: ...
+    def on_stop(self, func: Callable) -> None: ...
     def stop(self) -> None: ...
 
 class ThreadedServer(CommonServer):
-    main_thread_id: Any
+    main_thread_id: int | None
     quit_signals_received: int
-    httpd: Any
-    limits_reached_threads: Any
-    limit_reached_time: Any
+    httpd: ThreadedWSGIServerReloadable | None
+    limits_reached_threads: set[Thread]
+    limit_reached_time: float | None
     def __init__(self, app) -> None: ...
     def signal_handler(self, sig, frame) -> None: ...
     def process_limit(self) -> None: ...
