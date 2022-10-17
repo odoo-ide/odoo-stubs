@@ -17,7 +17,6 @@ from ..models import BaseModel
 from ..modules.registry import Registry
 from ..sql_db import BaseCursor, Cursor
 from ..tools import profiler
-from ..tools._vendor.sessions import Session
 from ..tools.profiler import Profiler
 
 _T = TypeVar('_T')

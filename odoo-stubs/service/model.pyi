@@ -1,4 +1,4 @@
-from typing import Any, Callable, TypeVar
+from typing import Callable, TypeVar
 
 from ..sql_db import Cursor
 
