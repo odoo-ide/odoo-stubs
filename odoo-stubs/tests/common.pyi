@@ -8,7 +8,7 @@ from re import Pattern
 from itertools import count
 from subprocess import Popen
 from threading import Thread
-from typing import Any, Callable, Generator, Generic, Iterator, Literal, Mapping, Match, TypeVar
+from typing import Any, Callable, Generator, Generic, Iterator, Mapping, Match, TypeVar
 from unittest import TestSuite
 from xmlrpc import client as xmlrpclib
 
