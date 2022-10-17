@@ -1,11 +1,8 @@
-from typing import Any
+commands: dict[str, type[Command]]
 
-commands: Any
-
-class CommandType(type):
-    def __init__(cls, name, bases, attrs) -> None: ...
-
-Command: Any
+class Command:
+    name: str
+    def __init_subclass__(cls) -> None: ...
 
 class Help(Command):
     def run(self, args) -> None: ...
