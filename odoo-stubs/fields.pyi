@@ -53,7 +53,7 @@ class Field(metaclass=MetaField):
     model_name: str
     comodel_name: str | None
     store: bool
-    index: bool
+    index: str | bool | None
     manual: bool
     copy: bool
     _depends: Collection[str, ...] | None
