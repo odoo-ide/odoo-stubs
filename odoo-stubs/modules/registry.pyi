@@ -44,6 +44,7 @@ class Registry(Mapping[str, type[BaseModel]]):
     _invalidation_flags: threading.local
     has_unaccent: bool
     has_trigram: bool
+    populated_models: dict[str, list[int]]
     def init(self, db_name: str) -> None: ...
     @classmethod
     def delete(cls, db_name: str) -> None: ...
