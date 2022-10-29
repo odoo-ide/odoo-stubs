@@ -120,6 +120,8 @@ class Session(MutableMapping):
 _request_stack: LocalStack
 request: Request
 
+def borrow_request() -> Generator[Request, None, None]: ...
+
 class Response(werkzeug.Response):
     default_mimetype: str
     def __init__(self, *args, **kw) -> None: ...
