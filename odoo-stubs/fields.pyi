@@ -56,8 +56,8 @@ class Field(metaclass=MetaField):
     index: str | bool | None
     manual: bool
     copy: bool
-    _depends: Collection[str, ...] | None
-    _depends_context: Collection[str, ...] | None
+    _depends: Collection[str] | None
+    _depends_context: Collection[str] | None
     recursive: bool
     compute: str | Callable | None
     compute_sudo: bool
