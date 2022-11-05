@@ -1,7 +1,8 @@
-from typing import Any
+from re import Pattern
+from typing import Callable, Iterator
 
-component_re: Any
-replace: Any
+component_re: Pattern
+replace: Callable
 
-def _parse_version_parts(s: Any) -> None: ...
-def parse_version(s: Any): ...
+def _parse_version_parts(s: str) -> Iterator[str]: ...
+def parse_version(s: str) -> tuple[str]: ...

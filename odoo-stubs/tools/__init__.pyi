@@ -10,5 +10,13 @@ from .xml_utils import *
 from .date_utils import *
 from .convert import *
 from .template_inheritance import *
-from . import appdirs as appdirs, cloc as cloc, osutil as osutil, pdf as pdf, pycompat as pycompat, win32 as win32
+from . import (
+    _monkeypatches as _monkeypatches,
+    appdirs as appdirs,
+    cloc as cloc,
+    osutil as osutil,
+    pdf as pdf,
+    pycompat as pycompat,
+    win32 as win32
+)
 from .config import config as config

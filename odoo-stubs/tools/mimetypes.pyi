@@ -1,28 +1,30 @@
-from collections import namedtuple
-from typing import Any
+import collections
+from re import Pattern
+from typing import Any, Literal
 
-__all__: Any
-_logger: Any
-_ooxml_dirs: Any
+__all__ = ['guess_mimetype']
+_ooxml_dirs: dict[str, str]
 
-def _check_ooxml(data: Any): ...
+def _check_ooxml(data: bytes) -> str | Literal[False]: ...
 
-_mime_validator: Any
+_mime_validator: Pattern
 
-def _check_open_container_format(data: Any): ...
+def _check_open_container_format(data: bytes) -> str | Literal[False]: ...
 
-_xls_pattern: Any
-_ppt_pattern: Any
+_xls_pattern: Pattern
+_ppt_pattern: Pattern
 
-def _check_olecf(data: Any): ...
-def _check_svg(data: Any): ...
+def _check_olecf(data: bytes) -> str | Literal[False]: ...
+def _check_svg(data: bytes) -> str | None: ...
 
-_Entry = namedtuple('_Entry', ['mimetype', 'signatures', 'discriminants'])
-_mime_mappings: Any
+_Entry = collections.namedtuple('_Entry', ['mimetype', 'signatures', 'discriminants'])
+_mime_mappings: tuple[_Entry, ...]
 
-def guess_mimetype(bin_data: Any, default: str = ...): ...
+def guess_mimetype(bin_data: str, default: str | None = ...) -> str: ...
 
-guess_mimetype: Any
+_guesser: Any
 ms: Any
 
-def neuter_mimetype(mimetype: Any, user: Any): ...
+def neuter_mimetype(mimetype: str, user: 'odoo.model.res_users') -> str: ...
+
+def get_extension(filename: str) -> str: ...

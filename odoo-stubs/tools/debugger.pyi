@@ -1,6 +1,5 @@
-from typing import Any
+from ..tools.config import configmanager
 
-_logger: Any
-SUPPORTED_DEBUGGER: Any
+SUPPORTED_DEBUGGER: set[str]
 
-def post_mortem(config: Any, info: Any) -> None: ...
+def post_mortem(config: configmanager, info) -> None: ...

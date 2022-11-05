@@ -1,9 +1,7 @@
-from typing import Any
-
-JSON_SCRIPTSAFE_MAPPER: Any
+JSON_SCRIPTSAFE_MAPPER: dict[str, str]
 
 class JSON:
-    def loads(self, *args: Any, **kwargs: Any): ...
-    def dumps(self, *args: Any, **kwargs: Any): ...
+    def loads(self, *args, **kwargs): ...
+    def dumps(self, *args, **kwargs) -> str: ...
 
-scriptsafe: Any
+scriptsafe: JSON
