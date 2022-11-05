@@ -1,23 +1,12 @@
 from types import ModuleType
-from typing import Any, Literal, MutableSequence
+from typing import Any, Literal
 
 from ..tools import pycompat as pycompat
 
 MANIFEST_NAMES: tuple[str, ...]
 README: list[str]
 _DEFAULT_MANIFEST: dict[str, Any]
-
-def ad_paths() -> MutableSequence[str]: ...
-
 loaded: list
-
-class AddonsHook:
-    def find_module(self, name: str, path: Any | None = ...) -> AddonsHook | None: ...
-    def load_module(self, name: str) -> ModuleType | None: ...
-
-class OdooHook:
-    def find_module(self, name: str, path: Any | None = ...) -> OdooHook | None: ...
-    def load_module(self, name: str) -> ModuleType | None: ...
 
 class UpgradeHook:
     def find_module(self, name: str, path: Any | None = ...) -> UpgradeHook | None: ...
