@@ -1,7 +1,7 @@
 from datetime import datetime
 from re import Pattern
 from threading import Lock, RLock
-from typing import Any, Generator, Iterable, Iterator, Literal, NoReturn, Sequence, TypeVar
+from typing import Any, Callable, Generator, Iterable, Iterator, Literal, NoReturn, Sequence, TypeVar
 
 import psycopg2.extensions
 from psycopg2.sql import Identifier
@@ -15,6 +15,7 @@ _SavepointT = TypeVar('_SavepointT', bound=Savepoint)
 
 def undecimalize(symb, cr: Cursor) -> float | None: ...
 
+real_time: Callable
 re_from: Pattern
 re_into: Pattern
 sql_counter: int
