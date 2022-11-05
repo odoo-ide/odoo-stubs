@@ -1,4 +1,2 @@
-from typing import Any
-
-addons_paths: Any
-server_wide_modules: Any
+addons_paths: list[str]
+server_wide_modules: list[str]
