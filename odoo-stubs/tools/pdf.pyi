@@ -1,6 +1,5 @@
-from io import BytesIO
 from re import Pattern
-from typing import Any, BinaryIO, Iterable
+from typing import Any, Iterable
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from PyPDF2.generic import ArrayObject as ArrayObject, IndirectObject
