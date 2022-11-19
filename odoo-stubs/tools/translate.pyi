@@ -24,7 +24,7 @@ class UNIX_LINE_TERMINATOR(csv.excel):
 def encode(s: str) -> str: ...
 
 TRANSLATED_ELEMENTS: set[str]
-TRANSLATED_ATTRS: dict[str, Any]
+TRANSLATED_ATTRS: set[str]
 avoid_pattern: Pattern
 node_pattern: Pattern
 
