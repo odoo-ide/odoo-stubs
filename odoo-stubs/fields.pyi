@@ -80,6 +80,7 @@ class Field(metaclass=MetaField):
     group_expand: str | None
     prefetch: bool
     default_export_compatible: bool
+    exportable: bool
     related_attrs: list[tuple[str, str]]
     description_attrs: list[tuple[str, str]]
     def __init__(self, string: str = ..., **kwargs) -> None: ...
@@ -127,6 +128,7 @@ class Field(metaclass=MetaField):
     _description_change_default: bool
     _description_group_operator: str | None
     _description_default_export_compatible: bool
+    _description_exportable: bool
     def _description_depends(self, env: Environment): ...
     @property
     def _description_searchable(self) -> bool: ...
@@ -445,6 +447,7 @@ class Json(Field):
     def convert_to_record(self, value, record: BaseModel): ...
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...): ...
     def convert_to_column(self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...): ...
+    def convert_to_export(self, value, record: BaseModel): ...
 
 class Properties(Field):
     type: str
