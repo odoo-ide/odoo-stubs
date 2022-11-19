@@ -1,7 +1,5 @@
 from typing import Any, Optional
 
-_logger: Any
-
 class except_orm(Exception):
     name: Any = ...
     value: Any = ...
@@ -9,7 +7,8 @@ class except_orm(Exception):
     def __init__(self, name: Any, value: Optional[Any] = ...) -> None: ...
 
 class UserError(except_orm):
-    def __init__(self, msg: Any) -> None: ...
+    def __init__(self, msg: str) -> None: ...
+
 Warning = UserError
 
 class RedirectWarning(Exception):
