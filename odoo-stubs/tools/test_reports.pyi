@@ -1,8 +1,10 @@
+from typing import Any, Literal
+
 from . import config as config
-from typing import Any, Optional
+from ..sql_db import Cursor
 
-_logger: Any
-_test_logger: Any
-
-def try_report(cr: Any, uid: Any, rname: Any, ids: Any, data: Optional[Any] = ..., context: Optional[Any] = ..., our_module: Optional[Any] = ..., report_type: Optional[Any] = ...): ...
-def try_report_action(cr: Any, uid: Any, action_id: Any, active_model: Optional[Any] = ..., active_ids: Optional[Any] = ..., wiz_data: Optional[Any] = ..., wiz_buttons: Optional[Any] = ..., context: Optional[Any] = ..., our_module: Optional[Any] = ...): ...
+def try_report(cr: Cursor, uid: int, rname: str, ids, data: Any | None = ..., context: dict | None = ...,
+               our_module: Any | None = ..., report_type: Any | None = ...) -> bool: ...
+def try_report_action(cr: Cursor, uid: int, action_id: int, active_model: str | None = ..., active_ids: list[int] | None = ...,
+                      wiz_data: dict | None = ..., wiz_buttons: list[str] | None = ..., context: dict | None = ...,
+                      our_module: str | None = ...) -> Literal[True]: ...
