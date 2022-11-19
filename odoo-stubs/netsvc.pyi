@@ -1,45 +1,43 @@
 import logging.handlers
-from typing import Any, Optional
+from logging import Logger, LogRecord
 
-_logger: Any
-
-def log(logger: Any, level: Any, prefix: Any, msg: Any, depth: Optional[Any] = ...) -> None: ...
+def log(logger: Logger, level: int, prefix: str, msg, depth: int | None = ...) -> None: ...
 
 class PostgreSQLHandler(logging.Handler):
-    def emit(self, record: Any) -> None: ...
+    def emit(self, record: LogRecord) -> None: ...
 
-BLACK: Any
-RED: Any
-GREEN: Any
-YELLOW: Any
-BLUE: Any
-MAGENTA: Any
-CYAN: Any
-WHITE: Any
-_NOTHING: Any
-DEFAULT: Any
+BLACK: int
+RED: int
+GREEN: int
+YELLOW: int
+BLUE: int
+MAGENTA: int
+CYAN: int
+WHITE: int
+_NOTHING: int
+DEFAULT: int
 RESET_SEQ: str
 COLOR_SEQ: str
 BOLD_SEQ: str
-COLOR_PATTERN: Any
-LEVEL_COLOR_MAPPING: Any
+COLOR_PATTERN: str
+LEVEL_COLOR_MAPPING: dict[int, tuple[int, int]]
 
 class PerfFilter(logging.Filter):
-    def format_perf(self, query_count: Any, query_time: Any, remaining_time: Any): ...
-    def filter(self, record: Any): ...
+    def format_perf(self, query_count: int, query_time: float, remaining_time: float): ...
+    def filter(self, record: LogRecord): ...
 
 class ColoredPerfFilter(PerfFilter):
-    def format_perf(self, query_count: Any, query_time: Any, remaining_time: Any): ...
+    def format_perf(self, query_count: int, query_time: float, remaining_time: float): ...
 
 class DBFormatter(logging.Formatter):
-    def format(self, record: Any): ...
+    def format(self, record: LogRecord): ...
 
 class ColoredFormatter(DBFormatter):
-    def format(self, record: Any): ...
+    def format(self, record: LogRecord): ...
 
 _logger_init: bool
 
 def init_logger(): ...
 
-DEFAULT_LOG_CONFIGURATION: Any
-PSEUDOCONFIG_MAPPER: Any
+DEFAULT_LOG_CONFIGURATION: list[str]
+PSEUDOCONFIG_MAPPER: dict[str, list[str]]
