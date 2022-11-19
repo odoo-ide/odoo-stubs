@@ -1,7 +1,4 @@
-from json import *
-from typing import Any
+__all__: list[str]
+JSON_SCRIPTSAFE_MAPPER: dict[str, str]
 
-__all__: Any
-JSON_SCRIPTSAFE_MAPPER: Any
-
-def dumps(*args: Any, **kwargs: Any): ...
+def dumps(*args, **kwargs) -> str: ...
