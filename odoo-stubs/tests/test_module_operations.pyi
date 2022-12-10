@@ -2,6 +2,7 @@ from argparse import Namespace
 
 BLACKLIST: set[str]
 IGNORE: tuple[str, ...]
+INSTALL_BLACKLIST: set[str]
 
 def install(db_name: str, module_id: int, module_name: str) -> None: ...
 def uninstall(db_name: str, module_id: int, module_name: str) -> None: ...
