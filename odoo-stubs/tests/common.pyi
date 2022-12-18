@@ -2,9 +2,11 @@ import collections
 import logging
 import unittest
 from re import Pattern
+from types import TracebackType
 
 from itertools import count
 from typing import Any, Callable, Generator, Generic, Iterator, Literal, Mapping, Match, TypeVar
+from unittest import TestCase
 from xmlrpc import client as xmlrpclib
 
 import requests
@@ -55,6 +57,7 @@ class MetaCase(type):
     def __init__(cls, name, bases, attrs) -> None: ...
 
 class BaseCase(TreeCase):
+    _python_version: tuple
     _class_cleanups: list
     tearDown_exceptions: list
     registry: Registry
@@ -81,6 +84,14 @@ class BaseCase(TreeCase):
     def assertRecordValues(self, records: BaseModel, expected_values: list[dict[str, Any]]) -> None: ...
     def shortDescription(self) -> None: ...
     def assertItemsEqual(self, a, b, msg: str | None = ...) -> None: ...
+    def _callSetUp(self) -> None: ...
+
+class _ErrorCatcher(list):
+    __slots__ = ['test']
+    test: TestCase
+    def __init__(self, test: TestCase) -> None: ...
+    def append(self, error) -> None: ...
+    def _complete_traceback(self, initial_tb: TracebackType) -> TracebackType: ...
 
 class TransactionCase(BaseCase):
     registry: Registry
