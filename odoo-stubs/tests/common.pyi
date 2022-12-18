@@ -2,9 +2,11 @@ import collections
 import logging
 import unittest
 from re import Pattern
+from types import TracebackType
 
 from itertools import count
 from typing import Any, Callable, Generator, Generic, Iterator, Literal, Mapping, Match, TypeVar
+from unittest import TestCase
 from xmlrpc import client as xmlrpclib
 
 import requests
@@ -62,6 +64,7 @@ class MetaCase(type):
 def _normalize_arch_for_assert(arch_string: str, parser_method: str = ...) -> str: ...
 
 class BaseCase(unittest.TestCase, metaclass=MetaCase):
+    _python_version: tuple
     _class_cleanups: list
     tearDown_exceptions: list
     registry: Registry
@@ -95,7 +98,15 @@ class BaseCase(unittest.TestCase, metaclass=MetaCase):
     def assertXMLEqual(self, original: str, expected: str) -> None: ...
     def assertHTMLEqual(self, original: str, expected: str) -> None: ...
     profile_session: str
-    def profile(self, **kwargs) -> Profiler: ...
+    def profile(self, description: str = ..., **kwargs) -> Profiler: ...
+    def _callSetUp(self) -> None: ...
+
+class _ErrorCatcher(list):
+    __slots__ = ['test']
+    test: TestCase
+    def __init__(self, test: TestCase) -> None: ...
+    def append(self, error) -> None: ...
+    def _complete_traceback(self, initial_tb: TracebackType) -> TracebackType: ...
 
 savepoint_seq: count[int]
 
