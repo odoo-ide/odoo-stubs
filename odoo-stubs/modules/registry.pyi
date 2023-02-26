@@ -2,7 +2,7 @@ import threading
 from collections import defaultdict, deque
 from collections.abc import Mapping
 from threading import RLock
-from typing import Any, Callable, ClassVar, Iterable, Iterator
+from typing import Any, Callable, ClassVar, Collection, Iterable, Iterator
 
 from .graph import Node
 from ..models import BaseModel
@@ -22,6 +22,7 @@ class Registry(Mapping[str, type[BaseModel]]):
     models: dict[str, type[BaseModel]]
     _sql_constraints: set
     _init: bool
+    _database_translated_fields: Collection[str]
     _assertion_report: OdooTestResult
     _fields_by_model: Any
     _ordinary_tables: set[str] | None

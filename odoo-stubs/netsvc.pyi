@@ -1,9 +1,15 @@
 import logging.handlers
 import warnings
 from logging import Logger, LogRecord
-from typing import TextIO
+from typing import IO, TextIO
 
 def log(logger: Logger, level: int, prefix: str, msg, depth: int | None = ...) -> None: ...
+
+class WatchedFileHandler(logging.handlers.WatchedFileHandler):
+    errors: None
+    _builtin_open: None
+    def __init__(self, filename: str) -> None: ...
+    def _open(self) -> IO: ...
 
 class PostgreSQLHandler(logging.Handler):
     def emit(self, record: LogRecord) -> None: ...
