@@ -1,22 +1,18 @@
 import collections
 import logging
 import sys
-import unittest
 from concurrent.futures import Future
-from re import Pattern
-from types import TracebackType
-
 from itertools import count
 from subprocess import Popen
 from threading import Thread
 from typing import Any, Callable, Generator, Generic, Iterator, Mapping, Match, TypeVar
-from unittest import TestCase, TestSuite
 from xmlrpc import client as xmlrpclib
 
 import requests
 from lxml.etree import _Element
 from websocket import WebSocket
 
+from . import case
 from .runner import OdooTestResult
 from ..api import Environment
 from ..http import Session
@@ -61,34 +57,20 @@ class RecordCapturer:
     @property
     def records(self) -> BaseModel: ...
 
-BackportSuite: type[TestSuite]
-
-class OdooSuite(BackportSuite):
-    def _handleClassSetUp(self, test, result) -> None: ...
-    def _tearDownPreviousClass(self, test, result) -> None: ...
-    def has_http_case(self) -> bool: ...
-
 class MetaCase(type):
     def __init__(cls, name, bases, attrs) -> None: ...
 
 def _normalize_arch_for_assert(arch_string: str, parser_method: str = ...) -> str: ...
 
-class BaseCase(unittest.TestCase, metaclass=MetaCase):
-    _python_version: tuple
-    _class_cleanups: list
-    tearDown_exceptions: list
+class BaseCase(case.TestCase, metaclass=MetaCase):
     registry: Registry
     env: Environment
     cr: Cursor
-    @classmethod
-    def addClassCleanup(cls, function, *args, **kwargs) -> None: ...
-    @classmethod
-    def doClassCleanups(cls) -> None: ...
     longMessage: bool
     warm: bool
+    _python_version: tuple
     def __init__(self, methodName: str = ...) -> None: ...
     def run(self, result: OdooTestResult) -> None: ...
-    def shortDescription(self) -> None: ...
     def cursor(self) -> Cursor: ...
     @property
     def uid(self) -> int: ...
@@ -118,14 +100,6 @@ class BaseCase(unittest.TestCase, metaclass=MetaCase):
     def assertHTMLEqual(self, original: str, expected: str) -> None: ...
     profile_session: str
     def profile(self, description: str = ..., **kwargs) -> Profiler: ...
-    def _callSetUp(self) -> None: ...
-
-class _ErrorCatcher(list):
-    __slots__ = ['test']
-    test: TestCase
-    def __init__(self, test: TestCase) -> None: ...
-    def append(self, error) -> None: ...
-    def _complete_traceback(self, initial_tb: TracebackType) -> TracebackType: ...
 
 savepoint_seq: count[int]
 
@@ -335,10 +309,3 @@ def record_to_values(fields: dict, record: BaseModel) -> dict: ...
 def _cleanup_from_default(type_: str, value): ...
 def _get_node(view, f, *arg): ...
 def tagged(*tags: str) -> Callable[[_CallableT], _CallableT]: ...
-
-class TagsSelector:
-    filter_spec_re: Pattern
-    exclude: set
-    include: set
-    def __init__(self, spec: str) -> None: ...
-    def check(self, test) -> bool: ...

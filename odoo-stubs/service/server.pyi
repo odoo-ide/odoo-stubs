@@ -12,7 +12,6 @@ from watchdog.observers import Observer
 
 from ..modules.registry import Registry
 from ..sql_db import Cursor
-from ..tests import runner as runner
 
 _WorkerT = TypeVar('_WorkerT', bound=Worker)
 
