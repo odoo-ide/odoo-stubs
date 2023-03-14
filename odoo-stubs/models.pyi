@@ -59,7 +59,7 @@ class OriginIds:
 
 def expand_ids(id0: _T, ids: Iterable) -> Iterator[_T]: ...
 
-IdType: tuple[type[int], type[str], type[NewId]]
+IdType: tuple[type[int], type[NewId]]
 PREFETCH_MAX: int
 LOG_ACCESS_COLUMNS: list[str]
 MAGIC_COLUMNS: list[str]
