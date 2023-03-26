@@ -1,6 +1,5 @@
 from .barcode import *
 from .date_utils import *
-from .debugger import *
 from .float_utils import *
 from .func import *
 from .image import *
@@ -29,3 +28,5 @@ from .js_transpiler import (
 )
 from .query import Query as Query, _generate_table_alias as _generate_table_alias
 from .sourcemap_generator import SourceMapGenerator as SourceMapGenerator
+
+SUPPORTED_DEBUGGER: set[str]
