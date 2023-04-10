@@ -1,3 +1,4 @@
+import enum
 from collections import defaultdict
 from typing import Iterable, Literal
 
@@ -8,7 +9,16 @@ _CONFDELTYPES: dict[str, str]
 
 def existing_tables(cr: Cursor, tablenames: Iterable[str]) -> list[str]: ...
 def table_exists(cr: Cursor, tablename: str) -> bool: ...
-def table_kind(cr: Cursor, tablename: str) -> str | None: ...
+
+class TableKind(enum.Enum):
+    Regular: str
+    Temporary: str
+    View: str
+    Materialized: str
+    Foreign: str
+    Other: None
+
+def table_kind(cr: Cursor, tablename: str) -> TableKind | None: ...
 
 SQL_ORDER_BY_TYPE: defaultdict
 
