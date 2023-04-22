@@ -238,10 +238,10 @@ def format_amount(env: Environment, amount: float, currency: 'odoo.model.res_cur
 def format_duration(value: float) -> str: ...
 
 consteq: Callable[[str, str], bool]
+_PICKLE_SAFE_NAMES: dict
 
 class Unpickler(pickle_.Unpickler):
-    find_global: Any
-    find_class: Any
+    def find_class(self, module_name: str, name: str): ...
 
 def _pickle_load(stream: pickle_._ReadableFileobj, encoding: str = ..., errors: bool = ...): ...
 

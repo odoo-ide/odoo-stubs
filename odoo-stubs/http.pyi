@@ -98,9 +98,9 @@ class FilesystemSessionStore(sessions.FilesystemSessionStore):
     def vacuum(self) -> None: ...
 
 class Session(MutableMapping):
-    __slots__ = ('can_save', 'data', 'is_dirty', 'is_explicit', 'is_new', 'should_rotate', 'sid')
+    __slots__ = ('can_save', '_Session__data', 'is_dirty', 'is_explicit', 'is_new', 'should_rotate', 'sid')
     can_save: bool
-    data: dict
+    __data: dict
     is_dirty: bool
     is_explicit: bool
     is_new: bool
