@@ -1,5 +1,5 @@
 from logging import Logger
-from typing import Any, Callable, Generator, Sequence, TypeVar
+from typing import Any, Callable, Collection, Generator, TypeVar
 
 import werkzeug.contrib.sessions
 import werkzeug.wrappers
@@ -38,6 +38,9 @@ class WebRequest:
     endpoint_arguments: Any
     auth_method: str | None
     website: 'odoo.model.website'
+    website_routing: int
+    is_frontend: bool
+    is_frontend_multilang: bool
     lang: 'odoo.model.res_lang'
     _cr: Cursor | None
     _uid: int | None
@@ -124,7 +127,7 @@ class EndPoint:
     def _as_tuple(self) -> tuple[Callable, dict]: ...
     def __repr__(self) -> str: ...
 
-def _generate_routing_rules(modules: Sequence[str], nodb_only: bool, converters: Any | None = ...) -> Generator[tuple[str, EndPoint, dict], None, None]: ...
+def _generate_routing_rules(modules: Collection[str], nodb_only: bool, converters: Any | None = ...) -> Generator[tuple[str, EndPoint, dict], None, None]: ...
 
 class AuthenticationError(Exception): ...
 class SessionExpiredException(Exception): ...
