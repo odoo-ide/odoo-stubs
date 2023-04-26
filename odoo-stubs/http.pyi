@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from collections import defaultdict
 from collections.abc import MutableMapping
 from contextlib import nullcontext
-from typing import Any, Callable, Generator, Iterable, Literal, Mapping, Sequence, TypeVar
+from typing import Any, Callable, Collection, Generator, Iterable, Literal, Mapping, TypeVar
 
 import geoip2.database
 import geoip2.models
@@ -87,7 +87,7 @@ def route(route: str | list[str] | None = ...,
           cors: str = ...,
           csrf: bool = ...,
           **kw): ...
-def _generate_routing_rules(modules: Sequence[str], nodb_only: bool, converters: Any | None = ...) -> Generator[tuple[str, Any], None, None]: ...
+def _generate_routing_rules(modules: Collection[str], nodb_only: bool, converters: Any | None = ...) -> Generator[tuple[str, Any], None, None]: ...
 def _check_and_complete_route_definition(controller_cls: type, submethod, merged_routing: dict) -> None: ...
 
 class FilesystemSessionStore(sessions.FilesystemSessionStore):
@@ -179,6 +179,9 @@ class Request:
     db: str | None
     env: Environment | None
     website: 'odoo.model.website'
+    website_routing: int
+    is_frontend: bool
+    is_frontend_multilang: bool
     lang: 'odoo.model.res_lang'
     def __init__(self, httprequest: werkzeug.Request) -> None: ...
     def _get_session_and_dbname(self) -> tuple[Session, str]: ...
