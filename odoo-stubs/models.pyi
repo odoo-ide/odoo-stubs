@@ -1,5 +1,5 @@
 from collections import MutableMapping
-from typing import Any, Generator, List, TypeVar
+from typing import Any, Dict, Generator, List, TypeVar
 
 from . import api, fields
 from .api import Environment
@@ -74,6 +74,8 @@ class BaseModel:
     _transient_check_count: int
     _transient_max_count: Any
     _transient_max_hours: Any
+    _fields: Dict[str, fields.Field]
+    _ids: tuple
     env: Environment = ...
     pool: Registry
     id = fields.Id()
