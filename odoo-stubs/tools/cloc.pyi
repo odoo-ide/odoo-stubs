@@ -6,6 +6,7 @@ VERSION: int
 DEFAULT_EXCLUDE: list[str]
 STANDARD_MODULES: list[str]
 MAX_FILE_SIZE: int
+MAX_LINE_SIZE: int
 VALID_EXTENSION: list[str]
 
 class Cloc:
