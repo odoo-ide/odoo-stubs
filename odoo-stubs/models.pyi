@@ -67,7 +67,7 @@ class BaseModel(metaclass=MetaModel):
     _name: str
     _description: str
     _custom: bool
-    _inherit: tuple[str]
+    _inherit: str | list[str]
     _inherits: dict[str, str]
     _table: str
     _table_query: str | None
