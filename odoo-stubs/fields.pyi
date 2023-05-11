@@ -1,5 +1,10 @@
 import datetime
-from typing import Any
+from typing import Any, Generic, TypeVar, overload
+
+from .models import BaseModel
+
+_FieldT = TypeVar('_FieldT', bound=Field)
+_FieldValueT = TypeVar('_FieldValueT')
 
 DATE_LENGTH: Any
 DATETIME_LENGTH: Any
@@ -29,7 +34,7 @@ class MetaField(type):
     def __new__(meta, name, bases, attrs): ...
     def __init__(cls, name, bases, attrs) -> None: ...
 
-class Field:
+class Field(Generic[_FieldValueT]):
     __metaclass__: MetaField
     type: Any
     relational: bool
@@ -117,7 +122,10 @@ class Field:
     def check_schema(self, model) -> None: ...
     def read(self, records): ...
     def write(self, records, value): ...
-    # def __get__(self, record, owner): ...
+    @overload
+    def __get__(self, record: BaseModel, owner) -> _FieldValueT: ...
+    @overload
+    def __get__(self: _FieldT, record: None, owner) -> _FieldT: ...
     def __set__(self, record, value) -> None: ...
     def _compute_value(self, records) -> None: ...
     def compute_value(self, records) -> None: ...
@@ -128,14 +136,14 @@ class Field:
     def modified(self, records): ...
     def modified_draft(self, records): ...
 
-class Boolean(Field):
+class Boolean(Field[bool]):
     type: str
     column_type: Any
     def convert_to_column(self, value, record): ...
     def convert_to_cache(self, value, record, validate: bool = ...): ...
     def convert_to_export(self, value, record): ...
 
-class Integer(Field):
+class Integer(Field[int]):
     type: str
     column_type: Any
     _slots: Any
@@ -146,7 +154,7 @@ class Integer(Field):
     def _update(self, records, value) -> None: ...
     def convert_to_export(self, value, record): ...
 
-class Float(Field):
+class Float(Field[float]):
     type: str
     _slots: Any
     def __init__(self, string=..., digits=..., **kwargs) -> None: ...
@@ -161,7 +169,7 @@ class Float(Field):
     def convert_to_cache(self, value, record, validate: bool = ...): ...
     def convert_to_export(self, value, record): ...
 
-class Monetary(Field):
+class Monetary(Field[float]):
     type: str
     column_type: Any
     _slots: Any
@@ -176,7 +184,7 @@ class Monetary(Field):
     def convert_to_read(self, value, record, use_name_get: bool = ...): ...
     def convert_to_write(self, value, record): ...
 
-class _String(Field):
+class _String(Field[str]):
     _slots: Any
     def __init__(self, string=..., **kwargs) -> None: ...
     _related_translate: Any
@@ -222,7 +230,7 @@ class Html(_String):
     def convert_to_column(self, value, record): ...
     def convert_to_cache(self, value, record, validate: bool = ...): ...
 
-class Date(Field):
+class Date(Field[datetime.date]):
     type: str
     column_type: Any
     @staticmethod
@@ -237,7 +245,7 @@ class Date(Field):
     def convert_to_cache(self, value, record, validate: bool = ...): ...
     def convert_to_export(self, value, record): ...
 
-class Datetime(Field):
+class Datetime(Field[datetime.datetime]):
     type: str
     column_type: Any
     @staticmethod
@@ -253,7 +261,7 @@ class Datetime(Field):
     def convert_to_export(self, value, record): ...
     def convert_to_display_name(self, value, record): ...
 
-class Binary(Field):
+class Binary(Field[bytes]):
     type: str
     _slots: Any
     @property
@@ -264,7 +272,7 @@ class Binary(Field):
     def read(self, records) -> None: ...
     def write(self, records, value) -> None: ...
 
-class Selection(Field):
+class Selection(Field[str]):
     type: str
     _slots: Any
     def __init__(self, selection=..., string=..., **kwargs) -> None: ...
@@ -290,7 +298,7 @@ class Reference(Selection):
     def convert_to_export(self, value, record): ...
     def convert_to_display_name(self, value, record): ...
 
-class _Relational(Field):
+class _Relational(Field[BaseModel]):
     relational: bool
     _slots: Any
     comodel_name: str
@@ -369,9 +377,8 @@ class Serialized(Field):
     def convert_to_column(self, value, record): ...
     def convert_to_cache(self, value, record, validate: bool = ...): ...
 
-class Id(Field):
+class Id(Field[int]):
     type: str
     column_type: Any
     _slots: Any
-    def __get__(self, record, owner): ...
     def __set__(self, record, value) -> None: ...
