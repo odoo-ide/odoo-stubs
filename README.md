@@ -1,21 +1,45 @@
-This is used by [PyCharm Odoo](https://plugins.jetbrains.com/plugin/13499-odoo) to help PyCharm better understands your Odoo source code.
+# odoo-stubs
 
-### Why do you need this stubs for Odoo?
+> A stub file is a file containing a skeleton of the public interface of that Python module,
+> including classes, variables, functions – and most importantly, their types.
+>
+> https://mypy.readthedocs.io/en/stable/stubs.html 
 
-Python is a dynamic language that makes difficult for any IDE to understand and provide a great code completion. For example in Odoo, some automatic fields such as `id`, `create_date`, `create_uid`,... are declared dynamically (https://github.com/odoo/odoo/blob/14.0/odoo/models.py#L450) so PyCharm could not know if they are attributes of model and you might see warnings such as `Unresolved attribute reference` when trying reference them from a recordset. It's the reason why we need stubs for Odoo. The stubs provides additional info to help PyCharm know these attributes and its type, and thereby provides better code completion, navigation and inspection.
+By using these stubs, IDEs will provide better code completion,
+and static type checkers will provide better reports.
+These stubs should be used in conjunction with:
+- [PyCharm plugin for Odoo](https://plugins.jetbrains.com/plugin/13499-odoo)
+- [Visual Studio Code extension for Odoo](https://marketplace.visualstudio.com/items?itemName=trinhanhngoc.vscode-odoo)
 
-### How to use this stubs in PyCharm?
+## Usage
 
-#### 1. Clone and checkout the branch corresponding to the Odoo version
+### 1. Clone the branch corresponding to the Odoo version
 
-Example, for Odoo 14:
+Example, for Odoo 16:
 ```
-git clone -b 14.0 https://github.com/trinhanhngoc/odoo-stubs.git odoo-stubs14
+git clone -b 16.0 https://github.com/odoo-ide/odoo-stubs.git odoo-stubs16
 ```
 
-#### 2. Attach to your project
-First make sure that you attached the Odoo source code (https://github.com/odoo/odoo) to your project window. Open **Settings** > **Project** > **Project Structure**, select Odoo source code and click **Add Content Root** and add odoo-stubs folder:
+### 2. Configure IDEs
 
-![Screenshot from 2021-08-16 22-29-17](https://user-images.githubusercontent.com/11208291/129589513-280555ba-c0bc-4f3c-ab8a-218c0d48d685.png)
+#### PyCharm
 
-For custom addons folders, you can attach them as content roots beside Odoo source code or attach them as projects into the same window and setup project dependencies in Settings.
+First make sure you have attached the [Odoo source code](https://github.com/odoo/odoo)
+to your project.
+Then open `Settings > Project > Project Structure`,
+select the project containing the Odoo source code and click `Add Content Root` to add the odoo-stubs folder.
+
+![PyCharm](images/pycharm.png)
+
+#### Visual Studio Code
+
+Create [`pyrightconfig.json`](https://microsoft.github.io/pyright/#/configuration) in the Odoo source code folder
+(should be the root folder of your workspace) with something like the following example:
+
+```json
+{
+    "stubPath": "path/to/odoo-stubs"
+}
+```
+
+![VSCode](images/vscode.png)
