@@ -1,5 +1,5 @@
 import datetime
-from typing import Any, Callable, Collection, Iterator, Sequence, Type, TypeVar, Union
+from typing import Any, Callable, Collection, Generic, Iterator, Sequence, Type, TypeVar, Union, overload
 
 import psycopg2
 from markupsafe import Markup
@@ -8,6 +8,8 @@ from .api import Environment
 from .models import BaseModel
 from .tools import date_utils, frozendict
 
+_FieldT = TypeVar('_FieldT', bound=Field)
+_FieldValueT = TypeVar('_FieldValueT')
 _ModelT = TypeVar('_ModelT', bound=BaseModel)
 _Selection = list[tuple[str, str]]
 _SelectionRaw = _Selection | Callable[..., _Selection] | str
@@ -31,7 +33,7 @@ class MetaField(type):
     def __new__(meta, name, bases, attrs): ...
     def __init__(cls: type[Field], name, bases, attrs) -> None: ...
 
-class Field(metaclass=MetaField):
+class Field(Generic[_FieldValueT], metaclass=MetaField):
     type: str | None
     relational: bool
     translate: bool
@@ -150,20 +152,23 @@ class Field(metaclass=MetaField):
     def read(self, records: BaseModel) -> None: ...
     def create(self, record_values: list[tuple[BaseModel, Any]]) -> None: ...
     def write(self, records: _ModelT, value) -> _ModelT: ...
-    def __get__(self, record: Union[BaseModel, None], owner): ...
+    @overload
+    def __get__(self, record: BaseModel, owner) -> _FieldValueT: ...
+    @overload
+    def __get__(self: _FieldT, records: None, owner) -> _FieldT: ...
     def __set__(self, records: BaseModel, value) -> None: ...
     def compute_value(self, records: BaseModel) -> None: ...
     def determine_inverse(self, records: BaseModel) -> None: ...
     def determine_domain(self, records: BaseModel, operator: str, value) -> list: ...
 
-class Boolean(Field):
+class Boolean(Field[bool]):
     type: str
     column_type: tuple[str, str]
     def convert_to_column(self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...) -> bool: ...
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...) -> bool: ...
     def convert_to_export(self, value, record: BaseModel): ...
 
-class Integer(Field):
+class Integer(Field[int]):
     type: str
     column_type: tuple[str, str]
     _slots: dict[str, Any]
@@ -174,7 +179,7 @@ class Integer(Field):
     def _update(self, records: BaseModel, value) -> None: ...
     def convert_to_export(self, value, record): ...
 
-class Float(Field):
+class Float(Field[float]):
     type: str
     column_cast_from: tuple[str, str, str]
     _slots: dict[str, Any]
@@ -190,7 +195,7 @@ class Float(Field):
     def convert_to_record(self, value, record: BaseModel): ...
     def convert_to_export(self, value, record: BaseModel): ...
 
-class Monetary(Field):
+class Monetary(Field[float]):
     type: str
     column_type: tuple[str, str]
     column_cast_from: tuple[str]
@@ -208,7 +213,7 @@ class Monetary(Field):
     def convert_to_read(self, value, record: BaseModel, use_name_get: bool = ...): ...
     def convert_to_write(self, value, record: BaseModel): ...
 
-class _String(Field):
+class _String(Field[str]):
     _slots: dict[str, Any]
     translate: Callable | bool
     prefetch: Any
@@ -271,7 +276,7 @@ class Html(_String):
     def convert_to_column(self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...) -> Markup | None: ...
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...) -> Markup | None: ...
 
-class Date(Field):
+class Date(Field[datetime.date]):
     type: str
     column_type: tuple[str, str]
     column_cast_from: tuple[str]
@@ -291,7 +296,7 @@ class Date(Field):
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...) -> datetime.date | None: ...
     def convert_to_export(self, value, record: BaseModel): ...
 
-class Datetime(Field):
+class Datetime(Field[datetime.datetime]):
     type: str
     column_type: tuple[str, str]
     column_cast_from: tuple[str]
@@ -316,7 +321,7 @@ class Datetime(Field):
 
 _BINARY = memoryview
 
-class Binary(Field):
+class Binary(Field[bytes]):
     type: str
     _slots: dict[str, Any]
     prefetch: bool
@@ -344,7 +349,7 @@ class Image(Binary):
     def _image_process(self, value): ...
     def _process_related(self, value): ...
 
-class Selection(Field):
+class Selection(Field[str]):
     type: str
     column_type: tuple[str, str]
     _slots: dict[str, Any]
@@ -372,13 +377,12 @@ class Reference(Selection):
     def convert_to_export(self, value, record: BaseModel) -> str: ...
     def convert_to_display_name(self, value, record: BaseModel) -> str: ...
 
-class _Relational(Field):
+class _Relational(Field[BaseModel]):
     relational: bool
     _slots: dict[str, Any]
     domain: _DomainRaw
     context: dict
     check_company: bool
-    def __get__(self, records: Union[BaseModel, None], owner) -> BaseModel: ...
     comodel_name: str
     def _setup_regular_base(self, model: BaseModel) -> None: ...
     def get_domain_list(self, model: BaseModel) -> _Domain: ...
@@ -476,7 +480,7 @@ class Many2many(_RelationalMulti):
     def write_real(self, records_commands_list: _CommandList, create: bool = ...): ...
     def write_new(self, records_commands_list: _CommandList): ...
 
-class Id(Field):
+class Id(Field[int]):
     type: str
     column_type: tuple[str, str]
     _slots: dict[str, Any]
@@ -485,7 +489,6 @@ class Id(Field):
     readonly: bool
     prefetch: bool
     def update_db(self, model: BaseModel, columns) -> None: ...
-    def __get__(self, record: BaseModel, owner): ...
     def __set__(self, record: BaseModel, value) -> None: ...
 
 def prefetch_many2one_ids(record: BaseModel, field: Field) -> Iterator: ...
