@@ -30,7 +30,6 @@ def dispatch_rpc(service_name: str, method: str, params): ...
 class WebRequest:
     httprequest: werkzeug.Request
     httpresponse: Response | None
-    disable_db: bool
     endpoint: EndPoint | None
     endpoint_arguments: Any
     auth_method: str | None
@@ -39,6 +38,7 @@ class WebRequest:
     is_frontend: bool
     is_frontend_multilang: bool
     lang: 'odoo.model.res_lang'
+    _db: str | None
     _cr: Cursor | None
     _uid: int | None
     _context: dict | None
@@ -142,7 +142,7 @@ class OpenERPSession(sessions.Session):
     def __setattr__(self, k, v): ...
     pre_uid: int
     uid: int
-    db: str
+    db: str | None
     login: str | None
     def authenticate(self, db: str, login: str | None = ..., password: str | None = ...) -> int: ...
     session_token: str | None
