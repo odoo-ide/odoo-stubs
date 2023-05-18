@@ -54,7 +54,6 @@ class MetaModel(api.Meta):
     def _get_addon_name(self, full_name: str) -> str: ...
 
 class NewId:
-    __slots__: list[str]
     origin: int | None
     ref: Any
     def __init__(self, origin: int | None = ..., ref: Any | None = ...) -> None: ...

@@ -4,7 +4,6 @@ from typing import Any, Generator, Iterator
 __all__ = ["LRU"]
 
 class LRUNode:
-    __slots__ = ["prev", "next", "me"]
     prev: Any
     me: Any
     next: Any
