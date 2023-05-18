@@ -1,6 +1,6 @@
 from codecs import StreamReader, StreamWriter
 from csv import Dialect
-from typing import BinaryIO, Iterable, Iterator, Protocol, Any
+from typing import Any, BinaryIO, Iterable, Iterator, Protocol
 
 class _StreamReader(Protocol):
     def __call__(self, stream: BinaryIO, errors: str = ...) -> StreamReader: ...

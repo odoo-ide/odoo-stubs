@@ -1,7 +1,8 @@
 from typing import Any, Iterable
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
-from PyPDF2.generic import ArrayObject as ArrayObject, IndirectObject
+from PyPDF2.generic import ArrayObject as ArrayObject
+from PyPDF2.generic import IndirectObject
 from PyPDF2.utils import b_ as b_
 
 DEFAULT_PDF_DATETIME_FORMAT: str
@@ -12,9 +13,12 @@ class OdooPdfFileWriter(PdfFileWriter):
     _reader: PdfFileReader | None
     _header: bytes
     _ID: Any
-    def __init__(self, *args, **kwargs): None
+    def __init__(self, *args, **kwargs):
+        None
     def addAttachment(self, fname: str, fdata, subtype: str = ...) -> None: ...
     def cloneReaderDocumentRoot(self, reader: PdfFileReader) -> None: ...
     def convert_to_pdfa(self) -> None: ...
     def add_file_metadata(self, metadata_content: bytes) -> None: ...
-    def _create_attachment_object(self, attachment: dict[str, Any]) -> IndirectObject: ...
+    def _create_attachment_object(
+        self, attachment: dict[str, Any]
+    ) -> IndirectObject: ...

@@ -5,11 +5,11 @@ from threading import RLock
 from typing import Any, Callable, ClassVar, Iterable, Iterator
 from weakref import WeakValueDictionary
 
-from .graph import Node
 from ..models import BaseModel
 from ..sql_db import Connection, Cursor
 from ..tools.assertion_report import assertion_report
 from ..tools.lru import LRU
+from .graph import Node
 
 class Registry(Mapping[str, type[BaseModel]]):
     _lock: RLock
@@ -18,7 +18,13 @@ class Registry(Mapping[str, type[BaseModel]]):
     registries: ClassVar[LRU]
     def __new__(cls, db_name: str) -> Registry: ...
     @classmethod
-    def new(cls, db_name: str, force_demo: bool = ..., status: Any | None = ..., update_module: bool = ...) -> Registry: ...
+    def new(
+        cls,
+        db_name: str,
+        force_demo: bool = ...,
+        status: Any | None = ...,
+        update_module: bool = ...,
+    ) -> Registry: ...
     models: dict[str, type[BaseModel]]
     _sql_constraints: set
     _init: bool
@@ -58,7 +64,9 @@ class Registry(Mapping[str, type[BaseModel]]):
     def post_constraint(self, func: Callable, *args, **kwargs) -> None: ...
     def finalize_constraints(self) -> None: ...
     _is_install: bool
-    def init_models(self, cr: Cursor, model_names: Iterable[str], context: dict, install: bool = ...) -> None: ...
+    def init_models(
+        self, cr: Cursor, model_names: Iterable[str], context: dict, install: bool = ...
+    ) -> None: ...
     def check_tables_exist(self, cr: Cursor) -> None: ...
     @property
     def cache(self) -> LRU: ...

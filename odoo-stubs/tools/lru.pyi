@@ -1,10 +1,10 @@
 from threading import RLock
-from typing import Any, Iterator, Generator
+from typing import Any, Generator, Iterator
 
-__all__ = ['LRU']
+__all__ = ["LRU"]
 
 class LRUNode:
-    __slots__ = ['prev', 'next', 'me']
+    __slots__ = ["prev", "next", "me"]
     prev: Any
     me: Any
     next: Any
