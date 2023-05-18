@@ -3,12 +3,42 @@ from typing import Any, Optional
 __version_info__: Any
 __version__: Any
 
-def user_data_dir(appname: Optional[Any] = ..., appauthor: Optional[Any] = ..., version: Optional[Any] = ..., roaming: bool = ...): ...
-def site_data_dir(appname: Optional[Any] = ..., appauthor: Optional[Any] = ..., version: Optional[Any] = ..., multipath: bool = ...): ...
-def user_config_dir(appname: Optional[Any] = ..., appauthor: Optional[Any] = ..., version: Optional[Any] = ..., roaming: bool = ...): ...
-def site_config_dir(appname: Optional[Any] = ..., appauthor: Optional[Any] = ..., version: Optional[Any] = ..., multipath: bool = ...): ...
-def user_cache_dir(appname: Optional[Any] = ..., appauthor: Optional[Any] = ..., version: Optional[Any] = ..., opinion: bool = ...): ...
-def user_log_dir(appname: Optional[Any] = ..., appauthor: Optional[Any] = ..., version: Optional[Any] = ..., opinion: bool = ...): ...
+def user_data_dir(
+    appname: Optional[Any] = ...,
+    appauthor: Optional[Any] = ...,
+    version: Optional[Any] = ...,
+    roaming: bool = ...,
+): ...
+def site_data_dir(
+    appname: Optional[Any] = ...,
+    appauthor: Optional[Any] = ...,
+    version: Optional[Any] = ...,
+    multipath: bool = ...,
+): ...
+def user_config_dir(
+    appname: Optional[Any] = ...,
+    appauthor: Optional[Any] = ...,
+    version: Optional[Any] = ...,
+    roaming: bool = ...,
+): ...
+def site_config_dir(
+    appname: Optional[Any] = ...,
+    appauthor: Optional[Any] = ...,
+    version: Optional[Any] = ...,
+    multipath: bool = ...,
+): ...
+def user_cache_dir(
+    appname: Optional[Any] = ...,
+    appauthor: Optional[Any] = ...,
+    version: Optional[Any] = ...,
+    opinion: bool = ...,
+): ...
+def user_log_dir(
+    appname: Optional[Any] = ...,
+    appauthor: Optional[Any] = ...,
+    version: Optional[Any] = ...,
+    opinion: bool = ...,
+): ...
 
 class AppDirs:
     appname: Any
@@ -16,7 +46,14 @@ class AppDirs:
     version: Any
     roaming: Any
     multipath: Any
-    def __init__(self, appname, appauthor: Optional[Any] = ..., version: Optional[Any] = ..., roaming: bool = ..., multipath: bool = ...) -> None: ...
+    def __init__(
+        self,
+        appname,
+        appauthor: Optional[Any] = ...,
+        version: Optional[Any] = ...,
+        roaming: bool = ...,
+        multipath: bool = ...,
+    ) -> None: ...
     @property
     def user_data_dir(self): ...
     @property

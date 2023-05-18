@@ -10,6 +10,7 @@ class except_orm(Exception):
 
 class UserError(except_orm):
     def __init__(self, msg) -> None: ...
+
 Warning = UserError
 
 class RedirectWarning(Exception):

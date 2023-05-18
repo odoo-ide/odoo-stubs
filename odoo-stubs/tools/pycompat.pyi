@@ -3,7 +3,7 @@ from typing import Any, Optional
 
 PY2: Any
 
-_Writer = namedtuple('_Writer', 'writerow writerows')
+_Writer = namedtuple("_Writer", "writerow writerows")
 unichr = chr
 text_type = str
 string_types: Any

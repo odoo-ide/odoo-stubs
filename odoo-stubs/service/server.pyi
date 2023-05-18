@@ -1,5 +1,6 @@
-import werkzeug.serving
 from typing import Any, Optional
+
+import werkzeug.serving
 
 INOTIFY_LISTEN_EVENTS: Any
 _logger: Any
@@ -18,7 +19,9 @@ class BaseWSGIServerNoBind(LoggingBaseWSGIServerMixIn, werkzeug.serving.BaseWSGI
 class RequestHandler(werkzeug.serving.WSGIRequestHandler):
     def setup(self) -> None: ...
 
-class ThreadedWSGIServerReloadable(LoggingBaseWSGIServerMixIn, werkzeug.serving.ThreadedWSGIServer):
+class ThreadedWSGIServerReloadable(
+    LoggingBaseWSGIServerMixIn, werkzeug.serving.ThreadedWSGIServer
+):
     max_http_threads: Any
     http_threads_sem: Any
     def __init__(self, host, port, app) -> None: ...

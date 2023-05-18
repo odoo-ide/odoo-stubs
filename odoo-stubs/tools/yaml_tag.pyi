@@ -11,13 +11,17 @@ class Assert(YamlTag):
     id: Any
     severity: Any
     string: Any
-    def __init__(self, model, id: Optional[Any] = ..., severity=..., string: str = ..., **kwargs) -> None: ...
+    def __init__(
+        self, model, id: Optional[Any] = ..., severity=..., string: str = ..., **kwargs
+    ) -> None: ...
 
 class Record(YamlTag):
     model: Any
     id: Any
     view: Any
-    def __init__(self, model, id, use: str = ..., view: bool = ..., **kwargs) -> None: ...
+    def __init__(
+        self, model, id, use: str = ..., view: bool = ..., **kwargs
+    ) -> None: ...
     def __str__(self): ...
 
 class Python(YamlTag):
