@@ -713,7 +713,6 @@ class Id(Field[int]):
     def __set__(self, record: BaseModel, value) -> None: ...
 
 class PrefetchMany2one:
-    __slots__ = "record", "field"
     record: BaseModel
     field: Field
     def __init__(self, record: BaseModel, field: Field) -> None: ...
@@ -721,7 +720,6 @@ class PrefetchMany2one:
     def __reversed__(self) -> Iterator[int]: ...
 
 class PrefetchX2many:
-    __slots__ = "record", "field"
     record: BaseModel
     field: Field
     def __init__(self, record: BaseModel, field: Field) -> None: ...
