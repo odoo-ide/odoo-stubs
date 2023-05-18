@@ -4,7 +4,6 @@ unsafe_eval = eval
 _logger: Any
 
 class ormcache_counter:
-    __slots__: Any
     hit: int
     miss: int
     err: int
