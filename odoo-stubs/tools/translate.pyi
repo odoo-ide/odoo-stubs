@@ -62,7 +62,6 @@ class GettextAlias:
     def _get_translation(self, source: str) -> str: ...
 
 class _lt:
-    __slots__ = ["_source", "_args"]
     _source: str
     _args: tuple
     def __init__(self, source: str, *args, **kwargs) -> None: ...

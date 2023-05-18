@@ -54,7 +54,6 @@ class MetaModel(api.Meta):
     ) -> None: ...
 
 class NewId:
-    __slots__: list[str]
     origin: int | None
     ref: Any
     def __init__(self, origin: int | None = ..., ref: Any | None = ...) -> None: ...
@@ -77,7 +76,6 @@ def is_definition_class(cls) -> bool: ...
 def is_registry_class(cls) -> bool: ...
 
 class BaseModel(metaclass=MetaModel):
-    __slots__: list[str]
     _auto: bool
     _register: bool
     _abstract: bool
