@@ -1,11 +1,10 @@
+from itertools import chain as chain
 from socket import socket as socket_
 from threading import Semaphore, Thread
-
-from gevent.pywsgi import WSGIServer
-from itertools import chain as chain
 from typing import Any, Callable, Iterable, Literal, TypeVar
 
 import werkzeug.serving
+from gevent.pywsgi import WSGIServer
 from inotify.adapters import InotifyTrees
 from psutil import Process
 from watchdog.observers import Observer
@@ -13,7 +12,7 @@ from watchdog.observers import Observer
 from ..modules.registry import Registry
 from ..sql_db import Cursor
 
-_WorkerT = TypeVar('_WorkerT', bound=Worker)
+_WorkerT = TypeVar("_WorkerT", bound=Worker)
 
 INOTIFY_LISTEN_EVENTS: Any
 SLEEP_INTERVAL: int
@@ -36,7 +35,9 @@ class RequestHandler(werkzeug.serving.WSGIRequestHandler):
     close_connection: bool
     def send_header(self, keyword, value) -> None: ...
 
-class ThreadedWSGIServerReloadable(LoggingBaseWSGIServerMixIn, werkzeug.serving.ThreadedWSGIServer):
+class ThreadedWSGIServerReloadable(
+    LoggingBaseWSGIServerMixIn, werkzeug.serving.ThreadedWSGIServer
+):
     max_http_threads: Any
     http_threads_sem: Semaphore
     daemon_threads: bool
@@ -128,7 +129,9 @@ class PreforkServer(CommonServer):
     def pipe_new(self) -> tuple[int, int]: ...
     def pipe_ping(self, pipe: tuple[int, int]) -> None: ...
     def signal_handler(self, sig: int, frame) -> None: ...
-    def worker_spawn(self, klass: Callable[..., _WorkerT], workers_registry: dict[int, _WorkerT]) -> _WorkerT | None: ...
+    def worker_spawn(
+        self, klass: Callable[..., _WorkerT], workers_registry: dict[int, _WorkerT]
+    ) -> _WorkerT | None: ...
     def long_polling_spawn(self) -> None: ...
     def worker_pop(self, pid: int) -> None: ...
     def worker_kill(self, pid: int, sig: int) -> None: ...

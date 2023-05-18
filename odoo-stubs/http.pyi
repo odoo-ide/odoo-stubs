@@ -2,7 +2,16 @@ from abc import ABC, abstractmethod
 from collections import defaultdict
 from collections.abc import MutableMapping
 from contextlib import nullcontext
-from typing import Any, Callable, Collection, Generator, Iterable, Literal, Mapping, TypeVar
+from typing import (
+    Any,
+    Callable,
+    Collection,
+    Generator,
+    Iterable,
+    Literal,
+    Mapping,
+    TypeVar,
+)
 
 import werkzeug
 from werkzeug.datastructures import Headers
@@ -20,7 +29,7 @@ from .tools._vendor import sessions
 from .tools.geoipresolver import GeoIPResolver
 from .tools.profiler import Profiler
 
-_T = TypeVar('_T')
+_T = TypeVar("_T")
 
 ProxyFix: Callable[..., ProxyFix_]
 CORS_MAX_AGE: int
@@ -45,8 +54,16 @@ def db_filter(dbs: Iterable[str], host: str | None = ...) -> list[str]: ...
 def dispatch_rpc(service_name: str, method: str, params: Mapping): ...
 def is_cors_preflight(request: Request, endpoint) -> bool: ...
 def serialize_exception(exception: Exception): ...
-def send_file(filepath_or_fp, mimetype: str | None = ..., as_attachment: bool = ..., filename: str | None = ...,
-              mtime: str | None = ..., add_etags: bool = ..., cache_timeout: int = ..., conditional: bool = ...) -> werkzeug.Response: ...
+def send_file(
+    filepath_or_fp,
+    mimetype: str | None = ...,
+    as_attachment: bool = ...,
+    filename: str | None = ...,
+    mtime: str | None = ...,
+    add_etags: bool = ...,
+    cache_timeout: int = ...,
+    conditional: bool = ...,
+) -> werkzeug.Response: ...
 
 class Stream:
     type: str
@@ -66,25 +83,34 @@ class Stream:
     @classmethod
     def from_path(cls, path: str, filter_ext: tuple[str, ...] = ...) -> Stream: ...
     @classmethod
-    def from_attachment(cls, attachment: 'odoo.model.ir_attachment') -> Stream: ...
+    def from_attachment(cls, attachment: "odoo.model.ir_attachment") -> Stream: ...
     @classmethod
     def from_binary_field(cls, record: BaseModel, field_name: str) -> Stream: ...
     def read(self) -> bytes: ...
-    def get_response(self, as_attachment: bool | None = ..., immutable: bool | None = ..., **send_file_kwargs) -> werkzeug.Response: ...
+    def get_response(
+        self,
+        as_attachment: bool | None = ...,
+        immutable: bool | None = ...,
+        **send_file_kwargs
+    ) -> werkzeug.Response: ...
 
 class Controller:
     children_classes: defaultdict[Any, list]
     @classmethod
     def __init_subclass__(cls) -> None: ...
 
-def route(route: str | list[str] | None = ...,
-          type: str = ...,
-          auth: str = ...,
-          methods: list[str] = ...,
-          cors: str = ...,
-          csrf: bool = ...,
-          **kw): ...
-def _generate_routing_rules(modules: Collection[str], nodb_only: bool, converters: Any | None = ...) -> Generator[tuple[str, Any], None, None]: ...
+def route(
+    route: str | list[str] | None = ...,
+    type: str = ...,
+    auth: str = ...,
+    methods: list[str] = ...,
+    cors: str = ...,
+    csrf: bool = ...,
+    **kw
+): ...
+def _generate_routing_rules(
+    modules: Collection[str], nodb_only: bool, converters: Any | None = ...
+) -> Generator[tuple[str, Any], None, None]: ...
 
 class FilesystemSessionStore(sessions.FilesystemSessionStore):
     def get_session_filename(self, sid: str) -> str: ...
@@ -94,7 +120,15 @@ class FilesystemSessionStore(sessions.FilesystemSessionStore):
     def vacuum(self) -> None: ...
 
 class Session(MutableMapping):
-    __slots__ = ('can_save', '_Session__data', 'is_dirty', 'is_explicit', 'is_new', 'should_rotate', 'sid')
+    __slots__ = (
+        "can_save",
+        "_Session__data",
+        "is_dirty",
+        "is_explicit",
+        "is_new",
+        "should_rotate",
+        "sid",
+    )
     can_save: bool
     __data: dict
     is_dirty: bool
@@ -114,7 +148,9 @@ class Session(MutableMapping):
     uid: int | None
     pre_login: str | None
     pre_uid: int
-    def authenticate(self, dbname: str, login: str | None = ..., password: str | None = ...) -> int: ...
+    def authenticate(
+        self, dbname: str, login: str | None = ..., password: str | None = ...
+    ) -> int: ...
     def finalize(self, env: Environment) -> None: ...
     def logout(self, keep_db: bool = ...) -> None: ...
     def touch(self) -> None: ...
@@ -132,23 +168,48 @@ class Response(werkzeug.Response):
     template: Any
     qcontext: dict
     uid: int
-    def set_default(self, template: Any | None = ..., qcontext: dict | None = ..., uid: int | None = ...) -> None: ...
+    def set_default(
+        self,
+        template: Any | None = ...,
+        qcontext: dict | None = ...,
+        uid: int | None = ...,
+    ) -> None: ...
     @property
     def is_qweb(self) -> bool: ...
     def render(self): ...
     def flatten(self) -> None: ...
-    def set_cookie(self, key: str, value: str = ..., max_age: Any | None = ..., expires: Any | None = ...,
-                   path: str = ..., domain: str | None = ..., secure: bool = ..., httponly: bool = ...,
-                   samesite: str | None = ..., cookie_type: str = ...) -> None: ...
+    def set_cookie(
+        self,
+        key: str,
+        value: str = ...,
+        max_age: Any | None = ...,
+        expires: Any | None = ...,
+        path: str = ...,
+        domain: str | None = ...,
+        secure: bool = ...,
+        httponly: bool = ...,
+        samesite: str | None = ...,
+        cookie_type: str = ...,
+    ) -> None: ...
 
 class FutureResponse:
     charset: str
     max_cookie_size: int
     headers: Headers
     def __init__(self) -> None: ...
-    def set_cookie(self, key: str, value: str = ..., max_age: Any | None = ..., expires: Any | None = ...,
-                   path: str = ..., domain: str | None = ..., secure: bool = ..., httponly: bool = ...,
-                   samesite: str | None = ..., cookie_type: str = ...) -> None: ...
+    def set_cookie(
+        self,
+        key: str,
+        value: str = ...,
+        max_age: Any | None = ...,
+        expires: Any | None = ...,
+        path: str = ...,
+        domain: str | None = ...,
+        secure: bool = ...,
+        httponly: bool = ...,
+        samesite: str | None = ...,
+        cookie_type: str = ...,
+    ) -> None: ...
 
 class Request:
     httprequest: werkzeug.Request
@@ -158,16 +219,20 @@ class Request:
     session: Session
     db: str | None
     env: Environment | None
-    website: 'odoo.model.website'
+    website: "odoo.model.website"
     website_routing: int
     is_frontend: bool
     is_frontend_multilang: bool
-    lang: 'odoo.model.res_lang'
+    lang: "odoo.model.res_lang"
     def __init__(self, httprequest: werkzeug.Request) -> None: ...
     def _post_init(self) -> None: ...
     def _get_session_and_dbname(self) -> tuple[Session, str]: ...
-    def update_env(self, user: 'odoo.model.res_users | int | None' = ..., context: dict[str, Any] | None = ...,
-                   su: bool | None = ...) -> None: ...
+    def update_env(
+        self,
+        user: "odoo.model.res_users | int | None" = ...,
+        context: dict[str, Any] | None = ...,
+        su: bool | None = ...,
+    ) -> None: ...
     def update_context(self, **overrides) -> None: ...
     @property
     def context(self) -> dict[str, Any]: ...
@@ -195,15 +260,34 @@ class Request:
     def get_json_data(self): ...
     def _get_profiler_context_manager(self) -> Profiler | nullcontext: ...
     def _inject_future_response(self, response: werkzeug.Response): ...
-    def make_response(self, data: str, headers: list[tuple[str, Any]] | None = ..., cookies: Mapping | None = ...,
-                      status: int = ...) -> Response: ...
-    def make_json_response(self, data, headers: list[tuple[str, Any]] | None = ..., cookies: Mapping | None = ...,
-                           status: int = ...) -> Response: ...
+    def make_response(
+        self,
+        data: str,
+        headers: list[tuple[str, Any]] | None = ...,
+        cookies: Mapping | None = ...,
+        status: int = ...,
+    ) -> Response: ...
+    def make_json_response(
+        self,
+        data,
+        headers: list[tuple[str, Any]] | None = ...,
+        cookies: Mapping | None = ...,
+        status: int = ...,
+    ) -> Response: ...
     def not_found(self, description: str | None = ...) -> NotFound: ...
-    def redirect(self, location: URL | str, code: int = ..., local: bool = ...) -> werkzeug.Response: ...
-    def redirect_query(self, location: str, query: Mapping[str, str] | Iterable[tuple[str, str]] | None = ...,
-                       code: int = ..., local: bool = ...) -> werkzeug.Response: ...
-    def render(self, template: str, qcontext: dict | None = ..., lazy: bool = ..., **kw): ...
+    def redirect(
+        self, location: URL | str, code: int = ..., local: bool = ...
+    ) -> werkzeug.Response: ...
+    def redirect_query(
+        self,
+        location: str,
+        query: Mapping[str, str] | Iterable[tuple[str, str]] | None = ...,
+        code: int = ...,
+        local: bool = ...,
+    ) -> werkzeug.Response: ...
+    def render(
+        self, template: str, qcontext: dict | None = ..., lazy: bool = ..., **kw
+    ): ...
     def _save_session(self) -> None: ...
     def _set_request_dispatcher(self, rule: Rule) -> None: ...
     def _serve_static(self) -> werkzeug.Response: ...
@@ -245,7 +329,9 @@ class JsonRPCDispatcher(Dispatcher):
     def is_compatible_with(cls, request: Request) -> bool: ...
     def dispatch(self, endpoint, args): ...
     def handle_error(self, exc: Exception) -> Callable: ...
-    def _response(self, result: Any | None = ..., error: Any | None = ...) -> Response: ...
+    def _response(
+        self, result: Any | None = ..., error: Any | None = ...
+    ) -> Response: ...
 
 class Application:
     @property
