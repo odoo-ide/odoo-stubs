@@ -63,7 +63,6 @@ class GettextAlias:
     def _get_translation(self, source: str, module: str | None = ...) -> str: ...
 
 class _lt:
-    __slots__ = ["_source", "_args", "_module"]
     _source: str
     _args: tuple
     _module: str

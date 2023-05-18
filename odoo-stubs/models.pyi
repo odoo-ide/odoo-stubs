@@ -53,7 +53,6 @@ class MetaModel(api.Meta):
     ) -> None: ...
 
 class NewId:
-    __slots__: list[str]
     origin: int | None
     ref: Any
     def __init__(self, origin: int | None = ..., ref: Any | None = ...) -> None: ...
@@ -66,7 +65,6 @@ class NewId:
 def origin_ids(ids: Iterable) -> Iterator[int]: ...
 
 class OriginIds:
-    __slots__ = ["ids"]
     ids: Sequence[int]
     def __init__(self, ids: Sequence[int]) -> None: ...
     def __iter__(self) -> Iterator[int]: ...
@@ -84,7 +82,6 @@ def is_definition_class(cls) -> bool: ...
 def is_registry_class(cls) -> bool: ...
 
 class BaseModel(metaclass=MetaModel):
-    __slots__: list[str]
     _auto: bool
     _register: bool
     _abstract: bool
