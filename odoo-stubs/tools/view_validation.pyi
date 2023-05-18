@@ -5,7 +5,7 @@ from typing import Callable, TypeVar
 
 from lxml.etree import RelaxNG, _Element
 
-_CallableT = TypeVar('_CallableT', bound=Callable)
+_CallableT = TypeVar("_CallableT", bound=Callable)
 
 _validators: defaultdict[str, list[Callable]]
 _relaxng_cache: dict[str, RelaxNG | None]

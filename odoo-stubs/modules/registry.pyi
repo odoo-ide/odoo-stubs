@@ -4,13 +4,13 @@ from collections.abc import Mapping
 from threading import RLock
 from typing import Any, Callable, ClassVar, Iterable, Iterator
 
-from .graph import Node
-from ..models import BaseModel
 from ..fields import Field
+from ..models import BaseModel
 from ..sql_db import Connection, Cursor
 from ..tests.runner import OdooTestResult
 from ..tools import Collector
 from ..tools.lru import LRU
+from .graph import Node
 
 class Registry(Mapping[str, type[BaseModel]]):
     _lock: RLock
@@ -18,7 +18,13 @@ class Registry(Mapping[str, type[BaseModel]]):
     registries: ClassVar[LRU]
     def __new__(cls, db_name: str) -> Registry: ...
     @classmethod
-    def new(cls, db_name: str, force_demo: bool = ..., status: Any | None = ..., update_module: bool = ...) -> Registry: ...
+    def new(
+        cls,
+        db_name: str,
+        force_demo: bool = ...,
+        status: Any | None = ...,
+        update_module: bool = ...,
+    ) -> Registry: ...
     models: dict[str, type[BaseModel]]
     _sql_constraints: set
     _init: bool
@@ -70,9 +76,21 @@ class Registry(Mapping[str, type[BaseModel]]):
     _post_init_queue: deque
     _foreign_keys: Any
     _is_install: bool
-    def init_models(self, cr: Cursor, model_names: Iterable[str], context: dict, install: bool = ...) -> None: ...
+    def init_models(
+        self, cr: Cursor, model_names: Iterable[str], context: dict, install: bool = ...
+    ) -> None: ...
     def check_indexes(self, cr: Cursor, model_names: Iterable[str]) -> None: ...
-    def add_foreign_key(self, table1, column1, table2, column2, ondelete, model, module, force: bool = ...) -> None: ...
+    def add_foreign_key(
+        self,
+        table1,
+        column1,
+        table2,
+        column2,
+        ondelete,
+        model,
+        module,
+        force: bool = ...,
+    ) -> None: ...
     def check_foreign_keys(self, cr: Cursor) -> None: ...
     def check_tables_exist(self, cr: Cursor) -> None: ...
     def _clear_cache(self) -> None: ...

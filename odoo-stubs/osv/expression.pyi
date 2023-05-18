@@ -1,10 +1,11 @@
 from functools import partial as partial
 from typing import Any, Callable
 
-from .query import Query
-from ..models import BaseModel, MAGIC_COLUMNS as MAGIC_COLUMNS
+from ..models import MAGIC_COLUMNS as MAGIC_COLUMNS
+from ..models import BaseModel
 from ..sql_db import Cursor
 from ..tools.misc import get_lang as get_lang
+from .query import Query
 
 _Domain = list
 
@@ -42,7 +43,13 @@ class expression:
     expression: _Domain
     query: Query | None
     result: tuple[str, list]
-    def __init__(self, domain: _Domain, model: BaseModel, alias: str | None = ..., query: Query | None = ...) -> None: ...
+    def __init__(
+        self,
+        domain: _Domain,
+        model: BaseModel,
+        alias: str | None = ...,
+        query: Query | None = ...,
+    ) -> None: ...
     def get_tables(self) -> tuple[str, ...]: ...
     def parse(self): ...
     def __leaf_to_sql(self, leaf, model: BaseModel, alias: str) -> tuple[str, list]: ...

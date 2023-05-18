@@ -1,11 +1,11 @@
 from collections import defaultdict
 from typing import Any, Callable, TypeVar
 
-from .lru import LRU
 from ..models import BaseModel
+from .lru import LRU
 
-_T = TypeVar('_T')
-_CallableT = TypeVar('_CallableT')
+_T = TypeVar("_T")
+_CallableT = TypeVar("_CallableT")
 
 unsafe_eval = eval
 
@@ -27,7 +27,9 @@ class ormcache:
     def __call__(self, method: _CallableT) -> _CallableT: ...
     key: Any
     def determine_key(self): ...
-    def lru(self, model: BaseModel) -> tuple[LRU, tuple[str, Callable], ormcache_counter]: ...
+    def lru(
+        self, model: BaseModel
+    ) -> tuple[LRU, tuple[str, Callable], ormcache_counter]: ...
     def lookup(self, method: Callable, *args, **kwargs): ...
     def clear(self, model: BaseModel, *args) -> None: ...
 
@@ -52,4 +54,5 @@ class dummy_cache:
 
 def log_ormcache_stats(sig: Any | None = ..., frame: Any | None = ...): ...
 def get_cache_key_counter(bound_method, *args, **kwargs): ...
+
 cache = ormcache

@@ -3,22 +3,24 @@ from typing import Any, Generic, TypeVar
 
 from werkzeug.datastructures import CallbackDict
 
-_ModificationTrackingDictT = TypeVar('_ModificationTrackingDictT', bound=ModificationTrackingDict)
-_SessionT = TypeVar('_SessionT', bound=Session)
+_ModificationTrackingDictT = TypeVar(
+    "_ModificationTrackingDictT", bound=ModificationTrackingDict
+)
+_SessionT = TypeVar("_SessionT", bound=Session)
 
 _sha1_re: Pattern
 
 def generate_key(salt: Any = ...) -> str: ...
 
 class ModificationTrackingDict(CallbackDict):
-    __slots__ = ('modified',)
+    __slots__ = ("modified",)
     modified: bool
     def __init__(self, *args, **kwargs): ...
     def copy(self: _ModificationTrackingDictT) -> _ModificationTrackingDictT: ...
     def __copy__(self: _ModificationTrackingDictT) -> _ModificationTrackingDictT: ...
 
 class Session(ModificationTrackingDict):
-    __slots__ = ('modified', 'sid', 'new')
+    __slots__ = ("modified", "sid", "new")
     sid: str
     new: bool
     def __init__(self, data, sid, new: bool = ...): ...
@@ -44,8 +46,14 @@ class FilesystemSessionStore(SessionStore[_SessionT]):
     filename_template: str
     renew_missing: bool
     mode: int
-    def __init__(self, path: str | None = ..., filename_template: str = ..., session_class: type[_SessionT] | None = ...,
-                 renew_missing: bool = ..., mode: int = ...) -> None: ...
+    def __init__(
+        self,
+        path: str | None = ...,
+        filename_template: str = ...,
+        session_class: type[_SessionT] | None = ...,
+        renew_missing: bool = ...,
+        mode: int = ...,
+    ) -> None: ...
     def get_session_filename(self, sid: str) -> str: ...
     def save(self, session: _SessionT) -> None: ...
     def delete(self, session: _SessionT) -> None: ...

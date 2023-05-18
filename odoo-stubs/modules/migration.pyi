@@ -1,7 +1,7 @@
 from types import ModuleType
 
-from .graph import Graph, Node
 from ..sql_db import Cursor
+from .graph import Graph, Node
 
 def load_script(path: str, module_name: str) -> ModuleType: ...
 

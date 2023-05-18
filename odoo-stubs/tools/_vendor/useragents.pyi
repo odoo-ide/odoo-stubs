@@ -6,7 +6,9 @@ class UserAgentParser(object):
     _browser_version_re: str
     _language_re: Pattern
     def __init__(self) -> None: ...
-    def __call__(self, user_agent: str) -> tuple[str | None, str | None, str | None, str | None]: ...
+    def __call__(
+        self, user_agent: str
+    ) -> tuple[str | None, str | None, str | None, str | None]: ...
 
 class UserAgent(object):
     _parser: UserAgentParser

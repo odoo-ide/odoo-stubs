@@ -17,7 +17,8 @@ def convert_export_class(content: str) -> str: ...
 
 EXPORT_FCT_DEFAULT_RE: Pattern
 
-def convert_export_function_default(content: str): str: ...
+def convert_export_function_default(content: str):
+    str: ...
 
 EXPORT_CLASS_DEFAULT_RE: Pattern
 

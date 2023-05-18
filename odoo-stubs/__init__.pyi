@@ -1,23 +1,22 @@
 from psycopg2 import connection
 
-from . import (
-    addons as addons,
-    api as api,
-    conf as conf,
-    fields as fields,
-    http as http,
-    loglevels as loglevels,
-    models as models,
-    netsvc as netsvc,
-    osv as osv,
-    release as release,
-    service as service,
-    sql_db as sql_db,
-    tools as tools
-)
+from . import addons as addons
+from . import api as api
+from . import conf as conf
+from . import fields as fields
+from . import http as http
+from . import loglevels as loglevels
+from . import models as models
+from . import netsvc as netsvc
+from . import osv as osv
+from . import release as release
+from . import service as service
+from . import sql_db as sql_db
+from . import tools as tools
 from .api import Registry
 from .fields import Command as Command
-from .tools.translate import _ as _, _lt as _lt
+from .tools.translate import _ as _
+from .tools.translate import _lt as _lt
 
 evented: bool
 

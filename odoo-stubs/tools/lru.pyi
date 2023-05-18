@@ -2,7 +2,7 @@ from collections import OrderedDict
 from threading import RLock
 from typing import Any
 
-__all__ = ['LRU']
+__all__ = ["LRU"]
 
 class LRU:
     _lock: RLock

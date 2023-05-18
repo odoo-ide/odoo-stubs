@@ -1,8 +1,8 @@
 from types import ModuleType
 from typing import Iterator
 
-from .runner import OdooTestResult
 from ..tests import OdooSuite
+from .runner import OdooTestResult
 
 def get_test_modules(module: str) -> list: ...
 def _get_tests_modules(path: str, module: str) -> list: ...
