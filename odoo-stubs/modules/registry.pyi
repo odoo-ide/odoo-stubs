@@ -1,7 +1,8 @@
-from collections import Mapping, defaultdict as defaultdict
+from collections import Mapping
+from collections import defaultdict as defaultdict
+from typing import Any, Optional
 
 from odoo.tools import table_exists as table_exists
-from typing import Any, Optional
 
 from ..sql_db import Cursor
 
@@ -14,7 +15,13 @@ class Registry(Mapping):
     def registries(cls): ...
     def __new__(cls, db_name): ...
     @classmethod
-    def new(cls, db_name, force_demo: bool = ..., status: Optional[Any] = ..., update_module: bool = ...): ...
+    def new(
+        cls,
+        db_name,
+        force_demo: bool = ...,
+        status: Optional[Any] = ...,
+        update_module: bool = ...,
+    ): ...
     models: Any
     _sql_error: Any
     _init: bool

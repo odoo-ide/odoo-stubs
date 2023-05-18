@@ -3,7 +3,7 @@ from typing import Any, Optional
 
 PY2: Any
 
-_Writer = namedtuple('_Writer', 'writerow writerows')
+_Writer = namedtuple("_Writer", "writerow writerows")
 unichr = unichr
 text_type = unicode
 string_types: Any
@@ -16,6 +16,7 @@ def implements_to_string(cls): ...
 def implements_iterator(cls): ...
 def csv_reader(stream, **params) -> None: ...
 def csv_writer(stream, **params): ...
+
 unichr = chr
 text_type = str
 imap = map

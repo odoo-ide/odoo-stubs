@@ -1,7 +1,6 @@
 from collections import Mapping
-from weakref import WeakSet
-
 from typing import Any, Optional
+from weakref import WeakSet
 
 from .modules.registry import Registry
 from .sql_db import Cursor
@@ -85,11 +84,16 @@ class Environment(Mapping):
     def __eq__(self, other) -> bool: ...
     def __ne__(self, other) -> bool: ...
     def __hash__(self) -> int: ...
-    def __call__(self, cr: Optional[Cursor] = ..., user: Optional[Any] = ..., context: Optional[Any] = ...) -> Environment: ...
+    def __call__(
+        self,
+        cr: Optional[Cursor] = ...,
+        user: Optional[Any] = ...,
+        context: Optional[Any] = ...,
+    ) -> Environment: ...
     def ref(self, xml_id, raise_if_not_found: bool = ...): ...
     @property
     def user(self):
-        return self['res.users']
+        return self["res.users"]
     @property
     def lang(self) -> str: ...
     def _do_in_mode(self, mode) -> None: ...
