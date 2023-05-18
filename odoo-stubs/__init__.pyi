@@ -3,7 +3,6 @@ from psycopg2 import connection
 from . import (
     addons as addons,
     api as api,
-    cli as cli,
     conf as conf,
     fields as fields,
     http as http,
@@ -14,8 +13,7 @@ from . import (
     release as release,
     service as service,
     sql_db as sql_db,
-    tools as tools,
-    upgrade as upgrade
+    tools as tools
 )
 from .api import Registry
 from .tools.translate import _ as _, _lt as _lt
