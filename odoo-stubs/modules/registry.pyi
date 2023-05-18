@@ -8,7 +8,7 @@ from .graph import Node
 from ..models import BaseModel
 from ..fields import Field
 from ..sql_db import Connection, Cursor
-from ..tests.runner import OdooTestResult
+from ..tests.result import OdooTestResult
 from ..tools import Collector
 from ..tools.lru import LRU
 

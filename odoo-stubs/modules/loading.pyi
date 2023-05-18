@@ -3,7 +3,7 @@ from typing import Any, Iterable
 from .graph import Graph, Node
 from .registry import Registry
 from ..sql_db import Cursor
-from ..tests.runner import OdooTestResult
+from ..tests.result import OdooTestResult
 
 def load_data(cr: Cursor, idref: dict, mode: str, kind: str, package: Node) -> bool: ...
 def load_demo(cr: Cursor, package: Node, idref: dict, mode: str) -> bool: ...

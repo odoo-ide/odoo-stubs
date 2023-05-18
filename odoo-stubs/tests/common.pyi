@@ -1,6 +1,5 @@
 import collections
 import logging
-import sys
 from concurrent.futures import Future
 from itertools import count
 from subprocess import Popen
@@ -13,7 +12,7 @@ from lxml.etree import _Element
 from websocket import WebSocket
 
 from . import case
-from .runner import OdooTestResult
+from .result import OdooTestResult
 from ..api import Environment
 from ..http import Session
 from ..models import BaseModel

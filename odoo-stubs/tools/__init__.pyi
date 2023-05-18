@@ -11,13 +11,11 @@ from .translate import *
 from .xml_utils import *
 from .convert import *
 from . import (
-    _monkeypatches as _monkeypatches,
     appdirs as appdirs,
     cloc as cloc,
     osutil as osutil,
     pdf as pdf,
-    pycompat as pycompat,
-    win32 as win32
+    pycompat as pycompat
 )
 from .config import config as config
 from .js_transpiler import (
