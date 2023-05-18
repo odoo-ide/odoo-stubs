@@ -1,7 +1,6 @@
 from typing import Any, Optional
 
 class LRUNode:
-    __slots__: Any
     prev: Any
     me: Any
     next: Any

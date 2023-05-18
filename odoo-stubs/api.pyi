@@ -139,6 +139,5 @@ class Cache:
     def check(self, env) -> None: ...
 
 class SpecialValue:
-    __slots__: Any
     get: Any
     def __init__(self, getter) -> None: ...

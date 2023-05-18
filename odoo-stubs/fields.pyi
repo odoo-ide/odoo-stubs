@@ -336,7 +336,6 @@ class Many2one(_Relational):
     def convert_to_onchange(self, value, record, names): ...
 
 class _RelationalMultiUpdate:
-    __slots__: Any
     record: Any
     field: Any
     value: Any
