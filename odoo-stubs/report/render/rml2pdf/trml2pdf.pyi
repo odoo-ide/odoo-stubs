@@ -1,7 +1,8 @@
+from typing import Any
+
 from reportlab import platypus
 from reportlab.pdfgen import canvas
 from reportlab.platypus.doctemplate import ActionFlowable
-from typing import Any
 
 _hush_pyflakes: Any
 _logger: Any
@@ -44,7 +45,14 @@ class _rml_doc:
     images: Any
     path: Any
     title: Any
-    def __init__(self, node, localcontext: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        node,
+        localcontext: Any | None = ...,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+    ) -> None: ...
     def docinit(self, els) -> None: ...
     def setTTFontMapping(self, face, fontname, filename, mode: str = ...) -> None: ...
     def _textual_image(self, node): ...
@@ -62,7 +70,16 @@ class _rml_canvas:
     images: Any
     path: Any
     title: Any
-    def __init__(self, canvas, localcontext, doc_tmpl: Any | None = ..., doc: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        canvas,
+        localcontext,
+        doc_tmpl: Any | None = ...,
+        doc: Any | None = ...,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+    ) -> None: ...
     def _textual(self, node, x: int = ..., y: int = ...): ...
     def _drawString(self, node) -> None: ...
     def _drawCenteredString(self, node) -> None: ...
@@ -89,7 +106,15 @@ class _rml_draw:
     images: Any
     path: Any
     canvas_title: Any
-    def __init__(self, localcontext, node, styles, images: Any | None = ..., path: str = ..., title: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        localcontext,
+        node,
+        styles,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+    ) -> None: ...
     def render(self, canvas, doc) -> None: ...
 
 class _rml_Illustration(platypus.flowables.Flowable):
@@ -115,7 +140,15 @@ class _rml_flowable:
     path: Any
     title: Any
     canvas: Any
-    def __init__(self, doc, localcontext, images: Any | None = ..., path: str = ..., title: Any | None = ..., canvas: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        doc,
+        localcontext,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+        canvas: Any | None = ...,
+    ) -> None: ...
     def _textual(self, node): ...
     def _table(self, node): ...
     def _illustration(self, node): ...
@@ -145,9 +178,32 @@ class _rml_template:
     styles: Any
     doc: Any
     image: Any
-    def __init__(self, localcontext, out, node, doc, images: Any | None = ..., path: str = ..., title: Any | None = ...): ...
+    def __init__(
+        self,
+        localcontext,
+        out,
+        node,
+        doc,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+    ): ...
     def render(self, node_stories) -> None: ...
 
-def parseNode(rml, localcontext: Any | None = ..., fout: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...): ...
-def parseString(rml, localcontext: Any | None = ..., fout: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...): ...
+def parseNode(
+    rml,
+    localcontext: Any | None = ...,
+    fout: Any | None = ...,
+    images: Any | None = ...,
+    path: str = ...,
+    title: Any | None = ...,
+): ...
+def parseString(
+    rml,
+    localcontext: Any | None = ...,
+    fout: Any | None = ...,
+    images: Any | None = ...,
+    path: str = ...,
+    title: Any | None = ...,
+): ...
 def trml2pdf_help() -> None: ...

@@ -1,7 +1,7 @@
 import unittest
-import urllib2
 from typing import Any
 
+import urllib2
 from odoo.api import Environment
 from odoo.modules.registry import Registry
 from odoo.sql_db import Cursor
@@ -72,6 +72,14 @@ class HttpCase(TransactionCase):
     def phantom_poll(self, phantom, timeout): ...
     def phantom_run(self, cmd, timeout) -> None: ...
     def _wait_remaining_requests(self) -> None: ...
-    def phantom_js(self, url_path, code, ready: str = ..., login: Any | None = ..., timeout: int = ..., **kw) -> None: ...
+    def phantom_js(
+        self,
+        url_path,
+        code,
+        ready: str = ...,
+        login: Any | None = ...,
+        timeout: int = ...,
+        **kw
+    ) -> None: ...
 
 def can_import(module): ...

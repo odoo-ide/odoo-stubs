@@ -101,7 +101,16 @@ class _rml_template:
     _tags: Any
     style: Any
     template: Any
-    def __init__(self, localcontext, out, node, doc, images: Any | None = ..., path: str = ..., title: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        localcontext,
+        out,
+        node,
+        doc,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+    ) -> None: ...
     def _get_style(self): ...
     def set_next_template(self) -> None: ...
     def set_template(self, name) -> None: ...
@@ -115,9 +124,30 @@ class _rml_doc:
     etree: Any
     filename: Any
     result: str
-    def __init__(self, node, localcontext: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        node,
+        localcontext: Any | None = ...,
+        images: Any | None = ...,
+        path: str = ...,
+        title: Any | None = ...,
+    ) -> None: ...
     def render(self, out) -> None: ...
 
-def parseNode(rml, localcontext: Any | None = ..., fout: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...): ...
-def parseString(rml, localcontext: Any | None = ..., fout: Any | None = ..., images: Any | None = ..., path: str = ..., title: Any | None = ...): ...
+def parseNode(
+    rml,
+    localcontext: Any | None = ...,
+    fout: Any | None = ...,
+    images: Any | None = ...,
+    path: str = ...,
+    title: Any | None = ...,
+): ...
+def parseString(
+    rml,
+    localcontext: Any | None = ...,
+    fout: Any | None = ...,
+    images: Any | None = ...,
+    path: str = ...,
+    title: Any | None = ...,
+): ...
 def trml2pdf_help() -> None: ...

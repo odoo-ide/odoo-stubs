@@ -12,7 +12,13 @@ class Registry(Mapping):
     def registries(cls): ...
     def __new__(cls, db_name): ...
     @classmethod
-    def new(cls, db_name, force_demo: bool = ..., status: Any | None = ..., update_module: bool = ...): ...
+    def new(
+        cls,
+        db_name,
+        force_demo: bool = ...,
+        status: Any | None = ...,
+        update_module: bool = ...,
+    ): ...
     models: Any
     _sql_error: Any
     _init: bool
@@ -66,9 +72,21 @@ class DummyRLock:
 
 class RegistryManager:
     @classmethod
-    def get(cls, db_name, force_demo: bool = ..., status: Any | None = ..., update_module: bool = ...): ...
+    def get(
+        cls,
+        db_name,
+        force_demo: bool = ...,
+        status: Any | None = ...,
+        update_module: bool = ...,
+    ): ...
     @classmethod
-    def new(cls, db_name, force_demo: bool = ..., status: Any | None = ..., update_module: bool = ...): ...
+    def new(
+        cls,
+        db_name,
+        force_demo: bool = ...,
+        status: Any | None = ...,
+        update_module: bool = ...,
+    ): ...
     @classmethod
     def delete(cls, db_name): ...
     @classmethod

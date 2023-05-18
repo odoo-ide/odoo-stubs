@@ -19,6 +19,7 @@ class _Entry(NamedTuple):
     mimetype: Any
     signatures: Any
     discriminants: Any
+
 _mime_mappings: Any
 
 def guess_mimetype(bin_data, default: str = ...): ...

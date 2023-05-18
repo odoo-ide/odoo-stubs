@@ -1,15 +1,31 @@
 from functools import wraps as wraps
-from odoo.exceptions import UserError as UserError
 from typing import Any
+
+from odoo.exceptions import UserError as UserError
 
 _logger: Any
 
 class DatabaseExists(Warning): ...
 
 def check_super(passwd): ...
-def _initialize_db(id, db_name, demo, lang, user_password, login: str = ..., country_code: Any | None = ...) -> None: ...
+def _initialize_db(
+    id,
+    db_name,
+    demo,
+    lang,
+    user_password,
+    login: str = ...,
+    country_code: Any | None = ...,
+) -> None: ...
 def _create_empty_database(name) -> None: ...
-def exp_create_database(db_name, demo, lang, user_password: str = ..., login: str = ..., country_code: Any | None = ...): ...
+def exp_create_database(
+    db_name,
+    demo,
+    lang,
+    user_password: str = ...,
+    login: str = ...,
+    country_code: Any | None = ...,
+): ...
 def exp_duplicate_database(db_original_name, db_name): ...
 def _drop_conn(cr, db_name) -> None: ...
 def exp_drop(db_name): ...

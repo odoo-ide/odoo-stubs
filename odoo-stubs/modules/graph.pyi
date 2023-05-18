@@ -1,7 +1,9 @@
+from typing import Any
+from zipfile import ZIP_DEFLATED as ZIP_DEFLATED
+from zipfile import PyZipFile as PyZipFile
+
 from cStringIO import StringIO as StringIO
 from odoo.tools.translate import _ as _
-from typing import Any
-from zipfile import PyZipFile as PyZipFile, ZIP_DEFLATED as ZIP_DEFLATED
 
 _logger: Any
 

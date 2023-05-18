@@ -1,1 +1,2 @@
-from .trml2pdf import parseNode as parseNode, parseString as parseString
+from .trml2pdf import parseNode as parseNode
+from .trml2pdf import parseString as parseString

@@ -3,8 +3,8 @@ from typing import Any, Generic, TypeVar, overload
 
 from .models import BaseModel
 
-_FieldT = TypeVar('_FieldT', bound=Field)
-_FieldValueT = TypeVar('_FieldValueT')
+_FieldT = TypeVar("_FieldT", bound=Field)
+_FieldValueT = TypeVar("_FieldValueT")
 
 DATE_LENGTH: Any
 DATETIME_LENGTH: Any
@@ -349,7 +349,9 @@ class _RelationalMulti(_Relational):
 class One2many(_RelationalMulti):
     type: str
     _slots: Any
-    def __init__(self, comodel_name=..., inverse_name=..., string=..., **kwargs) -> None: ...
+    def __init__(
+        self, comodel_name=..., inverse_name=..., string=..., **kwargs
+    ) -> None: ...
     def _setup_regular_full(self, model) -> None: ...
     _description_relation_field: Any
     def convert_to_onchange(self, value, record, fnames=...): ...
@@ -360,7 +362,15 @@ class One2many(_RelationalMulti):
 class Many2many(_RelationalMulti):
     type: str
     _slots: Any
-    def __init__(self, comodel_name=..., relation=..., column1=..., column2=..., string=..., **kwargs) -> None: ...
+    def __init__(
+        self,
+        comodel_name=...,
+        relation=...,
+        column1=...,
+        column2=...,
+        string=...,
+        **kwargs
+    ) -> None: ...
     relation: Any
     column1: Any
     column2: Any

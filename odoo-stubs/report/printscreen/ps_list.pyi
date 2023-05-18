@@ -1,5 +1,6 @@
-from odoo.report.interface import report_int
 from typing import Any
+
+from odoo.report.interface import report_int
 
 class report_printscreen_list(report_int):
     context: Any
@@ -12,4 +13,6 @@ class report_printscreen_list(report_int):
     title: Any
     def create(self, cr, uid, ids, datas, context: Any | None = ...): ...
     obj: Any
-    def _create_table(self, uid, ids, fields, fields_order, results, context, title: str = ...): ...
+    def _create_table(
+        self, uid, ids, fields, fields_order, results, context, title: str = ...
+    ): ...

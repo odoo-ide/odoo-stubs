@@ -1,6 +1,8 @@
-from odoo import SUPERUSER_ID as SUPERUSER_ID, api as api
 from operator import itemgetter as itemgetter
 from typing import Any
+
+from odoo import SUPERUSER_ID as SUPERUSER_ID
+from odoo import api as api
 
 MANIFEST_NAMES: Any
 README: Any
@@ -21,6 +23,7 @@ def initialize_sys_path() -> None: ...
 def get_module_path(module, downloaded: bool = ..., display_warning: bool = ...): ...
 def get_module_filetree(module, dir: str = ...): ...
 def get_resource_path(module, *args): ...
+
 get_module_resource = get_resource_path
 
 def get_resource_from_path(path): ...

@@ -1,7 +1,14 @@
-from .render import render as render
-from .rml import html2html as html2html, makohtml2html as makohtml2html, odt2odt as odt2odt, rml as rml, rml2html as rml2html, rml2txt as rml2txt
-from .simple import simple as simple
-from PIL import Image as Image
 from typing import Any
+
+from PIL import Image as Image
+
+from .render import render as render
+from .rml import html2html as html2html
+from .rml import makohtml2html as makohtml2html
+from .rml import odt2odt as odt2odt
+from .rml import rml as rml
+from .rml import rml2html as rml2html
+from .rml import rml2txt as rml2txt
+from .simple import simple as simple
 
 _logger: Any

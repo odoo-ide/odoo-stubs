@@ -1,7 +1,10 @@
-from . import api as api, fields as fields, models as models
+from typing import Any
+
+from . import api as api
+from . import fields as fields
+from . import models as models
 from .modules.registry import Registry
 from .tools.translate import _ as _
-from typing import Any
 
 evented: bool
 multi_process: bool
