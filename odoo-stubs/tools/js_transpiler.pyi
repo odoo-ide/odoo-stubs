@@ -1,5 +1,5 @@
-from typing import Iterable, MutableSet
 from re import Pattern
+from typing import Iterable, MutableSet
 
 def transpile_javascript(url: str, content: str) -> str: ...
 
@@ -7,7 +7,9 @@ URL_RE: Pattern
 
 def url_to_module_path(url: str) -> str: ...
 def wrap_with_qunit_module(url: str, content: str) -> str: ...
-def wrap_with_odoo_define(module_path: str, dependencies: Iterable[str], content: str) -> str: ...
+def wrap_with_odoo_define(
+    module_path: str, dependencies: Iterable[str], content: str
+) -> str: ...
 
 EXPORT_FCT_RE: Pattern
 
@@ -19,7 +21,8 @@ def convert_export_class(content: str) -> str: ...
 
 EXPORT_FCT_DEFAULT_RE: Pattern
 
-def convert_export_function_default(content: str): str: ...
+def convert_export_function_default(content: str):
+    str: ...
 
 EXPORT_CLASS_DEFAULT_RE: Pattern
 
@@ -68,7 +71,9 @@ def convert_default_and_named_import(content: str) -> str: ...
 
 RELATIVE_REQUIRE_RE: Pattern
 
-def convert_relative_require(url: str, dependencies: MutableSet[str], content: str) -> str: ...
+def convert_relative_require(
+    url: str, dependencies: MutableSet[str], content: str
+) -> str: ...
 
 IMPORT_STAR: Pattern
 

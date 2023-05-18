@@ -1,7 +1,7 @@
 from json import JSONEncoder as JSONEncoder
 from typing import Callable, Generic, TypeVar
 
-_T = TypeVar('_T')
+_T = TypeVar("_T")
 
 class lazy_property(Generic[_T]):
     fget: Callable[..., _T]
@@ -30,7 +30,7 @@ class _ClassProperty(property, Generic[_T]):
 def classproperty(func: Callable[..., _T]) -> _ClassProperty[_T]: ...
 
 class lazy:
-    __slots__ = ['_func', '_args', '_kwargs', '_cached_value']
+    __slots__ = ["_func", "_args", "_kwargs", "_cached_value"]
     def __init__(self, func, *args, **kwargs) -> None: ...
     @property
     def _value(self): ...

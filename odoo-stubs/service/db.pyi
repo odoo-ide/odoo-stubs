@@ -1,19 +1,34 @@
 from functools import wraps as wraps
-from typing import Any, Callable, IO, Iterable, Literal, TypeVar
+from typing import IO, Any, Callable, Iterable, Literal, TypeVar
 
 from ..sql_db import Cursor
 
-_CallableT = TypeVar('_CallableT', bound=Callable)
+_CallableT = TypeVar("_CallableT", bound=Callable)
 
 class DatabaseExists(Warning): ...
 
 def check_db_management_enabled(method: _CallableT) -> _CallableT: ...
 def check_super(passwd: str) -> Literal[True]: ...
-def _initialize_db(id, db_name: str, demo: bool, lang: str, user_password: str, login: str = ...,
-                   country_code: str | None = ..., phone: str | None = ...) -> None: ...
+def _initialize_db(
+    id,
+    db_name: str,
+    demo: bool,
+    lang: str,
+    user_password: str,
+    login: str = ...,
+    country_code: str | None = ...,
+    phone: str | None = ...,
+) -> None: ...
 def _create_empty_database(name: str) -> None: ...
-def exp_create_database(db_name: str, demo: bool, lang: str, user_password: str = ..., login: str = ...,
-                        country_code: str | None = ..., phone: str | None = ...) -> Literal[True]: ...
+def exp_create_database(
+    db_name: str,
+    demo: bool,
+    lang: str,
+    user_password: str = ...,
+    login: str = ...,
+    country_code: str | None = ...,
+    phone: str | None = ...,
+) -> Literal[True]: ...
 def exp_duplicate_database(db_original_name: str, db_name: str) -> Literal[True]: ...
 def _drop_conn(cr: Cursor, db_name: str) -> None: ...
 def exp_drop(db_name: str) -> bool: ...

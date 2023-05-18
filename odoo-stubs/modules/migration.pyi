@@ -1,8 +1,8 @@
 from re import Pattern
 from types import ModuleType
 
-from .graph import Graph, Node
 from ..sql_db import Cursor
+from .graph import Graph, Node
 
 VERSION_RE: Pattern
 

@@ -7,7 +7,13 @@ class UserError(Exception):
     def __init__(self, message: str) -> None: ...
 
 class RedirectWarning(Exception):
-    def __init__(self, message: str, action: int, button_text: str, additional_context: dict | None = ...) -> None: ...
+    def __init__(
+        self,
+        message: str,
+        action: int,
+        button_text: str,
+        additional_context: dict | None = ...,
+    ) -> None: ...
     @property
     def name(self): ...
 

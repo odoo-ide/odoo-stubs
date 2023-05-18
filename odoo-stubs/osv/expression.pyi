@@ -1,7 +1,8 @@
 from typing import Any, Callable, Iterable
 
 from ..fields import Field
-from ..models import BaseModel, MAGIC_COLUMNS as MAGIC_COLUMNS
+from ..models import MAGIC_COLUMNS as MAGIC_COLUMNS
+from ..models import BaseModel
 from ..sql_db import Cursor
 from ..tools.query import Query
 
@@ -54,7 +55,13 @@ class expression:
     expression: _Domain
     query: Query | None
     result: tuple[str, list]
-    def __init__(self, domain: _Domain, model: BaseModel, alias: str | None = ..., query: Query | None = ...) -> None: ...
+    def __init__(
+        self,
+        domain: _Domain,
+        model: BaseModel,
+        alias: str | None = ...,
+        query: Query | None = ...,
+    ) -> None: ...
     def _unaccent(self, field: Field) -> Callable[[Any], str]: ...
     def parse(self): ...
     def __leaf_to_sql(self, leaf, model: BaseModel, alias: str) -> tuple[str, list]: ...
