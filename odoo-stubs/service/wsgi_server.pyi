@@ -1,5 +1,6 @@
-from werkzeug.middleware.proxy_fix import ProxyFix as ProxyFix_
 from typing import Callable
+
+from werkzeug.middleware.proxy_fix import ProxyFix as ProxyFix_
 
 RPC_FAULT_CODE_CLIENT_ERROR: int
 RPC_FAULT_CODE_APPLICATION_ERROR: int
