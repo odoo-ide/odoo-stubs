@@ -1,6 +1,5 @@
 from typing import Any, Optional
 
-_logger: Any
 PG_CONCURRENCY_ERRORS_TO_RETRY: Any
 MAX_TRIES_ON_CONCURRENCY_FAILURE: int
 

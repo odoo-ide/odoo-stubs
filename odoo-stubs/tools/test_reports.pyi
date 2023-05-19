@@ -2,9 +2,6 @@ from typing import Any, Optional
 
 from . import config as config
 
-_logger: Any
-_test_logger: Any
-
 def try_report(
     cr,
     uid,

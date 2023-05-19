@@ -1,22 +1,9 @@
 from typing import Any, Optional
 
-from lxml.html import clean
-
-_logger: Any
 tags_to_kill: Any
 tags_to_remove: Any
 allowed_tags: Any
 safe_attrs: Any
-
-class _Cleaner(clean.Cleaner):
-    _style_re: Any
-    _style_whitelist: Any
-    strip_classes: bool
-    sanitize_style: bool
-    def __call__(self, doc) -> None: ...
-    def tag_quote(self, el): ...
-    def strip_class(self, el) -> None: ...
-    def parse_style(self, el) -> None: ...
 
 def html_sanitize(
     src,

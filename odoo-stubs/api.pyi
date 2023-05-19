@@ -2,11 +2,11 @@ from collections import Mapping
 from typing import Any, Optional
 from weakref import WeakSet
 
+from odoo.addons.base.res.res_users import Users
+
 from .modules.registry import Registry
 from .sql_db import Cursor
 
-__all__: Any
-_logger: Any
 WRAPPED_ATTRS: Any
 INHERITED_ATTRS: Any
 
@@ -14,7 +14,6 @@ class Params:
     args: Any
     kwargs: Any
     def __init__(self, args, kwargs) -> None: ...
-    def __str__(self): ...
 
 class Meta(type):
     def __new__(meta, name, bases, attrs): ...
@@ -54,7 +53,6 @@ class Environment(Mapping):
     cr: Cursor
     uid: int
     context: dict
-    _local: Any
     envs: Environments
     @classmethod
     def manage(cls) -> None: ...
@@ -62,8 +60,6 @@ class Environment(Mapping):
     def reset(cls) -> None: ...
     registry: Registry
     cache: Cache
-    _cache_key: Any
-    _protected: Any
     dirty: Any
     all: Environments
     def __new__(cls, cr: Cursor, uid, context) -> Environment: ...
@@ -82,11 +78,9 @@ class Environment(Mapping):
     ) -> Environment: ...
     def ref(self, xml_id, raise_if_not_found: bool = ...): ...
     @property
-    def user(self):
-        return self["res.users"]
+    def user(self) -> "Users": ...
     @property
     def lang(self) -> str: ...
-    def _do_in_mode(self, mode) -> None: ...
     def do_in_draft(self): ...
     @property
     def in_draft(self): ...
@@ -119,7 +113,6 @@ class Environments:
     def __iter__(self) -> Any: ...
 
 class Cache:
-    _data: Any
     def __init__(self): ...
     def contains(self, record, field): ...
     def get(self, record, field): ...

@@ -15,11 +15,7 @@ from . import sql_db as sql_db
 from . import tools as tools
 from .tools.translate import _ as _
 
-__path__: Any
 evented: bool
-
-def gevent_wait_callback(conn, timeout: Any | None = ...) -> None: ...
-
 multi_process: bool
 SUPERUSER_ID: int
 
