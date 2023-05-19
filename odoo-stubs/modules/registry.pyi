@@ -1,20 +1,15 @@
-import threading
-from collections import defaultdict, deque
 from collections.abc import Mapping
 from threading import RLock
 from typing import Any, Callable, ClassVar, Iterable, Iterator
 
 from ..fields import Field
 from ..models import BaseModel
-from ..sql_db import Connection, Cursor
-from ..tests.runner import OdooTestResult
+from ..sql_db import Cursor
 from ..tools import Collector
 from ..tools.lru import LRU
 from .graph import Node
 
 class Registry(Mapping[str, type[BaseModel]]):
-    _lock: RLock
-    _saved_lock: RLock | None
     registries: ClassVar[LRU]
     def __new__(cls, db_name: str) -> Registry: ...
     @classmethod
@@ -26,18 +21,9 @@ class Registry(Mapping[str, type[BaseModel]]):
         update_module: bool = ...,
     ) -> Registry: ...
     models: dict[str, type[BaseModel]]
-    _sql_constraints: set
-    _init: bool
-    _assertion_report: OdooTestResult
-    _fields_by_model: Any
-    _ordinary_tables: set[str] | None
-    _constraint_queue: deque
-    __cache: LRU
-    _init_modules: set[str]
     updated_modules: list[str]
     loaded_xmlids: set
     db_name: str
-    _db: Connection
     test_cr: Cursor | None
     test_lock: RLock | None
     loaded: bool
@@ -47,7 +33,6 @@ class Registry(Mapping[str, type[BaseModel]]):
     field_inverses: Collector
     registry_sequence: int | None
     cache_sequence: int | None
-    _invalidation_flags: threading.local
     has_unaccent: bool
     has_trigram: bool
     populated_models: dict[str, list[int]]
@@ -64,7 +49,6 @@ class Registry(Mapping[str, type[BaseModel]]):
     def __delitem__(self, model_name: str) -> None: ...
     def descendants(self, model_names: Iterable[str], *kinds) -> set[str]: ...
     def load(self, cr: Cursor, module: Node) -> set[str]: ...
-    _m2m: defaultdict[Any, list]
     def setup_models(self, cr: Cursor) -> None: ...
     @property
     def field_computed(self) -> dict[Field, list[Field]]: ...
@@ -73,9 +57,6 @@ class Registry(Mapping[str, type[BaseModel]]):
     def post_init(self, func: Callable, *args, **kwargs) -> None: ...
     def post_constraint(self, func: Callable, *args, **kwargs) -> None: ...
     def finalize_constraints(self) -> None: ...
-    _post_init_queue: deque
-    _foreign_keys: Any
-    _is_install: bool
     def init_models(
         self, cr: Cursor, model_names: Iterable[str], context: dict, install: bool = ...
     ) -> None: ...
@@ -93,7 +74,6 @@ class Registry(Mapping[str, type[BaseModel]]):
     ) -> None: ...
     def check_foreign_keys(self, cr: Cursor) -> None: ...
     def check_tables_exist(self, cr: Cursor) -> None: ...
-    def _clear_cache(self) -> None: ...
     def clear_caches(self) -> None: ...
     def is_an_ordinary_table(self, model: BaseModel) -> bool: ...
     @property

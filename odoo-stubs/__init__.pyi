@@ -1,5 +1,3 @@
-from psycopg2 import connection
-
 from . import addons as addons
 from . import api as api
 from . import conf as conf
@@ -19,13 +17,7 @@ from .tools.translate import _ as _
 from .tools.translate import _lt as _lt
 
 evented: bool
-
-def gevent_wait_callback(conn: connection, timeout: float | None = ...) -> None: ...
-
 multi_process: bool
-
-def _decompress(data: bytes) -> bytes: ...
-
 SUPERUSER_ID: int
 
 def registry(database_name: str | None = ...) -> Registry: ...

@@ -2,24 +2,12 @@ from email.message import Message
 from re import Pattern
 from typing import FrozenSet, Literal
 
-from lxml.etree import _Element
-from lxml.html import clean
 from markupsafe import Markup
 
 tags_to_kill: list[str]
 tags_to_remove: list[str]
 allowed_tags: FrozenSet
 safe_attrs: FrozenSet
-
-class _Cleaner(clean.Cleaner):
-    _style_re: Pattern
-    _style_whitelist: list[str]
-    strip_classes: bool
-    sanitize_style: bool
-    def __call__(self, doc: _Element) -> None: ...
-    def tag_quote(self, el: _Element) -> None: ...
-    def strip_class(self, el: _Element) -> None: ...
-    def parse_style(self, el: _Element) -> None: ...
 
 def html_sanitize(
     src: str,
