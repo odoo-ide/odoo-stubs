@@ -1,8 +1,5 @@
-from typing import Any
-
 class GeoIPResolver:
     fname: str
-    _db: Any
     version: int
     def __init__(self, fname: str) -> None: ...
     def __del__(self) -> None: ...

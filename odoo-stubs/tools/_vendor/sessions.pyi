@@ -1,4 +1,3 @@
-from re import Pattern
 from typing import Any, Generic, TypeVar
 
 from werkzeug.datastructures import CallbackDict
@@ -7,8 +6,6 @@ _ModificationTrackingDictT = TypeVar(
     "_ModificationTrackingDictT", bound=ModificationTrackingDict
 )
 _SessionT = TypeVar("_SessionT", bound=Session)
-
-_sha1_re: Pattern
 
 def generate_key(salt: Any = ...) -> str: ...
 
@@ -22,7 +19,6 @@ class Session(ModificationTrackingDict):
     sid: str
     new: bool
     def __init__(self, data, sid, new: bool = ...): ...
-    def __repr__(self) -> str: ...
     @property
     def should_save(self) -> bool: ...
 
@@ -36,8 +32,6 @@ class SessionStore(Generic[_SessionT]):
     def save_if_modified(self, session: _SessionT) -> None: ...
     def delete(self, session: _SessionT) -> None: ...
     def get(self, sid: str) -> _SessionT: ...
-
-_fs_transaction_suffix: str
 
 class FilesystemSessionStore(SessionStore[_SessionT]):
     path: str | None

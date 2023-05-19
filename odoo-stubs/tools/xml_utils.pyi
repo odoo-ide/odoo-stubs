@@ -1,7 +1,8 @@
-from typing import IO, Callable, Iterable, Literal
+from typing import Callable, Iterable, Literal, Union
 
 from lxml import etree
 from lxml.etree import _Element
+from odoo.addons.base.models.ir_attachment import IrAttachment
 
 from ..api import Environment
 
@@ -11,12 +12,6 @@ class odoo_resolver(etree.Resolver):
     def __init__(self, env: Environment, prefix: str | None) -> None: ...
     def resolve(self, url: str, id: str, context) -> str: ...
 
-def _check_with_xsd(
-    tree_or_str: str | _Element,
-    stream: str | IO,
-    env: Environment | None = ...,
-    prefix: str | None = ...,
-) -> None: ...
 def create_xml_node_chain(
     first_parent_node: _Element,
     nodes_list: Iterable[str],
@@ -41,7 +36,7 @@ def load_xsd_files_from_url(
     xsd_name_prefix: str = ...,
     xsd_names_filter: str | list[str] | None = ...,
     modify_xsd_content: Callable[[bytes], bytes] | None = ...,
-) -> "odoo.model.ir_attachment | Literal[False]": ...
+) -> "Union[IrAttachment | Literal[False]]": ...
 def validate_xml_from_attachment(
     env: Environment,
     xml_content,

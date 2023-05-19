@@ -3,20 +3,10 @@ from re import Pattern
 from typing import Callable, Collection, FrozenSet, Literal
 
 from lxml.etree import _Element
-from lxml.html import clean
 from markupsafe import Markup
 
 safe_attrs: FrozenSet
 SANITIZE_TAGS: dict[str, Collection[str]]
-
-class _Cleaner(clean.Cleaner):
-    _style_re: Pattern
-    _style_whitelist: list[str]
-    strip_classes: bool
-    sanitize_style: bool
-    def __call__(self, doc: _Element) -> None: ...
-    def strip_class(self, el: _Element) -> None: ...
-    def parse_style(self, el: _Element) -> None: ...
 
 def tag_quote(el: _Element) -> None: ...
 def html_normalize(

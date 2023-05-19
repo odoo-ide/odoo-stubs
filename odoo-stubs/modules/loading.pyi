@@ -17,7 +17,6 @@ def load_module_graph(
     report: OdooTestResult | None = ...,
     models_to_check: set[str] | None = ...,
 ) -> tuple[list[str], list[str]]: ...
-def _check_module_names(cr: Cursor, module_names: Iterable[str]) -> None: ...
 def load_marked_modules(
     cr: Cursor,
     graph: Graph,

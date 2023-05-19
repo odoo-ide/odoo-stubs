@@ -1,11 +1,7 @@
 from collections import OrderedDict
-from threading import RLock
 from typing import Any
 
-__all__ = ["LRU"]
-
 class LRU:
-    _lock: RLock
     count: int
     d: OrderedDict
     def __init__(self, count: int, pairs: tuple[Any, Any] = ...) -> None: ...

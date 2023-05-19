@@ -5,7 +5,6 @@ from ..tools import pycompat as pycompat
 
 MANIFEST_NAMES: tuple[str, ...]
 README: list[str]
-_DEFAULT_MANIFEST: dict[str, Any]
 
 def ad_paths() -> MutableSequence[str]: ...
 

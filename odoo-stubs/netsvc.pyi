@@ -1,7 +1,7 @@
 import logging.handlers
 import warnings
 from logging import Logger, LogRecord
-from typing import IO, TextIO
+from typing import TextIO
 
 def log(
     logger: Logger, level: int, prefix: str, msg, depth: int | None = ...
@@ -9,9 +9,7 @@ def log(
 
 class WatchedFileHandler(logging.handlers.WatchedFileHandler):
     errors: None
-    _builtin_open: None
     def __init__(self, filename: str) -> None: ...
-    def _open(self) -> IO: ...
 
 class PostgreSQLHandler(logging.Handler):
     def emit(self, record: LogRecord) -> None: ...
@@ -48,8 +46,6 @@ class DBFormatter(logging.Formatter):
 
 class ColoredFormatter(DBFormatter):
     def format(self, record: LogRecord): ...
-
-_logger_init: bool
 
 def init_logger(): ...
 
