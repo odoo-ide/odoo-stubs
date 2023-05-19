@@ -1,9 +1,7 @@
 from collections.abc import Generator
 from logging import Logger
-from re import Pattern
 from typing import Any, NamedTuple
 
-__unittest: bool
 STDOUT_LINE: str
 STDERR_LINE: str
 stats_logger: Logger
@@ -13,11 +11,7 @@ class Stat(NamedTuple):
     queries: int
     def __add__(self, other: Stat) -> Stat: ...
 
-_TEST_ID: Pattern
-
 class OdooTestResult:
-    _previousTestClass: Any
-    _moduleSetUpFailed: bool
     failures_count: int
     errors_count: int
     testsRun: int
@@ -25,7 +19,6 @@ class OdooTestResult:
     tb_locals: bool
     time_start: float | None
     queries_start: int | None
-    _soft_fail: bool
     had_failure: bool
     stats: dict[str, Stat]
     def __init__(
@@ -43,11 +36,6 @@ class OdooTestResult:
     def addSuccess(self, test) -> None: ...
     def addSkip(self, test, reason) -> None: ...
     def wasSuccessful(self) -> bool: ...
-    def _exc_info_to_string(self, err, test) -> str: ...
-    def _is_relevant_tb_level(self, tb) -> bool: ...
-    def _count_relevant_tb_levels(self, tb) -> int: ...
-    def __repr__(self) -> str: ...
-    def __str__(self) -> str: ...
     def soft_fail(self) -> Generator[None, None, None]: ...
     def update(self, other) -> None: ...
     def log(

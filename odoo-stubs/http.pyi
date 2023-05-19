@@ -1,24 +1,15 @@
 from abc import ABC, abstractmethod
 from collections import defaultdict
 from collections.abc import MutableMapping
-from contextlib import nullcontext
-from typing import (
-    Any,
-    Callable,
-    Collection,
-    Generator,
-    Iterable,
-    Literal,
-    Mapping,
-    TypeVar,
-)
+from typing import Any, Callable, Iterable, Literal, Mapping, TypeVar
 
 import geoip2.database
 import geoip2.models
 import werkzeug
+from odoo.addons.base.models.res_lang import Lang
+from odoo.addons.website.models.website import Website
 from werkzeug.datastructures import Headers
 from werkzeug.exceptions import NotFound
-from werkzeug.local import LocalStack
 from werkzeug.middleware.proxy_fix import ProxyFix as ProxyFix_
 from werkzeug.routing import Map, Rule
 from werkzeug.urls import URL
@@ -28,7 +19,6 @@ from .models import BaseModel
 from .modules.registry import Registry
 from .sql_db import Cursor
 from .tools._vendor import sessions
-from .tools.profiler import Profiler
 
 _T = TypeVar("_T")
 
@@ -86,7 +76,7 @@ class Stream:
     @classmethod
     def from_path(cls, path: str, filter_ext: tuple[str, ...] = ...) -> Stream: ...
     @classmethod
-    def from_attachment(cls, attachment: "odoo.model.ir_attachment") -> Stream: ...
+    def from_attachment(cls, attachment) -> Stream: ...
     @classmethod
     def from_binary_field(cls, record: BaseModel, field_name: str) -> Stream: ...
     def read(self) -> bytes: ...
@@ -111,12 +101,6 @@ def route(
     csrf: bool = ...,
     **kw
 ): ...
-def _generate_routing_rules(
-    modules: Collection[str], nodb_only: bool, converters: Any | None = ...
-) -> Generator[tuple[str, Any], None, None]: ...
-def _check_and_complete_route_definition(
-    controller_cls: type, submethod, merged_routing: dict
-) -> None: ...
 
 class FilesystemSessionStore(sessions.FilesystemSessionStore):
     def get_session_filename(self, sid: str) -> str: ...
@@ -127,7 +111,6 @@ class FilesystemSessionStore(sessions.FilesystemSessionStore):
 
 class Session(MutableMapping):
     can_save: bool
-    __data: dict
     is_dirty: bool
     is_explicit: bool
     is_new: bool
@@ -156,10 +139,6 @@ class GeoIP(Mapping):
     ip: str
     def __init__(self, ip: str) -> None: ...
     @property
-    def _city_record(self) -> geoip2.models.City: ...
-    @property
-    def _country_record(self) -> geoip2.models.Country: ...
-    @property
     def country_name(self): ...
     @property
     def country_code(self): ...
@@ -169,7 +148,6 @@ class GeoIP(Mapping):
     def __iter__(self): ...
     def __len__(self) -> int: ...
 
-_request_stack: LocalStack
 request: Request
 
 class Response(werkzeug.Response):
@@ -232,16 +210,15 @@ class Request:
     session: Session
     db: str | None
     env: Environment | None
-    website: "odoo.model.website"
+    website: "Website"
     website_routing: int
     is_frontend: bool
     is_frontend_multilang: bool
-    lang: "odoo.model.res_lang"
+    lang: "Lang"
     def __init__(self, httprequest: werkzeug.Request) -> None: ...
-    def _get_session_and_dbname(self) -> tuple[Session, str]: ...
     def update_env(
         self,
-        user: "odoo.model.res_users | int | None" = ...,
+        user=...,
         context: dict[str, Any] | None = ...,
         su: bool | None = ...,
     ) -> None: ...
@@ -258,7 +235,6 @@ class Request:
     def cr(self) -> Cursor: ...
     @cr.setter
     def cr(self, value) -> None: ...
-    _cr: Cursor
     @property
     def best_lang(self) -> str | None: ...
     def csrf_token(self, time_limit: int | None = ...) -> str: ...
@@ -267,8 +243,6 @@ class Request:
     def default_lang(self) -> str: ...
     def get_http_params(self) -> dict: ...
     def get_json_data(self): ...
-    def _get_profiler_context_manager(self) -> Profiler | nullcontext: ...
-    def _inject_future_response(self, response: werkzeug.Response): ...
     def make_response(
         self,
         data: str,
@@ -297,15 +271,6 @@ class Request:
     def render(
         self, template: str, qcontext: dict | None = ..., lazy: bool = ..., **kw
     ): ...
-    def _save_session(self) -> None: ...
-    def _set_request_dispatcher(self, rule: Rule) -> None: ...
-    def _serve_static(self) -> werkzeug.Response: ...
-    def _serve_nodb(self): ...
-    def _serve_db(self): ...
-    params: dict
-    def _serve_ir_http(self): ...
-
-_dispatchers: dict[str, type[Dispatcher]]
 
 class Dispatcher(ABC):
     routing_type: str
@@ -338,9 +303,6 @@ class JsonRPCDispatcher(Dispatcher):
     def is_compatible_with(cls, request: Request) -> bool: ...
     def dispatch(self, endpoint, args): ...
     def handle_error(self, exc: Exception) -> Callable: ...
-    def _response(
-        self, result: Any | None = ..., error: Any | None = ...
-    ) -> Response: ...
 
 class Application:
     @property

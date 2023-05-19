@@ -1,12 +1,5 @@
-from codecs import StreamReader, StreamWriter
 from csv import Dialect
-from typing import BinaryIO, Iterable, Iterator, Protocol
-
-class _StreamReader(Protocol):
-    def __call__(self, stream: BinaryIO, errors: str = ...) -> StreamReader: ...
-
-class _StreamWriter(Protocol):
-    def __call__(self, stream: BinaryIO, errors: str = ...) -> StreamWriter: ...
+from typing import BinaryIO, Iterable, Iterator
 
 class _CsvReader(Iterator[list[str]]):
     dialect: Dialect
@@ -17,9 +10,6 @@ class _CsvWriter:
     dialect: Dialect
     def writerow(self, row: Iterable): ...
     def writerows(self, rows: Iterable[Iterable]) -> None: ...
-
-_reader: _StreamReader
-_writer: _StreamWriter
 
 def csv_reader(stream: BinaryIO, **params) -> _CsvReader: ...
 def csv_writer(stream: BinaryIO, **params) -> _CsvWriter: ...

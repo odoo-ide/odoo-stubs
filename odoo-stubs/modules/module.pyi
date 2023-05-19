@@ -5,7 +5,6 @@ from ..tools import pycompat as pycompat
 
 MANIFEST_NAMES: tuple[str, ...]
 README: list[str]
-_DEFAULT_MANIFEST: dict[str, Any]
 
 class UpgradeHook:
     def find_module(self, name: str, path: Any | None = ...) -> UpgradeHook | None: ...

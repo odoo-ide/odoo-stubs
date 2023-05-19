@@ -1,5 +1,3 @@
-from typing import Any
-
 from .fields import Field
 from .models import BaseModel
 
@@ -18,7 +16,6 @@ class RedirectWarning(Exception):
     def name(self): ...
 
 class AccessDenied(UserError):
-    __cause__: Any
     traceback: tuple[str, str, str]
     def __init__(self, message: str = ...) -> None: ...
 
