@@ -16,7 +16,6 @@ BLUE: int
 MAGENTA: int
 CYAN: int
 WHITE: int
-_NOTHING: int
 DEFAULT: int
 RESET_SEQ: str
 COLOR_SEQ: str
@@ -40,8 +39,6 @@ class DBFormatter(logging.Formatter):
 
 class ColoredFormatter(DBFormatter):
     def format(self, record: LogRecord): ...
-
-_logger_init: bool
 
 def init_logger(): ...
 

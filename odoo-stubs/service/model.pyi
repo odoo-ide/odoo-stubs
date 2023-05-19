@@ -2,10 +2,10 @@ from typing import Callable, TypeVar
 
 from ..sql_db import Cursor
 
+_CallableT = TypeVar("_CallableT", bound=Callable)
+
 PG_CONCURRENCY_ERRORS_TO_RETRY: tuple[str, str, str]
 MAX_TRIES_ON_CONCURRENCY_FAILURE: int
-
-_CallableT = TypeVar("_CallableT", bound=Callable)
 
 def dispatch(method: str, params): ...
 def check(f: _CallableT) -> _CallableT: ...
