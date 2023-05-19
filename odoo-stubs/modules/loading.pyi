@@ -1,8 +1,5 @@
 from typing import Any, Optional
 
-_logger: Any
-_test_logger: Any
-
 def load_data(cr, idref, mode, kind, package, report): ...
 def load_demo(cr, package, idref, mode, report: Optional[Any] = ...): ...
 def force_demo(cr) -> None: ...
@@ -15,7 +12,6 @@ def load_module_graph(
     report: Optional[Any] = ...,
     models_to_check: Optional[Any] = ...,
 ): ...
-def _check_module_names(cr, module_names) -> None: ...
 def load_marked_modules(
     cr,
     graph,

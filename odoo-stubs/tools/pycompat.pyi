@@ -1,12 +1,6 @@
-from collections import namedtuple
 from typing import Any, Optional
 
 PY2: Any
-
-_Writer = namedtuple("_Writer", "writerow writerows")
-unichr = unichr
-text_type = unicode
-string_types: Any
 
 def to_native(source, encoding: str = ..., falsy_empty: bool = ...): ...
 
@@ -24,8 +18,4 @@ izip = zip
 ifilter = filter
 
 def reraise(tp, value, tb: Optional[Any] = ...) -> None: ...
-
-_reader: Any
-_writer: Any
-
 def to_text(source): ...

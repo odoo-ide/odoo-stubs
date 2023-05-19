@@ -15,17 +15,8 @@ from . import sql_db as sql_db
 from . import tools as tools
 from .tools.translate import _ as _
 
-__path__: Any
 evented: bool
-
-def gevent_wait_callback(conn, timeout: Optional[Any] = ...) -> None: ...
-
 multi_process: bool
-_babelCoreParseLocale: Any
-
-def _babelCoreParseLocale_unitag(identifier, sep: str = ...): ...
-def _decompress(data): ...
-
 SUPERUSER_ID: int
 
 def registry(database_name: Optional[Any] = ...): ...

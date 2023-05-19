@@ -1,9 +1,3 @@
-from typing import Any
-
-_logger: Any
-_validators: Any
-_relaxng_cache: Any
-
 def valid_view(arch): ...
 def validate(*view_types): ...
 def relaxng(view_type): ...

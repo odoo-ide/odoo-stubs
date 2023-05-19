@@ -1,12 +1,11 @@
 from operator import itemgetter as itemgetter
 from typing import Any, Optional
 
-from odoo import SUPERUSER_ID as SUPERUSER_ID
-from odoo import api as api
+from .. import SUPERUSER_ID as SUPERUSER_ID
+from .. import api as api
 
 MANIFEST_NAMES: Any
 README: Any
-_logger: Any
 ad_paths: Any
 hooked: bool
 loaded: Any
@@ -36,7 +35,6 @@ def get_modules(): ...
 def get_modules_with_version(): ...
 def adapt_version(version): ...
 def get_test_modules(module): ...
-def _get_tests_modules(path, module): ...
 
 class TestStream:
     logger: Any

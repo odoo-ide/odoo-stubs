@@ -1,7 +1,5 @@
 from typing import Any, Optional
 
-__all__: Any
-
 class LRUNode:
     prev: Any
     me: Any
@@ -9,7 +7,6 @@ class LRUNode:
     def __init__(self, prev, me) -> None: ...
 
 class LRU:
-    _lock: Any
     count: Any
     d: Any
     first: Any
