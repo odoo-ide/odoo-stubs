@@ -1,7 +1,6 @@
 from typing import Any
 
 unsafe_eval = eval
-_logger: Any
 
 class ormcache_counter:
     hit: int

@@ -1,6 +1,3 @@
-from typing import Any
-
-_logger: Any
 RPC_FAULT_CODE_CLIENT_ERROR: int
 RPC_FAULT_CODE_APPLICATION_ERROR: int
 RPC_FAULT_CODE_WARNING: int

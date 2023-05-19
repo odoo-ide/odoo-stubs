@@ -1,7 +1,5 @@
 from typing import Any
 
-__all__: Any
-
 class lazy_property:
     fget: Any
     def __init__(self, fget) -> None: ...

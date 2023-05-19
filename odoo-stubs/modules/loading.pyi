@@ -1,8 +1,5 @@
 from typing import Any
 
-_logger: Any
-_test_logger: Any
-
 def load_module_graph(
     cr,
     graph,
@@ -12,7 +9,6 @@ def load_module_graph(
     report: Any | None = ...,
     models_to_check: Any | None = ...,
 ): ...
-def _check_module_names(cr, module_names) -> None: ...
 def load_marked_modules(
     cr,
     graph,

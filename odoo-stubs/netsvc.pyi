@@ -1,8 +1,6 @@
 import logging.handlers
 from typing import Any
 
-_logger: Any
-
 def log(logger, level, prefix, msg, depth: Any | None = ...) -> None: ...
 def LocalService(name): ...
 
@@ -19,7 +17,6 @@ BLUE: Any
 MAGENTA: Any
 CYAN: Any
 WHITE: Any
-_NOTHING: Any
 DEFAULT: Any
 RESET_SEQ: str
 COLOR_SEQ: str
@@ -32,8 +29,6 @@ class DBFormatter(logging.Formatter):
 
 class ColoredFormatter(DBFormatter):
     def format(self, record): ...
-
-_logger_init: bool
 
 def init_logger(): ...
 

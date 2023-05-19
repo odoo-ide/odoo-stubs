@@ -2,11 +2,11 @@ import unittest
 from typing import Any
 
 import urllib2
-from odoo.api import Environment
-from odoo.modules.registry import Registry
-from odoo.sql_db import Cursor
 
-_logger: Any
+from ..api import Environment
+from ..modules.registry import Registry
+from ..sql_db import Cursor
+
 ADDONS_PATH: Any
 HOST: str
 PORT: Any
@@ -26,7 +26,6 @@ class BaseCase(unittest.TestCase):
     def cursor(self) -> Cursor: ...
     def ref(self, xid): ...
     def browse_ref(self, xid): ...
-    def _assertRaises(self, exception) -> None: ...
     def assertRaises(self, exception, func: Any | None = ..., *args, **kwargs): ...
     def shortDescription(self): ...
 
@@ -48,7 +47,6 @@ class SingleTransactionCase(BaseCase):
 savepoint_seq: Any
 
 class SavepointCase(SingleTransactionCase):
-    _savepoint_id: Any
     def setUp(self) -> None: ...
     def tearDown(self) -> None: ...
 
@@ -71,7 +69,6 @@ class HttpCase(TransactionCase):
     def authenticate(self, user, password) -> None: ...
     def phantom_poll(self, phantom, timeout): ...
     def phantom_run(self, cmd, timeout) -> None: ...
-    def _wait_remaining_requests(self) -> None: ...
     def phantom_js(
         self,
         url_path,

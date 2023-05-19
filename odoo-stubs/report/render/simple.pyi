@@ -4,4 +4,3 @@ from . import render
 
 class simple(render.render):
     result: Any
-    def _render(self): ...

@@ -1,13 +1,9 @@
 from collections import Mapping
 from typing import Any
 
-from odoo.sql_db import Cursor
-
-_logger: Any
+from ..sql_db import Cursor
 
 class Registry(Mapping):
-    _lock: Any
-    _saved_lock: Any
     model_cache: Any
     def registries(cls): ...
     def __new__(cls, db_name): ...
@@ -20,14 +16,7 @@ class Registry(Mapping):
         update_module: bool = ...,
     ): ...
     models: Any
-    _sql_error: Any
-    _init: bool
-    _init_parent: Any
-    _assertion_report: Any
-    _fields_by_model: Any
-    _init_modules: Any
     db_name: Any
-    _db: Any
     test_cr: Any
     ready: bool
     registry_sequence: Any
@@ -51,7 +40,6 @@ class Registry(Mapping):
     def do_parent_store(self, cr) -> None: ...
     def descendants(self, model_names, *kinds): ...
     def load(self, cr, module): ...
-    _m2m: Any
     def setup_models(self, cr, partial: bool = ...) -> None: ...
     def init_models(self, cr, model_names, context) -> None: ...
     def clear_caches(self) -> None: ...

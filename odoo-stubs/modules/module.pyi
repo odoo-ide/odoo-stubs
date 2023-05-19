@@ -1,12 +1,11 @@
 from operator import itemgetter as itemgetter
 from typing import Any
 
-from odoo import SUPERUSER_ID as SUPERUSER_ID
-from odoo import api as api
+from .. import SUPERUSER_ID as SUPERUSER_ID
+from .. import api as api
 
 MANIFEST_NAMES: Any
 README: Any
-_logger: Any
 ad_paths: Any
 hooked: bool
 loaded: Any

@@ -1,7 +1,5 @@
 from typing import Any
 
-_logger: Any
-
 class except_orm(Exception):
     name: Any
     value: Any

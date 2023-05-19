@@ -1,9 +1,6 @@
 from typing import Any
 
 __version_info__: Any
-__version__: Any
-PY3: Any
-unicode = str
 
 def user_data_dir(
     appname: Any | None = ...,
@@ -68,11 +65,3 @@ class AppDirs:
     def user_cache_dir(self): ...
     @property
     def user_log_dir(self): ...
-
-def _get_win_folder_from_registry(csidl_name): ...
-def _get_win_folder_with_pywin32(csidl_name): ...
-def _get_win_folder_with_ctypes(csidl_name): ...
-
-_get_win_folder = _get_win_folder_with_pywin32
-_get_win_folder = _get_win_folder_with_ctypes
-_get_win_folder = _get_win_folder_from_registry

@@ -3,8 +3,6 @@ from os import W_OK as W_OK
 from os.path import dirname as dirname
 from typing import Any
 
-__docformat__: str
-__all__: Any
 windows: Any
 seen: Any
 defpathext: Any

@@ -1,9 +1,5 @@
 from typing import Any
 
-_regex: Any
-
-def _child_get(node, self: Any | None = ..., tagname: Any | None = ...) -> None: ...
-def _process_text(self, txt): ...
 def text_get(node): ...
 
 units: Any

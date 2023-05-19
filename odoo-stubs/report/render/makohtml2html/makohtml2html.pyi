@@ -1,7 +1,5 @@
 from typing import Any
 
-_logger: Any
-
 class makohtml2html:
     localcontext: Any
     html: Any

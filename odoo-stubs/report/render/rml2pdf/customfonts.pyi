@@ -1,6 +1,5 @@
 from typing import Any
 
-_logger: Any
 CustomTTFonts: Any
 TTFSearchPath: Any
 

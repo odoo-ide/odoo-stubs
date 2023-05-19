@@ -1,11 +1,8 @@
 from typing import Any
 
-_regex: Any
-
 class html2html:
     localcontext: Any
     etree: Any
-    _node: Any
     def __init__(self, html, localcontext) -> None: ...
     def render(self): ...
     def url_modify(self, root): ...

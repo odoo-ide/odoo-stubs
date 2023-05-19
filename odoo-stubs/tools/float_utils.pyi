@@ -1,8 +1,5 @@
 from typing import Any
 
-def _float_check_precision(
-    precision_digits: Any | None = ..., precision_rounding: Any | None = ...
-): ...
 def float_round(
     value,
     precision_digits: Any | None = ...,
@@ -19,8 +16,6 @@ def float_compare(
     precision_rounding: Any | None = ...,
 ): ...
 def float_repr(value, precision_digits): ...
-
-_float_repr = float_repr
 
 class float_precision(float):
     def __new__(cls, value, precision_digits): ...

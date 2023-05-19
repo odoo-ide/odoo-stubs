@@ -1,8 +1,5 @@
 from typing import Any
 
-_logger: Any
-_test_logger: Any
-
 def try_report(
     cr,
     uid,

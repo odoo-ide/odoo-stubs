@@ -1,18 +1,13 @@
 from typing import Any
 
-from odoo.report.interface import report_int
+from ..interface import report_int
 
 class report_printscreen_list(report_int):
     context: Any
     groupby: Any
     cr: str
     def __init__(self, name) -> None: ...
-    def _parse_node(self, root_node): ...
-    def _parse_string(self, view): ...
     groupby_no_leaf: Any
     title: Any
     def create(self, cr, uid, ids, datas, context: Any | None = ...): ...
     obj: Any
-    def _create_table(
-        self, uid, ids, fields, fields_order, results, context, title: str = ...
-    ): ...

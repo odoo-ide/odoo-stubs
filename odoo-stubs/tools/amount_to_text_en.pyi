@@ -1,13 +1,8 @@
 from typing import Any
 
-_logger: Any
 to_19: Any
 tens: Any
 denom: Any
 
-def _convert_nn(val): ...
-def _convert_nnn(val): ...
 def english_number(val): ...
 def amount_to_text(number, currency): ...
-
-_translate_funcs: Any

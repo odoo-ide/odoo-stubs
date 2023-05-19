@@ -1,6 +1,5 @@
 from typing import Any
 
-_logger: Any
 RPC_VERSION_1: Any
 
 def exp_login(db, login, password): ...
