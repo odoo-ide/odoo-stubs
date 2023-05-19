@@ -41,8 +41,6 @@ class DBFormatter(logging.Formatter):
 class ColoredFormatter(DBFormatter):
     def format(self, record: LogRecord): ...
 
-_logger_init: bool
-
 def init_logger(): ...
 
 DEFAULT_LOG_CONFIGURATION: list[str]

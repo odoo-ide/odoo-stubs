@@ -1,5 +1,4 @@
 from ast import expr as _expr
-from collections import defaultdict
 from re import Pattern
 from typing import Callable, TypeVar
 
@@ -10,13 +9,9 @@ from ..fields import Field
 
 _CallableT = TypeVar("_CallableT", bound=Callable)
 
-_validators: defaultdict[str, list[Callable]]
-_relaxng_cache: dict[str, RelaxNG | None]
 ATTRS_WITH_FIELD_NAMES: set[str]
 READONLY: Pattern
 
-def _get_attrs_symbols() -> set[str]: ...
-def _view_is_editable(node: _Element) -> bool: ...
 def field_is_editable(field: Field, node: _Element) -> bool: ...
 def get_attrs_field_names(
     env: Environment, arch: _Element, model, editable

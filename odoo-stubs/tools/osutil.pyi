@@ -1,4 +1,3 @@
-import ctypes
 from typing import Any, BinaryIO, Callable, Generator, Iterable, Iterator
 
 def listdir(dir: str, recursive: bool = ...) -> Iterable[str]: ...
@@ -15,7 +14,3 @@ def zip_dir(
 
 getppid: Callable[[], int]
 is_running_as_nt_service: Callable[[], bool]
-_TH32CS_SNAPPROCESS: int
-
-class _PROCESSENTRY32(ctypes.Structure):
-    _fields_: list[tuple[str, Any]]

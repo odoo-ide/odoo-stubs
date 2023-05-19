@@ -1,4 +1,4 @@
-from typing import IO, Iterable
+from typing import Iterable
 
 from lxml import etree
 from lxml.etree import _Element
@@ -10,9 +10,6 @@ class odoo_resolver(etree.Resolver):
     def __init__(self, env: Environment) -> None: ...
     def resolve(self, url: str, id: str, context) -> str: ...
 
-def _check_with_xsd(
-    tree_or_str: str | _Element, stream: str | IO, env: Environment | None = ...
-) -> None: ...
 def create_xml_node_chain(
     first_parent_node: _Element,
     nodes_list: Iterable[str],

@@ -1,7 +1,4 @@
-from threading import RLock
 from typing import Any, Generator, Iterator
-
-__all__ = ["LRU"]
 
 class LRUNode:
     prev: Any
@@ -10,7 +7,6 @@ class LRUNode:
     def __init__(self, prev, me) -> None: ...
 
 class LRU:
-    _lock: RLock
     count: int
     d: dict
     first: Any

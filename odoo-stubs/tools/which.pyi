@@ -3,7 +3,6 @@ from os import W_OK as W_OK
 from os.path import dirname as dirname
 from typing import Iterator
 
-__docformat__: str
 ENOENT: int
 windows: bool
 seen: set

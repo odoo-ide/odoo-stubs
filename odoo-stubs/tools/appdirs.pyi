@@ -1,7 +1,4 @@
-from typing import Callable
-
 __version_info__: tuple
-__version__: str
 
 def user_data_dir(
     appname: str | None = ...,
@@ -66,9 +63,3 @@ class AppDirs:
     def user_cache_dir(self) -> str: ...
     @property
     def user_log_dir(self) -> str: ...
-
-def _get_win_folder_from_registry(csidl_name: str) -> str: ...
-def _get_win_folder_with_pywin32(csidl_name: str) -> str: ...
-def _get_win_folder_with_ctypes(csidl_name: str) -> str: ...
-
-_get_win_folder: Callable[[str], str]
