@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from odoo.tools.misc import file_open as file_open
+from .misc import file_open as file_open
 
 def check_with_xsd(tree_or_str, stream) -> None: ...
 def create_xml_node_chain(

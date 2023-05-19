@@ -5,9 +5,9 @@ from typing import Any, Optional
 
 import xlsxwriter
 import xlwt
-from odoo.loglevels import exception_to_unicode as exception_to_unicode
-from odoo.loglevels import get_encodings as get_encodings
 
+from ..loglevels import exception_to_unicode as exception_to_unicode
+from ..loglevels import get_encodings as get_encodings
 from .cache import *
 
 SKIPPED_ELEMENT_TYPES: Any
