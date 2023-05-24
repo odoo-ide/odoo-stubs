@@ -209,7 +209,7 @@ class Reverse:
 
 def ignore(*exc) -> None: ...
 def html_escape(text: str) -> str: ...
-def get_lang(env: Environment, lang_code: str = ...) -> "Lang": ...
+def get_lang(env: Environment, lang_code: str = ...) -> Lang: ...
 def babel_locale_parse(lang_code: str) -> Locale: ...
 def formatLang(
     env: Environment,
@@ -218,7 +218,7 @@ def formatLang(
     grouping: bool = ...,
     monetary: bool = ...,
     dp: bool = ...,
-    currency_obj: "Currency" = ...,
+    currency_obj: Currency = ...,
 ) -> str: ...
 def format_date(
     env: Environment,
@@ -240,7 +240,7 @@ def format_time(
 def format_amount(
     env: Environment,
     amount: float,
-    currency: "Currency",
+    currency: Currency,
     lang_code: str = ...,
 ) -> str: ...
 def format_duration(value: float) -> str: ...
