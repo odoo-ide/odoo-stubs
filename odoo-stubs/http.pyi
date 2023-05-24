@@ -210,11 +210,11 @@ class Request:
     session: Session
     db: str | None
     env: Environment | None
-    website: "Website"
+    website: Website
     website_routing: int
     is_frontend: bool
     is_frontend_multilang: bool
-    lang: "Lang"
+    lang: Lang
     def __init__(self, httprequest: werkzeug.Request) -> None: ...
     def update_env(
         self,
