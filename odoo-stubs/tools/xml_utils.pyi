@@ -1,4 +1,4 @@
-from typing import Callable, Iterable, Literal, Union
+from typing import Callable, Iterable, Literal
 
 from lxml import etree
 from lxml.etree import _Element
@@ -36,7 +36,7 @@ def load_xsd_files_from_url(
     xsd_name_prefix: str = ...,
     xsd_names_filter: str | list[str] | None = ...,
     modify_xsd_content: Callable[[bytes], bytes] | None = ...,
-) -> "Union[IrAttachment | Literal[False]]": ...
+) -> IrAttachment | Literal[False]: ...
 def validate_xml_from_attachment(
     env: Environment,
     xml_content,
