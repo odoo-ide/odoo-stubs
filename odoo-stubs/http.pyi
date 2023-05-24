@@ -33,7 +33,7 @@ class WebRequest:
     endpoint: Any
     endpoint_arguments: Any
     auth_method: Any
-    website: "Website"
+    website: Website
     def __init__(self, httprequest) -> None: ...
     @property
     def cr(self) -> Cursor: ...
