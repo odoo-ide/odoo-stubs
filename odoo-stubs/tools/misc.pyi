@@ -15,7 +15,6 @@ from typing import (
     Iterator,
     NoReturn,
     TypeVar,
-    Union,
 )
 
 import markupsafe
@@ -220,7 +219,7 @@ def ignore(*exc) -> None: ...
 
 html_escape = markupsafe.escape
 
-def get_lang(env: Environment, lang_code: str = ...) -> "Lang": ...
+def get_lang(env: Environment, lang_code: str = ...) -> Lang: ...
 def babel_locale_parse(lang_code: str) -> Locale: ...
 def formatLang(
     env: Environment,
@@ -229,7 +228,7 @@ def formatLang(
     grouping: bool = ...,
     monetary: bool = ...,
     dp: bool = ...,
-    currency_obj: "Currency" = ...,
+    currency_obj: Currency = ...,
 ) -> str: ...
 def format_date(
     env: Environment,
@@ -250,12 +249,12 @@ def format_time(
 ) -> str: ...
 def format_decimalized_number(number: float, decimal: int = ...) -> str: ...
 def format_decimalized_amount(
-    amount: float, currency: "Union[Currency, None]" = ...
+    amount: float, currency: Currency | None = ...
 ) -> str: ...
 def format_amount(
     env: Environment,
     amount: float,
-    currency: "Currency",
+    currency: Currency,
     lang_code: str = ...,
 ) -> str: ...
 def format_duration(value: float) -> str: ...
