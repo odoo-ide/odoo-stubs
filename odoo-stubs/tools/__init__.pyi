@@ -23,5 +23,3 @@ from .sql import *
 from .template_inheritance import *
 from .translate import *
 from .xml_utils import *
-
-SUPPORTED_DEBUGGER: set[str]
