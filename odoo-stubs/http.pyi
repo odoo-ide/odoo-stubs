@@ -107,7 +107,7 @@ class FilesystemSessionStore(sessions.FilesystemSessionStore):
     def save(self, session: Session) -> None: ...
     def get(self, sid: str) -> Session: ...
     def rotate(self, session: Session, env: Environment) -> None: ...
-    def vacuum(self) -> None: ...
+    def vacuum(self, max_lifetime=...) -> None: ...
 
 class Session(MutableMapping):
     can_save: bool
@@ -173,7 +173,7 @@ class Response(werkzeug.Response):
         key: str,
         value: str = ...,
         max_age: Any | None = ...,
-        expires: Any | None = ...,
+        expires: int = ...,
         path: str = ...,
         domain: str | None = ...,
         secure: bool = ...,
@@ -192,7 +192,7 @@ class FutureResponse:
         key: str,
         value: str = ...,
         max_age: Any | None = ...,
-        expires: Any | None = ...,
+        expires: int = ...,
         path: str = ...,
         domain: str | None = ...,
         secure: bool = ...,
