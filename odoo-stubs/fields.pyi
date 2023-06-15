@@ -461,6 +461,7 @@ class PropertiesDefinition(Field):
     prefetch: bool
     REQUIRED_KEYS: tuple[str, ...]
     ALLOWED_KEYS: tuple[str, ...]
+    PROPERTY_PARAMETERS_MAP: dict[str, set[str]]
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ): ...
