@@ -285,6 +285,7 @@ class HttpDispatcher(Dispatcher):
 class JsonRPCDispatcher(Dispatcher):
     routing_type: str
     jsonrequest: dict
+    request_id: object
     def __init__(self, request: Request) -> None: ...
     @classmethod
     def is_compatible_with(cls, request: Request) -> bool: ...
