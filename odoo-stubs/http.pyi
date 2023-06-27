@@ -203,8 +203,9 @@ class FutureResponse:
 
 class Request:
     httprequest: werkzeug.Request
-    future_response: FutureResponse | None
+    future_response: FutureResponse
     dispatcher: Dispatcher
+    params: dict
     geoip: GeoIP
     registry: Registry | None
     session: Session
