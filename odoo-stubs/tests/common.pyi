@@ -4,6 +4,7 @@ import unittest
 from itertools import count
 from re import Pattern
 from typing import Any, Callable, Generator, Generic, Iterator, Mapping, Match, TypeVar
+from unittest.mock import Mock
 from xmlrpc import client as xmlrpclib
 
 import requests
@@ -96,6 +97,7 @@ class BaseCase(unittest.TestCase, metaclass=MetaCase):
     def assertHTMLEqual(self, original: str, expected: str) -> None: ...
     profile_session: str
     def profile(self, description: str = ..., **kwargs) -> Profiler: ...
+    def patch_requests(self) -> Mock: ...
 
 savepoint_seq: count[int]
 
