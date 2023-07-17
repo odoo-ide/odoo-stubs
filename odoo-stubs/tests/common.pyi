@@ -4,6 +4,7 @@ import unittest
 from itertools import count
 from re import Pattern
 from typing import Any, Callable, Generator, Generic, Iterator, Mapping, Match, TypeVar
+from unittest.mock import Mock
 from xmlrpc import client as xmlrpclib
 
 import requests
@@ -87,6 +88,7 @@ class BaseCase(TreeCase):
     ) -> None: ...
     def shortDescription(self) -> None: ...
     def assertItemsEqual(self, a, b, msg: str | None = ...) -> None: ...
+    def patch_requests(self) -> Mock: ...
 
 class TransactionCase(BaseCase):
     registry: Registry
