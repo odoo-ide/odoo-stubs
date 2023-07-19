@@ -4,7 +4,7 @@ from collections.abc import Mapping, MutableMapping, MutableSet
 from contextlib import ContextDecorator, suppress
 from logging import Handler, LogRecord
 from re import Pattern
-from types import ModuleType
+from types import FrameType, ModuleType
 from typing import (
     IO,
     Any,
@@ -312,3 +312,4 @@ def has_list_types(
     values: list | tuple, types: Collection[type | tuple[type, ...]]
 ) -> bool: ...
 def get_flag(country_code: str) -> str: ...
+def format_frame(frame: FrameType) -> str: ...
