@@ -1,4 +1,4 @@
-# odoo-stubs
+# Odoo Stubs
 
 > A stub file is a file containing a skeleton of the public interface of that Python module,
 > including classes, variables, functions – and most importantly, their types.
@@ -7,11 +7,13 @@
 
 By using these stubs, IDEs will provide better code completion,
 and static type checkers will provide better reports.
-These stubs should be used in conjunction with:
-- [PyCharm plugin for Odoo](https://plugins.jetbrains.com/plugin/13499-odoo)
-- [Visual Studio Code extension for Odoo](https://marketplace.visualstudio.com/items?itemName=trinhanhngoc.vscode-odoo)
 
 ## Usage
+
+If you are using the [PyCharm plugin for Odoo](https://plugins.jetbrains.com/plugin/13499-odoo) or
+the [VSCode extension for Odoo](https://marketplace.visualstudio.com/items?itemName=trinhanhngoc.vscode-odoo),
+then you don't need to setup Odoo Stubs manually as they already have built-in Odoo Stubs.
+If not, you can follow these instructions for manually setup.
 
 ### 1. Clone the branch corresponding to the Odoo version
 
@@ -33,13 +35,7 @@ select the project containing the Odoo source code and click `Add Content Root` 
 
 #### Visual Studio Code
 
-Create [`pyrightconfig.json`](https://microsoft.github.io/pyright/#/configuration) in the Odoo source code folder
-(should be the root folder of your workspace) with something like the following example:
-
-```json
-{
-    "stubPath": "path/to/odoo-stubs"
-}
-```
+Add the odoo-stubs folder to the `stubPath` or `extraPaths` settings as described in the
+[import resolution documentation](https://microsoft.github.io/pyright/#/import-resolution).
 
 ![VSCode](images/vscode.png)
