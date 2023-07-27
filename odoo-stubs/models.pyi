@@ -1,5 +1,15 @@
 from collections import MutableMapping
-from typing import Any, Callable, Dict, Generator, List, Optional, TypeVar, overload
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Generator,
+    List,
+    Literal,
+    Optional,
+    TypeVar,
+    overload,
+)
 
 from . import api, fields
 from .api import Environment
@@ -142,14 +152,24 @@ class BaseModel(metaclass=MetaModel):
     def get_formview_action(self, access_uid: Optional[Any] = ...): ...
     def get_access_action(self, access_uid: Optional[Any] = ...): ...
     def search_count(self, args) -> int: ...
+    @overload
     def search(
         self: _ModelT,
         args,
         offset: int = ...,
-        limit: Optional[Any] = ...,
-        order: Optional[Any] = ...,
-        count: bool = ...,
+        limit: Optional[int] = ...,
+        order: Optional[str] = ...,
+        count: Literal[False] = ...,
     ) -> _ModelT: ...
+    @overload
+    def search(
+        self: _ModelT,
+        args,
+        offset: int = ...,
+        limit: Optional[int] = ...,
+        order: Optional[str] = ...,
+        count: Literal[True] = ...,
+    ) -> int: ...
     def _compute_display_name(self) -> None: ...
     def name_get(self): ...
     def name_create(self, name): ...
