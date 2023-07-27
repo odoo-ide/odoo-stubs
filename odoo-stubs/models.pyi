@@ -1,5 +1,5 @@
 from collections import MutableMapping
-from typing import Any, Callable, Dict, Generator, List, TypeVar, overload
+from typing import Any, Callable, Dict, Generator, List, Literal, TypeVar, overload
 
 from . import api, fields
 from .api import Environment
@@ -137,14 +137,24 @@ class BaseModel:
     def get_formview_action(self): ...
     def get_access_action(self): ...
     def search_count(self, args) -> int: ...
+    @overload
     def search(
         self: _ModelT,
         args,
         offset: int = ...,
-        limit: Any | None = ...,
-        order: Any | None = ...,
-        count: bool = ...,
+        limit: int | None = ...,
+        order: str | None = ...,
+        count: Literal[False] = ...,
     ) -> _ModelT: ...
+    @overload
+    def search(
+        self: _ModelT,
+        args,
+        offset: int = ...,
+        limit: int | None = ...,
+        order: str | None = ...,
+        count: Literal[True] = ...,
+    ) -> int: ...
     def _compute_display_name(self) -> None: ...
     def name_get(self): ...
     def name_create(self, name): ...
