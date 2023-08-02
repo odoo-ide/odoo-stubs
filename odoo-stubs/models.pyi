@@ -207,7 +207,7 @@ class BaseModel(metaclass=MetaModel):
     ) -> _ModelT: ...
     @overload
     def search(
-        self: _ModelT,
+        self,
         args: _Domain,
         offset: int = ...,
         limit: int | None = ...,
