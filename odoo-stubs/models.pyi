@@ -148,7 +148,7 @@ class BaseModel:
     ) -> _ModelT: ...
     @overload
     def search(
-        self: _ModelT,
+        self,
         args,
         offset: int = ...,
         limit: int | None = ...,
