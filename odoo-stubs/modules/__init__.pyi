@@ -7,6 +7,7 @@ from . import registry as registry
 from .loading import load_modules as load_modules
 from .loading import reset_modules_state as reset_modules_state
 from .module import adapt_version as adapt_version
+from .module import check_manifest_dependencies as check_manifest_dependencies
 from .module import get_module_path as get_module_path
 from .module import get_module_resource as get_module_resource
 from .module import get_modules as get_modules
