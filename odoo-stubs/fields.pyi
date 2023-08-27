@@ -73,7 +73,6 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     default: Any
     string: str | None
     help: str | None
-    invisible: bool
     readonly: bool
     required: bool
     states: dict[str, list[tuple]] | None

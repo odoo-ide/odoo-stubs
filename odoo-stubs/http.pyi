@@ -30,6 +30,7 @@ DEFAULT_LANG: str
 
 def get_default_session() -> dict[str, Any]: ...
 
+DEFAULT_MAX_CONTENT_LENGTH: int
 GEOIP_EMPTY_COUNTRY: geoip2.models.Country
 GEOIP_EMPTY_CITY: geoip2.models.City
 JSON_MIMETYPES: tuple[str, ...]
