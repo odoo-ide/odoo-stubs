@@ -14,7 +14,7 @@ from ..http import Session
 from ..models import BaseModel
 from ..modules.registry import Registry
 from ..sql_db import BaseCursor, Cursor
-from ..tools import profiler
+from ..tools import mute_logger, profiler
 from ..tools._vendor.sessions import Session
 from ..tools.profiler import Profiler
 from . import case
@@ -107,6 +107,7 @@ class TransactionCase(BaseCase):
     registry: Registry
     env: Environment
     cr: Cursor
+    muted_registry_logger: mute_logger
     @classmethod
     def setUpClass(cls) -> None: ...
     def setUp(self) -> None: ...
