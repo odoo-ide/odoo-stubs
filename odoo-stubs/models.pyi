@@ -28,7 +28,6 @@ from .tools.query import Query
 _T = TypeVar("_T")
 _ModelT = TypeVar("_ModelT", bound=BaseModel)
 _Model2T = TypeVar("_Model2T", bound=BaseModel)
-_Domain = list
 
 regex_alphanumeric: Pattern[str]
 regex_order: Pattern[str]
@@ -178,17 +177,17 @@ class BaseModel(metaclass=MetaModel):
     def default_get(self, fields_list: list[str]) -> dict[str, Any]: ...
     def _rec_name_fallback(self) -> str: ...
     def user_has_groups(self, groups: str) -> bool: ...
-    def search_count(self, domain: _Domain, limit: int | None = ...) -> int: ...
+    def search_count(self, domain: list, limit: int | None = ...) -> int: ...
     def search(
         self: _ModelT,
-        domain: _Domain,
+        domain: list,
         offset: int = ...,
         limit: int | None = ...,
         order: str | None = ...,
     ) -> _ModelT: ...
     def search_fetch(
         self: _ModelT,
-        domain: _Domain,
+        domain: list,
         field_names: Collection[str],
         offset: int = ...,
         limit: int | None = ...,
@@ -200,14 +199,14 @@ class BaseModel(metaclass=MetaModel):
     def name_search(
         self,
         name: str = ...,
-        args: _Domain | None = ...,
+        args: list | None = ...,
         operator: str = ...,
         limit: int = ...,
     ) -> list[tuple[int, str]]: ...
     def _name_search(
         self,
         name: str = ...,
-        domain: _Domain | None = ...,
+        domain: list | None = ...,
         operator: str = ...,
         limit: int = ...,
         order: str | None = ...,
@@ -217,10 +216,10 @@ class BaseModel(metaclass=MetaModel):
     def clear_caches(cls) -> None: ...
     def _read_group(
         self,
-        domain: _Domain,
+        domain: list,
         groupby: Iterable[str] = ...,
         aggregates: Iterable[str] = ...,
-        having: _Domain = ...,
+        having: list = ...,
         offset: int = ...,
         limit: int | None = ...,
         order: str | None = ...,
@@ -232,7 +231,7 @@ class BaseModel(metaclass=MetaModel):
         self, groupby_spec: str, query: Query
     ) -> tuple[str, list[str]]: ...
     def _read_group_having(
-        self, having_domain: _Domain, query: Query
+        self, having_domain: list, query: Query
     ) -> tuple[str, list, list[str]]: ...
     def _read_group_orderby(
         self, order: str | None, groupby_terms: dict, query: Query
@@ -248,11 +247,11 @@ class BaseModel(metaclass=MetaModel):
         self, aggregate_spec: str, raw_values
     ) -> Iterator: ...
     def _read_group_expand_full(
-        self, groups: _ModelT, domain: _Domain | None, order: str | None
+        self, groups: _ModelT, domain: list | None, order: str | None
     ) -> _ModelT: ...
     def _read_group_fill_results(
         self,
-        domain: _Domain,
+        domain: list,
         groupby: str,
         annoted_aggregates: dict[str, str],
         read_group_result: list[dict],
@@ -275,7 +274,7 @@ class BaseModel(metaclass=MetaModel):
     ) -> None: ...
     def read_group(
         self,
-        domain: _Domain,
+        domain: list,
         fields: list[str],
         groupby: str | list[str],
         offset: int = ...,
@@ -364,7 +363,7 @@ class BaseModel(metaclass=MetaModel):
     def _load_records_write(self, values: dict[str, Any]) -> None: ...
     def _load_records_create(self, values: list[dict[str, Any]]): ...
     def _load_records(self, data_list: list[dict], update: bool = ...) -> BaseModel: ...
-    def _where_calc(self, domain: _Domain, active_test: bool = ...) -> Query: ...
+    def _where_calc(self, domain: list, active_test: bool = ...) -> Query: ...
     def _check_qorder(self, word: str) -> bool: ...
     def _apply_ir_rules(self, query: Query, mode: str = ...) -> None: ...
     def _generate_m2o_order_by(
@@ -386,14 +385,14 @@ class BaseModel(metaclass=MetaModel):
     def _generate_order_by(self, order_spec: str | None, query: Query) -> str: ...
     def _flush_search(
         self,
-        domain: _Domain,
+        domain: list,
         fields: Sequence[str] | None = ...,
         order: str | None = ...,
         seen: set | None = ...,
     ) -> None: ...
     def _search(
         self: _ModelT,
-        domain: _Domain,
+        domain: list,
         offset: int = ...,
         limit: int | None = ...,
         order: str | None = ...,
@@ -417,7 +416,7 @@ class BaseModel(metaclass=MetaModel):
     def is_transient(cls) -> bool: ...
     def search_read(
         self,
-        domain: _Domain | None = ...,
+        domain: list | None = ...,
         fields: list[str] | None = ...,
         offset: int = ...,
         limit: int | None = ...,
@@ -467,7 +466,7 @@ class BaseModel(metaclass=MetaModel):
     def grouped(self: _ModelT, key: Callable[[_ModelT], _T]) -> dict[_T, _ModelT]: ...
     @overload
     def grouped(self: _ModelT, key: str) -> dict[Any, _ModelT]: ...
-    def filtered_domain(self: _ModelT, domain: _Domain) -> _ModelT: ...
+    def filtered_domain(self: _ModelT, domain: list) -> _ModelT: ...
     @overload
     def sorted(
         self: _ModelT, key: Callable[[_ModelT], Any] = ..., reverse: bool = ...
