@@ -293,6 +293,8 @@ class Unpickler(pickle_.Unpickler):
 
 pickle: ModuleType
 
+class ReadonlyDict(Mapping): ...
+
 class DotDict(dict):
     def __getattr__(self, attrib): ...
 

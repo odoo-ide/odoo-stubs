@@ -4,7 +4,6 @@ from typing import Any, Callable, TextIO
 from lxml.etree import _Element
 
 from ..api import Environment
-from .misc import ustr as ustr
 
 safe_eval: Callable
 
@@ -31,6 +30,7 @@ class xml_import:
     def env(self) -> Environment: ...
     @property
     def noupdate(self) -> bool: ...
+    def next_sequence(self) -> int: ...
     mode: str
     module: str
     envs: list[Environment]
