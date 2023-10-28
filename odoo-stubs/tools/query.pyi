@@ -4,7 +4,6 @@ from ..sql_db import Cursor
 from . import SQL
 
 class Query:
-    order: str | None
     limit: int | None
     offset: int | None
     def __init__(
@@ -34,6 +33,10 @@ class Query:
         rhs_column: str,
         link: str,
     ) -> str: ...
+    @property
+    def order(self) -> SQL | None: ...
+    @order.setter
+    def order(self, value: SQL | str | None): ...
     @property
     def table(self) -> str: ...
     @property
