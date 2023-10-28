@@ -3,7 +3,7 @@ from typing import Any, Callable
 from ..models import MAGIC_COLUMNS as MAGIC_COLUMNS
 from ..models import BaseModel
 from ..sql_db import Cursor
-from ..tools.query import Query
+from ..tools import SQL, Query
 
 NOT_OPERATOR: str
 OR_OPERATOR: str
@@ -13,12 +13,12 @@ TERM_OPERATORS: tuple[str, ...]
 NEGATIVE_TERM_OPERATORS: tuple[str, ...]
 DOMAIN_OPERATORS_NEGATION: dict[str, str]
 TERM_OPERATORS_NEGATION: dict[str, str]
-ANY_INSELECT: dict[str, str]
 ANY_IN: dict[str, str]
 TRUE_LEAF: tuple
 FALSE_LEAF: tuple
 TRUE_DOMAIN: list[tuple]
 FALSE_DOMAIN: list[tuple]
+SQL_OPERATORS: dict[str, SQL]
 
 def normalize_domain(domain: list) -> list: ...
 def is_false(model, domain: list) -> bool: ...
