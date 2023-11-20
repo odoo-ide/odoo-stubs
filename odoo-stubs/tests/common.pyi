@@ -18,6 +18,7 @@ from ..tools import mute_logger, profiler
 from ..tools._vendor.sessions import Session
 from ..tools.profiler import Profiler
 from . import case
+from .form import Form as Form
 from .result import OdooTestResult
 
 _T = TypeVar("_T")
