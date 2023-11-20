@@ -1,10 +1,9 @@
 from re import Pattern
-from typing import BinaryIO, Callable, Iterable
+from typing import BinaryIO, Callable
 
 WINDOWS_RESERVED: Pattern
 
 def clean_filename(name: str, replacement: str = ...) -> str: ...
-def listdir(dir: str, recursive: bool = ...) -> Iterable[str]: ...
 def zip_dir(
     path: str,
     stream: str | BinaryIO,

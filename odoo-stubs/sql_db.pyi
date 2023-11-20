@@ -14,6 +14,7 @@ _SavepointT = TypeVar("_SavepointT", bound=Savepoint)
 
 def undecimalize(symb, cr: Cursor) -> float | None: ...
 
+DECIMAL_TO_FLOAT_TYPE: Any
 real_time: Callable
 re_from: Pattern
 re_into: Pattern

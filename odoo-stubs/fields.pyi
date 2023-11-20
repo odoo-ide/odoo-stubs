@@ -70,7 +70,6 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     help: str | None
     readonly: bool
     required: bool
-    states: dict[str, list[tuple]] | None
     groups: str | None
     change_default: bool
     related_field: Field | None
@@ -205,7 +204,6 @@ class Monetary(Field[float]):
 
 class _String(Field[str]):
     translate: Callable | bool
-    unaccent: bool
     def __init__(self, string: str = ..., **kwargs) -> None: ...
     def get_trans_terms(self, value) -> list: ...
     def get_text_content(self, term): ...
@@ -433,7 +431,6 @@ class Properties(Field):
     column_type: tuple[str, str]
     copy: bool
     prefetch: bool
-    unaccent: bool
     write_sequence: int
     store: bool
     readonly: bool
