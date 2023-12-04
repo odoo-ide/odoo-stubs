@@ -1,4 +1,3 @@
-from itertools import chain as chain
 from socket import socket as socket_
 from threading import Semaphore, Thread
 from typing import Any, Callable, Literal, TypeVar

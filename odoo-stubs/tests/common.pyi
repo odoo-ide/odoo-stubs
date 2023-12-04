@@ -122,8 +122,7 @@ class SingleTransactionCase(BaseCase):
 
 class ChromeBrowserException(Exception): ...
 
-def fmap(future, map_fun): ...
-def fchain(future, next_callback): ...
+def run(gen_func) -> None: ...
 def save_test_file(
     test_name: str,
     content,
@@ -135,7 +134,8 @@ def save_test_file(
 
 class ChromeBrowser:
     remote_debugging_port: int
-    test_class: type[HttpCase]
+    test_case: HttpCase
+    success_signal: Callable[[str], bool]
     chrome: Popen
     devtools_port: int | None
     ws: WebSocket | None
@@ -145,7 +145,12 @@ class ChromeBrowser:
     sigxcpu_handler: Any
     error_checker: Any
     had_failure: bool
-    def __init__(self, test_class: type[HttpCase], headless: bool = ...) -> None: ...
+    def __init__(
+        self,
+        test_case: HttpCase,
+        success_signal: Callable[[str], bool],
+        headless: bool = ...,
+    ) -> None: ...
     @property
     def screencasts_frames_dir(self) -> str: ...
     def signal_handler(self, sig, frame) -> None: ...
@@ -210,6 +215,7 @@ class HttpCase(TransactionCase):
         cookies: Any | None = ...,
         error_checker: Any | None = ...,
         watch: bool = ...,
+        success_signal: Callable[[str], bool] | None = ...,
         **kw
     ) -> None: ...
     @classmethod

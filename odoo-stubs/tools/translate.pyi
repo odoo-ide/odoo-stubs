@@ -13,7 +13,6 @@ from .pycompat import _CsvWriter
 
 PYTHON_TRANSLATION_COMMENT: str
 JAVASCRIPT_TRANSLATION_COMMENT: str
-WEB_TRANSLATION_COMMENT: str
 SKIPPED_ELEMENTS: tuple[str, ...]
 
 class UNIX_LINE_TERMINATOR(csv.excel):
