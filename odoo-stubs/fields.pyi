@@ -67,6 +67,7 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     company_dependent: bool
     default: Any
     string: str | None
+    export_string_translation: bool
     help: str | None
     readonly: bool
     required: bool
