@@ -13,6 +13,7 @@ TERM_OPERATORS: tuple[str, ...]
 NEGATIVE_TERM_OPERATORS: tuple[str, ...]
 DOMAIN_OPERATORS_NEGATION: dict[str, str]
 TERM_OPERATORS_NEGATION: dict[str, str]
+WILDCARD_OPERATORS: tuple[str, ...]
 ANY_IN: dict[str, str]
 TRUE_LEAF: tuple
 FALSE_LEAF: tuple
