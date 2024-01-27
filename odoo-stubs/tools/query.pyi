@@ -1,16 +1,16 @@
 from typing import Iterable, Iterator
 
-from ..sql_db import Cursor
+from ..api import Environment
 from . import SQL
 
 class Query:
     limit: int | None
     offset: int | None
     def __init__(
-        self, cr: Cursor, alias: str, table: str | SQL | None = ...
+        self, env: Environment, alias: str, table: SQL | None = ...
     ) -> None: ...
     def make_alias(self, alias: str, link: str) -> str: ...
-    def add_table(self, alias: str, table: str | SQL | None = ...) -> None: ...
+    def add_table(self, alias: str, table: SQL | None = ...) -> None: ...
     def add_join(
         self, kind: str, alias: str, table: str | SQL | None, condition: SQL
     ) -> None: ...
@@ -21,7 +21,7 @@ class Query:
         self,
         lhs_alias: str,
         lhs_column: str,
-        rhs_table: str,
+        rhs_table: str | SQL,
         rhs_column: str,
         link: str,
     ) -> str: ...

@@ -21,7 +21,7 @@ from .fields import Field
 from .models import BaseModel
 from .modules.registry import Registry
 from .sql_db import Cursor
-from .tools import StackMap, frozendict
+from .tools import SQL, StackMap, frozendict
 
 _T = TypeVar("_T")
 _ModelT = TypeVar("_ModelT", bound=BaseModel)
@@ -63,12 +63,18 @@ class Environment(Mapping[str, BaseModel]):
     su: bool = ...
     args: tuple[Cursor, int, dict, bool]
     def reset(self) -> None: ...
+    uid_origin: int | None
     all: Transaction
     transaction: Transaction
     registry: Registry
     cache: Cache
     def __new__(
-        cls, cr: Cursor, uid: int | None, context: dict, su: bool = ...
+        cls,
+        cr: Cursor,
+        uid: int | None,
+        context: dict,
+        su: bool = ...,
+        uid_origin: int | None = ...,
     ) -> Environment: ...
     def __contains__(self, model_name) -> bool: ...
     def __getitem__(self, model_name: str) -> BaseModel: ...
@@ -113,6 +119,8 @@ class Environment(Mapping[str, BaseModel]):
     def add_to_compute(self, field: Field, records: BaseModel): ...
     def remove_to_compute(self, field: Field, records: BaseModel) -> None: ...
     def cache_key(self, field: Field): ...
+    def flush_query(self, query: SQL): ...
+    def execute_query(self, query: SQL) -> list[tuple]: ...
 
 class Transaction:
     registry: Registry

@@ -47,6 +47,7 @@ def new_test_user(
     context: dict | None = ...,
     **kwargs
 ) -> Users: ...
+def loaded_demo_data(env: Environment) -> bool: ...
 
 class RecordCapturer:
     def __init__(self, model: BaseModel, domain: list) -> None: ...
@@ -101,6 +102,11 @@ class BaseCase(case.TestCase, metaclass=MetaCase):
     def assertHTMLEqual(self, original: str, expected: str) -> None: ...
     profile_session: str
     def profile(self, description: str = ..., **kwargs) -> Profiler: ...
+
+class Like:
+    pattern: str
+    regex: str
+    def __init__(self, pattern) -> None: ...
 
 savepoint_seq: count[int]
 
