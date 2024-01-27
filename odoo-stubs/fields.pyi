@@ -16,6 +16,7 @@ from typing import (
 import psycopg2
 from markupsafe import Markup
 
+from . import SUPERUSER_ID as SUPERUSER_ID
 from .api import Environment, Registry
 from .models import BaseModel
 from .tools import date_utils, float_utils
@@ -433,6 +434,7 @@ class Properties(Field):
     definition_record_field: str | None
     ALLOWED_TYPES: tuple[str, ...]
     compute: Callable
+    def setup_related(self, model: BaseModel) -> None: ...
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ): ...
