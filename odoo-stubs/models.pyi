@@ -82,7 +82,7 @@ PREFETCH_MAX: int
 LOG_ACCESS_COLUMNS: list[str]
 MAGIC_COLUMNS: list[str]
 READ_GROUP_TIME_GRANULARITY: dict[str, dateutil.relativedelta.relativedelta]
-READ_GROUP_AGGREGATE: dict[str, Callable[[str, str], str]]
+READ_GROUP_AGGREGATE: dict[str, Callable[[str, str | SQL], SQL]]
 READ_GROUP_DISPLAY_FORMAT: dict[str, str]
 
 def is_definition_class(cls) -> bool: ...
@@ -111,6 +111,7 @@ class BaseModel(metaclass=MetaModel):
     _fold_name: str
     _translate: bool
     _check_company_auto: bool
+    _allow_sudo_commands: bool
     _depends: dict[str, Iterable[str]]
     _transient_max_count: int
     _transient_max_hours: float

@@ -64,12 +64,18 @@ class Environment(Mapping[str, BaseModel]):
     su: bool = ...
     args: tuple[Cursor, int, dict, bool]
     def reset(self) -> None: ...
+    uid_origin: int | None
     all: Transaction
     transaction: Transaction
     registry: Registry
     cache: Cache
     def __new__(
-        cls, cr: Cursor, uid: int | None, context: dict, su: bool = ...
+        cls,
+        cr: Cursor,
+        uid: int | None,
+        context: dict,
+        su: bool = ...,
+        uid_origin: int | None = ...,
     ) -> Environment: ...
     def __contains__(self, model_name) -> bool: ...
     def __getitem__(self, model_name: str) -> BaseModel: ...
