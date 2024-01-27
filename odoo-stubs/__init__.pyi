@@ -1,3 +1,6 @@
+from codecs import CodecInfo
+from re import Pattern
+
 from . import addons as addons
 from . import api as api
 from . import conf as conf
@@ -18,6 +21,8 @@ from .tools.translate import _lt as _lt
 
 evented: bool
 multi_process: bool
+iso8859_8: CodecInfo
+iso8859_8ie_re: Pattern
 SUPERUSER_ID: int
 
 def registry(database_name: str | None = ...) -> Registry: ...
