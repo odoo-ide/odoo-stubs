@@ -14,6 +14,7 @@ from typing import (
 import psycopg2
 from markupsafe import Markup
 
+from . import SUPERUSER_ID as SUPERUSER_ID
 from .api import Environment, Registry
 from .models import BaseModel
 from .tools import date_utils, float_utils

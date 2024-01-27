@@ -96,6 +96,7 @@ class BaseModel(metaclass=MetaModel):
     _needaction: bool
     _translate: bool
     _check_company_auto: bool
+    _allow_sudo_commands: bool
     _depends: dict[str, Iterable[str]]
     _transient_max_count: int
     _transient_max_hours: float
