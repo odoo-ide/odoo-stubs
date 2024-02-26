@@ -156,6 +156,7 @@ class ChromeBrowser:
         test_case: HttpCase,
         success_signal: Callable[[str], bool],
         headless: bool = ...,
+        debug: bool = ...,
     ) -> None: ...
     @property
     def screencasts_frames_dir(self) -> str: ...
@@ -222,6 +223,7 @@ class HttpCase(TransactionCase):
         error_checker: Any | None = ...,
         watch: bool = ...,
         success_signal: Callable[[str], bool] | None = ...,
+        debug: bool = ...,
         **kw
     ) -> None: ...
     @classmethod

@@ -283,6 +283,14 @@ def get_diff(
     dark_color_scheme: bool = ...,
 ) -> str: ...
 def hmac(env: Environment, scope, message, hash_function=...) -> str: ...
+def hash_sign(
+    env: Environment,
+    scope,
+    message_values,
+    expiration: Any | None = ...,
+    expiration_hours: int | None = ...,
+) -> str: ...
+def verify_hash_signed(env: Environment, scope, payload): ...
 
 ADDRESS_REGEX: Pattern
 

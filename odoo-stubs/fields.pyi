@@ -75,7 +75,7 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     groups: str | None
     change_default: bool
     related_field: Field | None
-    group_operator: str | None
+    aggregator: str | None
     group_expand: str | None
     prefetch: bool
     default_export_compatible: bool
@@ -92,8 +92,6 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     def traverse_related(self, record: _ModelT) -> tuple[_ModelT, Field]: ...
     @property
     def base_field(self) -> Field: ...
-    @property
-    def groupable(self) -> bool: ...
     def resolve_depends(self, registry: Registry) -> Iterator[tuple]: ...
     def get_description(
         self, env: Environment, attributes: Container[str] | None = ...
@@ -146,7 +144,7 @@ class Boolean(Field[bool]):
 class Integer(Field[int]):
     type: str
     column_type: tuple[str, str]
-    group_operator: str
+    aggregator: str
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ) -> int: ...
@@ -161,7 +159,7 @@ class Integer(Field[int]):
 
 class Float(Field[float]):
     type: str
-    group_operator: str
+    aggregator: str
     def __init__(
         self, string: str = ..., digits: tuple[int, int] | str | None = ..., **kwargs
     ) -> None: ...
@@ -185,7 +183,7 @@ class Monetary(Field[float]):
     write_sequence: int
     column_type: tuple[str, str]
     currency_field: str | None
-    group_operator: str
+    aggregator: str
     def __init__(
         self, string: str = ..., currency_field: str = ..., **kwargs
     ) -> None: ...
@@ -414,7 +412,7 @@ class Many2one(_Relational):
 class Many2oneReference(Integer):
     type: str
     model_field: str | None
-    group_operator: str | None
+    aggregator: str | None
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...): ...
 
 class Json(Field):
@@ -549,8 +547,6 @@ class Many2many(_RelationalMulti):
     def setup_nonrelated(self, model: BaseModel) -> None: ...
     def update_db(self, model: BaseModel, columns) -> None: ...
     def update_db_foreign_keys(self, model: BaseModel) -> None: ...
-    @property
-    def groupable(self) -> bool: ...
     def read(self, records: BaseModel) -> None: ...
     def write_real(self, records_commands_list: list, create: bool = ...) -> None: ...
     def write_new(self, records_commands_list: list) -> None: ...
