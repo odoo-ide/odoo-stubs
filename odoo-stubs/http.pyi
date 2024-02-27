@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from collections import defaultdict
 from collections.abc import MutableMapping
-from typing import Any, Callable, Iterable, Literal, Mapping, TypeVar
+from typing import Any, Callable, Generator, Iterable, Literal, Mapping, TypeVar
 
 import geoip2.database
 import geoip2.models
@@ -150,6 +150,16 @@ class GeoIP(Mapping):
     def __len__(self) -> int: ...
 
 request: Request
+
+def borrow_request() -> Generator[Request, None, None]: ...
+def make_request_wrap_methods(attr) -> tuple[Callable, Callable]: ...
+
+class HTTPRequest:
+    environ: dict
+    def __init__(self, environ: dict) -> None: ...
+    def __enter__(self) -> HTTPRequest: ...
+
+HTTPREQUEST_ATTRIBUTES: list[str]
 
 class Response(werkzeug.Response):
     default_mimetype: str
