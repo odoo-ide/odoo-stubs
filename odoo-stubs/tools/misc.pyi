@@ -1,10 +1,9 @@
 import datetime
-import pickle as pickle_
 from collections.abc import Mapping, MutableMapping, MutableSet
 from contextlib import ContextDecorator, suppress
 from logging import Handler, LogRecord
 from re import Pattern
-from types import FrameType, ModuleType
+from types import FrameType
 from typing import (
     IO,
     Any,
@@ -23,7 +22,7 @@ import xlsxwriter
 import xlwt
 from babel.core import Locale
 from odoo.addons.base.models.res_currency import Currency
-from odoo.addons.base.models.res_lang import Lang
+from odoo.addons.base.models.res_lang import LangData
 from xlwt import Worksheet
 
 from ..api import Environment
@@ -224,16 +223,18 @@ class replace_exceptions(ContextDecorator):
 
 html_escape = markupsafe.escape
 
-def get_lang(env: Environment, lang_code: str = ...) -> Lang: ...
+def get_lang(env: Environment, lang_code: str = ...) -> LangData: ...
 def babel_locale_parse(lang_code: str) -> Locale: ...
 def formatLang(
     env: Environment,
     value,
-    digits: int | None = ...,
+    digits: int = ...,
     grouping: bool = ...,
     monetary: bool = ...,
-    dp: bool = ...,
+    dp: str = ...,
     currency_obj: Currency = ...,
+    rounding_method: str = ...,
+    rounding_unit: str = ...,
 ) -> str: ...
 def format_date(
     env: Environment,
@@ -265,11 +266,6 @@ def format_amount(
 def format_duration(value: float) -> str: ...
 
 consteq: Callable[[str, str], bool]
-
-class Unpickler(pickle_.Unpickler):
-    def find_class(self, module_name: str, name: str): ...
-
-pickle: ModuleType
 
 class ReadonlyDict(Mapping): ...
 

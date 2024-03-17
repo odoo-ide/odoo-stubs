@@ -23,6 +23,7 @@ def html_sanitize(
     strip_classes: bool = ...,
 ) -> Markup: ...
 
+URL_SKIP_PROTOCOL_REGEX: str
 URL_REGEX: str
 TEXT_URL_REGEX: str
 HTML_TAG_URL_REGEX: str

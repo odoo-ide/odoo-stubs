@@ -9,6 +9,7 @@ from .convert import *
 from .date_utils import *
 from .float_utils import *
 from .func import *
+from .i18n import *
 from .image import *
 from .js_transpiler import ODOO_MODULE_RE as ODOO_MODULE_RE
 from .js_transpiler import URL_RE as URL_RE

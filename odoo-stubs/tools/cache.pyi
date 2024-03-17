@@ -12,6 +12,8 @@ class ormcache_counter:
     hit: int
     miss: int
     err: int
+    gen_time: int
+    cache_name: Any
     def __init__(self) -> None: ...
     @property
     def ratio(self) -> float: ...

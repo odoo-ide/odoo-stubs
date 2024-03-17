@@ -31,6 +31,7 @@ ADMIN_USER_ID: int
 CHECK_BROWSER_SLEEP: float
 CHECK_BROWSER_ITERATIONS: int
 BROWSER_WAIT: float
+DEFAULT_SUCCESS_SIGNAL: str
 
 def get_db_name() -> str: ...
 
@@ -141,7 +142,7 @@ def save_test_file(
 class ChromeBrowser:
     remote_debugging_port: int
     test_case: HttpCase
-    success_signal: Callable[[str], bool]
+    success_signal: str
     chrome: Popen
     devtools_port: int | None
     ws: WebSocket | None
@@ -154,7 +155,7 @@ class ChromeBrowser:
     def __init__(
         self,
         test_case: HttpCase,
-        success_signal: Callable[[str], bool],
+        success_signal: str,
         headless: bool = ...,
         debug: bool = ...,
     ) -> None: ...
@@ -166,6 +167,7 @@ class ChromeBrowser:
     def executable(self) -> str | None: ...
     def take_screenshot(self, prefix: str = ...) -> Future: ...
     def start_screencast(self) -> None: ...
+    def stop_screencast(self) -> None: ...
     def set_cookie(self, name: str, value, path, domain) -> None: ...
     def delete_cookie(self, name: str, **kwargs) -> None: ...
     def navigate_to(self, url: str, wait_stop: bool = ...) -> None: ...
@@ -222,7 +224,7 @@ class HttpCase(TransactionCase):
         cookies: Any | None = ...,
         error_checker: Any | None = ...,
         watch: bool = ...,
-        success_signal: Callable[[str], bool] | None = ...,
+        success_signal: str = ...,
         debug: bool = ...,
         **kw
     ) -> None: ...
