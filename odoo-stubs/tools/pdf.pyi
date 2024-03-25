@@ -30,8 +30,7 @@ class OdooPdfFileReader(PdfFileReader):
 
 class OdooPdfFileWriter(PdfFileWriter):
     is_pdfa: bool
-    def __init__(self, *args, **kwargs):
-        None
+    def __init__(self, *args, **kwargs) -> None: ...
     def addAttachment(self, fname: str, fdata, subtype: str | None = ...) -> None: ...
     def embed_odoo_attachment(
         self, attachment: IrAttachment, subtype: str | None = ...

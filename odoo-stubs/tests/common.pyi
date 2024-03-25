@@ -123,6 +123,16 @@ class SingleTransactionCase(BaseCase):
 
 class ChromeBrowserException(Exception): ...
 
+def save_test_file(
+    test_name: str,
+    content: str,
+    prefix: str,
+    extension: str = ...,
+    logger: logging.Logger = ...,
+    document_type: str = ...,
+    date_format: str = ...,
+) -> None: ...
+
 class ChromeBrowser:
     test_class: str
     devtools_port: int | None
