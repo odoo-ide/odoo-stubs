@@ -240,7 +240,7 @@ class BaseModel(metaclass=MetaModel):
         self, aggregate_spec: str, raw_values
     ) -> Iterator: ...
     def _read_group_expand_full(
-        self, groups: _ModelT, domain: list | None, order: str | None
+        self, groups: _ModelT, domain: list | None
     ) -> _ModelT: ...
     def _read_group_fill_results(
         self,
