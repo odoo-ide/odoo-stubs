@@ -19,6 +19,7 @@ from .mail import *
 from .misc import *
 from .query import Query as Query
 from .query import _generate_table_alias as _generate_table_alias
+from .set_expression import SetDefinitions as SetDefinitions
 from .sourcemap_generator import SourceMapGenerator as SourceMapGenerator
 from .sql import *
 from .template_inheritance import *
