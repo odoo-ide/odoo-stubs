@@ -173,6 +173,9 @@ class Transport(xmlrpclib.Transport):
     def __init__(self, cr: BaseCursor) -> None: ...
     def request(self, *args, **kwargs): ...
 
+class No404Filter(logging.Filter):
+    def filter(self, record): ...
+
 class HttpCase(TransactionCase):
     registry_test_mode: bool
     browser: ChromeBrowser
