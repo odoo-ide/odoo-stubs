@@ -36,6 +36,7 @@ class Registry(Mapping[str, type[BaseModel]]):
     has_unaccent: bool
     has_trigram: bool
     unaccent: Callable[[Any], str]
+    unaccent_python: Callable[[Any], str]
     def init(self, db_name: str) -> None: ...
     @classmethod
     def delete(cls, db_name: str) -> None: ...
