@@ -1,6 +1,7 @@
 import datetime
 from typing import Any, Generic, Optional, TypeVar, overload
 
+from .api import Environment
 from .models import BaseModel
 from .tools import date_utils
 
@@ -225,6 +226,7 @@ class Selection(Field[str]):
     @property
     def column_type(self): ...
     selection: Any
+    def _description_selection(self, env: Environment) -> list[tuple[str, str]]: ...
     def get_values(self, env): ...
     def convert_to_column(
         self, value, record, values: Optional[Any] = ..., validate: bool = ...
