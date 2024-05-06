@@ -19,6 +19,7 @@ from .fields import Command as Command
 from .tools.translate import _ as _
 from .tools.translate import _lt as _lt
 
+MIN_PY_VERSION: tuple[int, ...]
 evented: bool
 multi_process: bool
 iso8859_8: CodecInfo

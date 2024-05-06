@@ -6,6 +6,8 @@ from odoo.addons.base.models.ir_attachment import IrAttachment
 
 from ..api import Environment
 
+def remove_control_characters(byte_node) -> str: ...
+
 class odoo_resolver(etree.Resolver):
     env: Environment
     prefix: str | None

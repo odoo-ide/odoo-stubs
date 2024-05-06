@@ -132,7 +132,7 @@ def save_test_file(
     extension: str = ...,
     logger=...,
     document_type: str = ...,
-    date_format: str = ...
+    date_format: str = ...,
 ) -> None: ...
 
 class ChromeBrowser:
