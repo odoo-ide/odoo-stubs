@@ -4,6 +4,7 @@ from typing import Any, Callable
 from lxml.etree import _Element
 
 RSTRIP_REGEXP: Pattern
+PYTHON_ATTRIBUTES: set[str]
 
 def add_stripped_items_before(
     node: _Element, spec: _Element, extract: Callable[[_Element], _Element]
