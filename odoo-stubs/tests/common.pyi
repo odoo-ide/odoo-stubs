@@ -1,6 +1,7 @@
 import collections
 import logging
 import unittest
+from contextlib import contextmanager
 from itertools import count
 from re import Pattern
 from typing import Any, Callable, Generator, Generic, Iterator, Mapping, Match, TypeVar
@@ -80,12 +81,15 @@ class BaseCase(unittest.TestCase, metaclass=MetaCase):
     def browse_ref(self, xid: str) -> BaseModel | None: ...
     def patch(self, obj, key, val) -> None: ...
     def with_user(self, login: str) -> None: ...
+    @contextmanager
     def assertRaises(
         self, exception, func: Any | None = ..., *args, **kwargs
     ) -> Generator[Any, None, None] | None: ...
+    @contextmanager
     def assertQueries(
         self, expected, flush: bool = ...
     ) -> Generator[list, None, None]: ...
+    @contextmanager
     def assertQueryCount(
         self, default: int = ..., flush: bool = ..., **counters
     ) -> Generator[None, None, None]: ...
