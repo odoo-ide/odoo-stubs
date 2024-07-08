@@ -27,6 +27,7 @@ TRANSLATED_ATTRS: dict[str, Any]
 def translate_attrib_value(node: _Element) -> bool: ...
 
 avoid_pattern: Pattern
+space_pattern: Pattern
 
 def translate_xml_node(
     node: _Element,
