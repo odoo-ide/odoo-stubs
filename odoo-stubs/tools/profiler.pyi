@@ -45,7 +45,6 @@ class PeriodicCollector(Collector):
     name: str
     active: bool
     frame_interval: float
-    thread: Thread
     last_frame: FrameType | None
     def __init__(self, interval: float = ...) -> None: ...
     def run(self) -> None: ...

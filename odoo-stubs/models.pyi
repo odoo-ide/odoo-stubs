@@ -314,13 +314,17 @@ class BaseModel(metaclass=MetaModel):
         self, fields: Collection[str] | None = ..., load: str = ...
     ) -> list[dict[str, Any]]: ...
     def update_field_translations(
-        self, field_name: str, translations: dict[str, Any]
+        self,
+        field_name: str,
+        translations: dict[str, Any],
+        source_lang: str | None = ...,
     ) -> bool: ...
     def _update_field_translations(
         self,
         field_name: str,
         translations: dict[str, Any],
         digest: Callable | None = ...,
+        source_lang: str | None = ...,
     ) -> bool: ...
     def get_field_translations(
         self, field_name: str, langs: list[str] | None = ...

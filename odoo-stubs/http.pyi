@@ -75,11 +75,12 @@ class Stream:
     max_age: int | None
     immutable: bool
     size: int | None
+    public: bool
     def __init__(self, **kwargs) -> None: ...
     @classmethod
-    def from_path(cls, path: str, filter_ext: tuple[str, ...] = ...) -> Stream: ...
-    @classmethod
-    def from_attachment(cls, attachment) -> Stream: ...
+    def from_path(
+        cls, path: str, filter_ext: tuple[str, ...] = ..., public: bool = ...
+    ) -> Stream: ...
     @classmethod
     def from_binary_field(cls, record: BaseModel, field_name: str) -> Stream: ...
     def read(self) -> bytes: ...
@@ -115,7 +116,6 @@ class FilesystemSessionStore(sessions.FilesystemSessionStore):
 class Session(MutableMapping):
     can_save: bool
     is_dirty: bool
-    is_explicit: bool
     is_new: bool
     should_rotate: bool
     sid: str
