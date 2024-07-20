@@ -21,7 +21,6 @@ from .tools.translate import _lt as _lt
 
 MIN_PY_VERSION: tuple[int, ...]
 evented: bool
-multi_process: bool
 iso8859_8: CodecInfo
 iso8859_8ie_re: Pattern
 SUPERUSER_ID: int

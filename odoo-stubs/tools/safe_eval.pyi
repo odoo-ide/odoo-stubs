@@ -1,8 +1,6 @@
 from types import CodeType
 from typing import Iterable, Iterator, Literal
 
-from opcode import HAVE_ARGUMENT as HAVE_ARGUMENT
-
 unsafe_eval = eval
 
 def to_opcodes(

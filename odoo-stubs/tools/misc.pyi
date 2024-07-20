@@ -28,8 +28,6 @@ from xlwt import Worksheet
 from ..api import Environment
 from ..loglevels import exception_to_unicode as exception_to_unicode
 from ..loglevels import get_encodings as get_encodings
-from .cache import *
-from .parse_version import parse_version as parse_version
 
 _T = TypeVar("_T")
 _T1 = TypeVar("_T1")

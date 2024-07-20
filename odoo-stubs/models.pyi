@@ -395,7 +395,6 @@ class BaseModel(metaclass=MetaModel):
         offset: int = ...,
         limit: int | None = ...,
         order: str | None = ...,
-        access_rights_uid: int | None = ...,
     ) -> Query: ...
     def _as_query(self, ordered: bool = ...) -> Query: ...
     def copy_data(

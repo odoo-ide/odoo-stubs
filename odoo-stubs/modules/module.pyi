@@ -3,8 +3,6 @@ from typing import Any, Literal
 
 from odoo.addons.base.models.ir_module import Module
 
-from ..tools import pycompat as pycompat
-
 MANIFEST_NAMES: tuple[str, ...]
 README: list[str]
 

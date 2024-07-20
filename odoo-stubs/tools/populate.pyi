@@ -4,8 +4,6 @@ from typing import Any, Callable, Iterable, Iterator, Sequence, TypeVar
 
 from dateutil.relativedelta import relativedelta
 
-from ..tools import pycompat as pycompat
-
 _T = TypeVar("_T")
 
 def Random(seed) -> random.Random: ...
