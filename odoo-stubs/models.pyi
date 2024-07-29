@@ -391,8 +391,29 @@ class BaseModel(metaclass=MetaModel):
         order: str | None = ...,
         seen: set | None = ...,
     ) -> None: ...
+    @overload
     def _search(
-        self: _ModelT,
+        self,
+        domain: list,
+        offset: int = ...,
+        limit: int | None = ...,
+        order: str | None = ...,
+        count: Literal[False] = ...,
+        access_rights_uid: int | None = ...,
+    ) -> Query: ...
+    @overload
+    def _search(
+        self,
+        domain: list,
+        offset: int = ...,
+        limit: int | None = ...,
+        order: str | None = ...,
+        count: Literal[True] = ...,
+        access_rights_uid: int | None = ...,
+    ) -> int: ...
+    @overload
+    def _search(
+        self,
         domain: list,
         offset: int = ...,
         limit: int | None = ...,
