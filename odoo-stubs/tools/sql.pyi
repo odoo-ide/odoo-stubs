@@ -1,7 +1,7 @@
 import enum
 from collections import defaultdict
 from re import Pattern
-from typing import Iterable, Iterator, Literal
+from typing import Iterable, Literal
 
 from ..fields import Field
 from ..models import BaseModel
@@ -10,11 +10,11 @@ from ..sql_db import Cursor
 IDENT_RE: Pattern
 
 class SQL:
-    def __new__(
-        cls, code: str | SQL = ..., *args, to_flush: Field | None = ..., **kwargs
-    ) -> SQL: ...
+    def __init__(
+        self, code: str | SQL = ..., *args, to_flush: Field | None = ..., **kwargs
+    ) -> None: ...
     @property
-    def to_flush(self) -> Iterator[Field]: ...
+    def to_flush(self) -> Iterable[Field]: ...
     @property
     def code(self) -> str: ...
     @property
