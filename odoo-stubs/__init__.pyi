@@ -20,9 +20,7 @@ from .tools.translate import _ as _
 from .tools.translate import _lt as _lt
 
 MIN_PY_VERSION: tuple[int, ...]
-evented: bool
-iso8859_8: CodecInfo
-iso8859_8ie_re: Pattern
+MAX_PY_VERSION: tuple[int, ...]
 SUPERUSER_ID: int
 
 def registry(database_name: str | None = ...) -> Registry: ...

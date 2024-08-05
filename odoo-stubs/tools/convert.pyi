@@ -5,7 +5,7 @@ from lxml.etree import _Element
 
 from ..api import Environment
 
-safe_eval: Callable
+def safe_eval(expr, ctx: dict = ...): ...
 
 class ParseError(Exception): ...
 
