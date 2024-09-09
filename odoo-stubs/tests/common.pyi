@@ -8,6 +8,7 @@ from xmlrpc import client as xmlrpclib
 
 import requests
 from odoo.addons.base.models.res_users import Users
+from urllib3.util import Url
 from websocket import WebSocket
 
 from ..api import Environment
@@ -194,6 +195,10 @@ class HttpCase(TransactionCase):
     xmlrpc_object: xmlrpclib.ServerProxy
     opener: Opener
     def setUp(self) -> None: ...
+    def parse_http_location(self, location: str) -> Url: ...
+    def assertURLEqual(
+        self, test_url: str, truth_url: str, message: str | None = ...
+    ) -> None: ...
     def url_open(
         self,
         url: str,
