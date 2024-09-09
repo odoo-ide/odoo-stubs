@@ -2,11 +2,13 @@ from functools import wraps as wraps
 from typing import IO, Any, Callable, Iterable, Literal, TypeVar
 
 from ..sql_db import Cursor
+from ..tools import SQL
 
 _CallableT = TypeVar("_CallableT", bound=Callable)
 
 class DatabaseExists(Warning): ...
 
+def database_identifier(cr: Cursor, name: str) -> SQL: ...
 def check_db_management_enabled(method: _CallableT) -> _CallableT: ...
 def check_super(passwd: str) -> Literal[True]: ...
 def exp_create_database(

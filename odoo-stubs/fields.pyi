@@ -42,7 +42,7 @@ class MetaField(type):
     def __init__(cls: type[Field], name, bases, attrs) -> None: ...
 
 class Field(Generic[_FieldValueT], metaclass=MetaField):
-    type: str | None
+    type: str
     relational: bool
     translate: bool
     column_type: tuple[str, str] | None
@@ -52,7 +52,7 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     inherited: bool
     inherited_field: Field | None
     name: str
-    model_name: str
+    model_name: str | None
     comodel_name: str | None
     store: bool
     index: str | bool | None

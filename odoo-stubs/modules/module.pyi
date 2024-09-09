@@ -1,3 +1,4 @@
+from re import Pattern
 from types import ModuleType
 from typing import Any, Literal
 
@@ -5,6 +6,7 @@ from odoo.addons.base.models.ir_module import Module
 
 MANIFEST_NAMES: tuple[str, ...]
 README: list[str]
+TYPED_FIELD_DEFINITION_RE: Pattern
 
 class UpgradeHook:
     def find_spec(

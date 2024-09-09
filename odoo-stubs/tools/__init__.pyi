@@ -22,6 +22,7 @@ from .js_transpiler import ODOO_MODULE_RE as ODOO_MODULE_RE
 from .js_transpiler import URL_RE as URL_RE
 from .js_transpiler import is_odoo_module as is_odoo_module
 from .js_transpiler import transpile_javascript as transpile_javascript
+from .json import json_default as json_default
 from .mail import *
 from .misc import *
 from .parse_version import parse_version as parse_version
