@@ -84,6 +84,7 @@ class Stream:
         self,
         as_attachment: bool | None = ...,
         immutable: bool | None = ...,
+        content_security_policy: str = ...,
         **send_file_kwargs
     ) -> werkzeug.Response: ...
 
