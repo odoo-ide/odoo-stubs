@@ -31,6 +31,7 @@ class Registry(Mapping[str, type[BaseModel]]):
     field_depends: Collector
     field_depends_context: Collector
     field_inverses: Collector
+    many2one_company_dependents: Collector
     registry_sequence: int | None
     cache_sequences: dict
     has_unaccent: bool

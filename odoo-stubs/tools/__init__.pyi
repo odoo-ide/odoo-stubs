@@ -30,8 +30,8 @@ from .query import Query as Query
 from .set_expression import SetDefinitions as SetDefinitions
 from .sourcemap_generator import SourceMapGenerator as SourceMapGenerator
 from .sql import *
+from .translate import LazyTranslate as LazyTranslate
 from .translate import _ as _
-from .translate import _lt as _lt
 from .translate import html_translate as html_translate
 from .translate import xml_translate as xml_translate
 from .xml_utils import cleanup_xml_node as cleanup_xml_node
