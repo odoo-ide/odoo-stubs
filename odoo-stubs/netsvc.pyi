@@ -1,5 +1,4 @@
 import logging.handlers
-import warnings
 from logging import Logger, LogRecord
 from typing import TextIO
 
@@ -52,7 +51,6 @@ def init_logger(): ...
 
 DEFAULT_LOG_CONFIGURATION: list[str]
 PSEUDOCONFIG_MAPPER: dict[str, list[str]]
-showwarning = warnings.showwarning
 IGNORE: set[str]
 
 def showwarning_with_traceback(

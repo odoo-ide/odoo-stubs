@@ -17,8 +17,9 @@ import psycopg2
 from markupsafe import Markup
 
 from . import SUPERUSER_ID as SUPERUSER_ID
-from .api import Environment, Registry
+from .api import Environment
 from .models import BaseModel
+from .modules.registry import Registry
 from .tools import date_utils, float_utils
 
 _FieldT = TypeVar("_FieldT", bound=Field)
@@ -30,6 +31,7 @@ DATE_LENGTH: int
 DATETIME_LENGTH: int
 NO_ACCESS: str
 IR_MODELS: tuple[str, ...]
+COMPANY_DEPENDENT_FIELDS: tuple[str, ...]
 NoneType: type[None]
 Default: object
 
@@ -45,7 +47,6 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     type: str
     relational: bool
     translate: bool
-    column_type: tuple[str, str] | None
     write_sequence: int
     args: dict[str, Any] | None
     automatic: bool
@@ -91,7 +92,10 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     def setup_related(self, model: BaseModel) -> None: ...
     def traverse_related(self, record: _ModelT) -> tuple[_ModelT, Field]: ...
     @property
+    def column_type(self) -> tuple[str, str] | None: ...
+    @property
     def base_field(self) -> Field: ...
+    def get_company_dependent_fallback(self, records: BaseModel): ...
     def resolve_depends(self, registry: Registry) -> Iterator[tuple]: ...
     def get_description(
         self, env: Environment, attributes: Container[str] | None = ...
@@ -101,6 +105,10 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ): ...
+    def convert_to_column_insert(
+        self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
+    ): ...
+    def convert_to_column_update(self, value, record: BaseModel): ...
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...): ...
     def convert_to_record(self, value, record: BaseModel): ...
     def convert_to_record_multi(self, values, records: BaseModel): ...
@@ -133,7 +141,6 @@ class Field(Generic[_FieldValueT], metaclass=MetaField):
 
 class Boolean(Field[bool]):
     type: str
-    column_type: tuple[str, str]
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ) -> bool: ...
@@ -144,7 +151,6 @@ class Boolean(Field[bool]):
 
 class Integer(Field[int]):
     type: str
-    column_type: tuple[str, str]
     aggregator: str
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
@@ -164,8 +170,6 @@ class Float(Field[float]):
     def __init__(
         self, string: str = ..., digits: tuple[int, int] | str | None = ..., **kwargs
     ) -> None: ...
-    @property
-    def column_type(self): ...
     def get_digits(self, env: Environment) -> tuple[int, int]: ...
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
@@ -182,7 +186,6 @@ class Float(Field[float]):
 class Monetary(Field[float]):
     type: str
     write_sequence: int
-    column_type: tuple[str, str]
     currency_field: str | None
     aggregator: str
     def __init__(
@@ -191,7 +194,7 @@ class Monetary(Field[float]):
     def get_currency_field(self, model: BaseModel) -> str: ...
     def setup_nonrelated(self, model: BaseModel) -> None: ...
     def setup_related(self, model: BaseModel) -> None: ...
-    def convert_to_column(
+    def convert_to_column_insert(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ) -> float: ...
     def convert_to_cache(
@@ -202,6 +205,7 @@ class Monetary(Field[float]):
         self, value, record: BaseModel, use_display_name: bool = ...
     ): ...
     def convert_to_write(self, value, record: BaseModel): ...
+    def convert_to_export(self, value, record: BaseModel): ...
 
 class _String(Field[str]):
     translate: Callable | bool
@@ -212,6 +216,10 @@ class _String(Field[str]):
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ): ...
+    def convert_to_column_insert(
+        self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
+    ): ...
+    def convert_to_column_update(self, value, record: BaseModel): ...
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...): ...
     def convert_to_record(self, value, record: BaseModel): ...
     def convert_to_write(self, value, record: BaseModel): ...
@@ -224,8 +232,6 @@ class _String(Field[str]):
 class Char(_String):
     type: str
     trim: bool
-    @property
-    def column_type(self) -> tuple[str, str]: ...
     def update_db_column(self, model: BaseModel, column: dict | None) -> None: ...
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
@@ -233,8 +239,6 @@ class Char(_String):
 
 class Text(_String):
     type: str
-    @property
-    def column_type(self) -> tuple[str, str]: ...
 
 class Html(_String):
     type: str
@@ -246,8 +250,6 @@ class Html(_String):
     sanitize_form: bool
     strip_style: bool
     strip_classes: bool
-    @property
-    def column_type(self) -> tuple[str, str]: ...
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ) -> Markup | None: ...
@@ -262,7 +264,6 @@ class Html(_String):
 
 class Date(Field[datetime.date]):
     type: str
-    column_type: tuple[str, str]
     start_of = date_utils.start_of
     end_of = date_utils.end_of
     add = date_utils.add
@@ -278,6 +279,7 @@ class Date(Field[datetime.date]):
     from_string = to_date
     @staticmethod
     def to_string(value: datetime.datetime | datetime.date) -> str: ...
+    def convert_to_column_update(self, value, record: BaseModel): ...
     def convert_to_cache(
         self, value, record: BaseModel, validate: bool = ...
     ) -> datetime.date | None: ...
@@ -286,7 +288,6 @@ class Date(Field[datetime.date]):
 
 class Datetime(Field[datetime.datetime]):
     type: str
-    column_type: tuple[str, str]
     start_of = date_utils.start_of
     end_of = date_utils.end_of
     add = date_utils.add
@@ -304,6 +305,7 @@ class Datetime(Field[datetime.datetime]):
     from_string = to_datetime
     @staticmethod
     def to_string(value: datetime.datetime | datetime.date) -> str: ...
+    def convert_to_column_update(self, value, record: BaseModel): ...
     def convert_to_cache(
         self, value, record: BaseModel, validate: bool = ...
     ) -> datetime.datetime | None: ...
@@ -338,7 +340,6 @@ class Image(Binary):
 
 class Selection(Field[str]):
     type: str
-    column_type: tuple[str, str]
     selection: list | Callable | str
     validate: bool
     ondelete: dict[str, Any] | None
@@ -357,8 +358,6 @@ class Selection(Field[str]):
 
 class Reference(Selection):
     type: str
-    @property
-    def column_type(self) -> tuple[str, str]: ...
     def convert_to_column(
         self, value, record: BaseModel, values: Any | None = ..., validate: bool = ...
     ) -> str | None: ...
@@ -383,7 +382,6 @@ class _Relational(Field[BaseModel]):
 
 class Many2one(_Relational):
     type: str
-    column_type: tuple[str, str]
     ondelete: str | None
     auto_join: bool
     delegate: bool
@@ -416,7 +414,6 @@ class Many2oneReference(Integer):
 
 class Json(Field):
     type: str
-    column_type: tuple[str, str]
     def convert_to_record(self, value, record: BaseModel): ...
     def convert_to_cache(self, value, record: BaseModel, validate: bool = ...): ...
     def convert_to_column(
@@ -426,7 +423,6 @@ class Json(Field):
 
 class Properties(Field):
     type: str
-    column_type: tuple[str, str]
     copy: bool
     prefetch: bool
     write_sequence: int
@@ -453,7 +449,6 @@ class Properties(Field):
 
 class PropertiesDefinition(Field):
     type: str
-    column_type: tuple[str, str]
     copy: bool
     readonly: bool
     prefetch: bool

@@ -1,6 +1,9 @@
+from re import Pattern
 from typing import Literal, Sequence
 
 from ..api import Environment
+
+XPG_LOCALE_RE: Pattern
 
 def format_list(
     env: Environment,
@@ -16,3 +19,4 @@ def format_list(
     ] = ...,
     lang_code: str | None = ...,
 ) -> str: ...
+def py_to_js_locale(locale: str) -> str: ...

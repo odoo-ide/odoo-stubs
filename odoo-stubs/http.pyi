@@ -50,16 +50,6 @@ def dispatch_rpc(service_name: str, method: str, params: Mapping): ...
 def get_session_max_inactivity(env: Environment) -> int: ...
 def is_cors_preflight(request: Request, endpoint) -> bool: ...
 def serialize_exception(exception: Exception): ...
-def send_file(
-    filepath_or_fp,
-    mimetype: str | None = ...,
-    as_attachment: bool = ...,
-    filename: str | None = ...,
-    mtime: str | None = ...,
-    add_etags: bool = ...,
-    cache_timeout: int = ...,
-    conditional: bool = ...,
-) -> werkzeug.Response: ...
 
 class Stream:
     type: str

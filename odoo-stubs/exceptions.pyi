@@ -12,8 +12,6 @@ class RedirectWarning(Exception):
         button_text: str,
         additional_context: dict | None = ...,
     ) -> None: ...
-    @property
-    def name(self): ...
 
 class AccessDenied(UserError):
     traceback: tuple[str, str, str]

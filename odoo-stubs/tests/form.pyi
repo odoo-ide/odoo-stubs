@@ -1,6 +1,7 @@
 import collections
 from typing import Any, Generic, Iterable, Iterator, TypeVar
 
+from ..api import Environment
 from ..models import BaseModel
 
 _ModelT = TypeVar("_ModelT", bound=BaseModel)
@@ -10,6 +11,8 @@ MODIFIER_ALIASES: dict
 
 class Form(Generic[_ModelT]):
     def __init__(self, record: _ModelT, view: Any | None = ...) -> None: ...
+    @classmethod
+    def from_action(cls, env: Environment, action: dict) -> Form: ...
     def __getattr__(self, field_name: str): ...
     def __getitem__(self, field_name: str): ...
     def __setattr__(self, field_name: str, value) -> None: ...
