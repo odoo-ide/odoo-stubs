@@ -36,6 +36,7 @@ regex_pg_name: Pattern[str]
 regex_field_agg: Pattern[str]
 regex_read_group_spec: Pattern[str]
 AUTOINIT_RECALCULATE_STORED_FIELDS: int
+GC_UNLINK_LIMIT: int
 INSERT_BATCH_SIZE: int
 UPDATE_BATCH_SIZE: int
 SQL_DEFAULT: psycopg2.extensions.AsIs
@@ -223,7 +224,7 @@ class BaseModel(metaclass=MetaModel):
     def _read_group_having(self, having_domain: list, query: Query) -> SQL: ...
     def _read_group_orderby(
         self, order: str, groupby_terms: dict[str, SQL], query: Query
-    ) -> tuple[SQL, SQL]: ...
+    ) -> SQL: ...
     def _read_group_empty_value(self, spec: str) -> Any: ...
     def _read_group_postprocess_groupby(
         self, groupby_spec: str, raw_values

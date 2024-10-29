@@ -4,6 +4,8 @@ from ..api import Environment
 from . import SQL
 
 class Query:
+    groupby: SQL | None
+    having: SQL | None
     limit: int | None
     offset: int | None
     def __init__(
