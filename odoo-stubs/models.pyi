@@ -35,6 +35,7 @@ regex_object_name: Pattern[str]
 regex_pg_name: Pattern[str]
 regex_field_agg: Pattern[str]
 AUTOINIT_RECALCULATE_STORED_FIELDS: int
+GC_UNLINK_LIMIT: int
 INSERT_BATCH_SIZE: int
 SQL_DEFAULT: psycopg2.extensions.AsIs
 
