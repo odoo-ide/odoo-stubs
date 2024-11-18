@@ -248,6 +248,8 @@ class Html(_String):
     sanitize_attributes: bool
     sanitize_style: bool
     sanitize_form: bool
+    sanitize_conditional_comments: bool
+    sanitize_output_method: str
     strip_style: bool
     strip_classes: bool
     def convert_to_column(
