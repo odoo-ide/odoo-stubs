@@ -30,6 +30,7 @@ from xlwt import Worksheet
 from ..api import Environment
 from ..loglevels import exception_to_unicode as exception_to_unicode
 from ..loglevels import get_encodings as get_encodings
+from ..models import BaseModel
 
 _T = TypeVar("_T")
 _T1 = TypeVar("_T1")
@@ -287,6 +288,12 @@ def hash_sign(
     expiration_hours: int | None = ...,
 ) -> str: ...
 def verify_hash_signed(env: Environment, scope, payload): ...
+def limited_field_access_token(
+    record: BaseModel, field_name: str, timestamp: str | None = ...
+) -> str: ...
+def verify_limited_field_access_token(
+    record: BaseModel, field_name: str, access_token: str
+) -> bool: ...
 
 ADDRESS_REGEX: Pattern
 
