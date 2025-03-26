@@ -23,9 +23,10 @@ import markupsafe
 import xlsxwriter
 import xlwt
 from babel.core import Locale
+from xlwt import Worksheet
+
 from odoo.addons.base.models.res_currency import Currency
 from odoo.addons.base.models.res_lang import Lang
-from xlwt import Worksheet
 
 from ..api import Environment
 from ..loglevels import exception_to_unicode as exception_to_unicode

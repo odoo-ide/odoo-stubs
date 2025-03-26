@@ -14,3 +14,12 @@ class MigrationManager:
     migrations: dict
     def __init__(self, cr: Cursor, graph: Graph) -> None: ...
     def migrate_module(self, pkg: Node, stage: str) -> None: ...
+
+def exec_script(
+    cr: Cursor,
+    installed_version: str,
+    pyfile: str,
+    addon,
+    stage,
+    version: str | None = ...,
+) -> None: ...

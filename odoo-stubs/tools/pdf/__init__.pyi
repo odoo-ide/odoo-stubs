@@ -2,8 +2,9 @@ from io import BytesIO
 from re import Pattern
 from typing import Any, BinaryIO, Iterable
 
-from odoo.addons.base.models.ir_attachment import IrAttachment
 from PyPDF2 import PdfFileReader, PdfFileWriter
+
+from odoo.addons.base.models.ir_attachment import IrAttachment
 
 DEFAULT_PDF_DATETIME_FORMAT: str
 REGEX_SUBTYPE_UNFORMATED: Pattern

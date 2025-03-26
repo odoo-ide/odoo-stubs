@@ -2,6 +2,7 @@ from typing import Callable, Iterable, Literal
 
 from lxml import etree
 from lxml.etree import _Element
+
 from odoo.addons.base.models.ir_attachment import IrAttachment
 
 from ..api import Environment
