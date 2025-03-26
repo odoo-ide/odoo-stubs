@@ -1,6 +1,7 @@
 from typing import Any, Callable, TypeVar
 
 from ..api import Environment
+from ..models import BaseModel
 from ..sql_db import Cursor
 
 _CallableT = TypeVar("_CallableT", bound=Callable)
@@ -9,6 +10,7 @@ PG_CONCURRENCY_ERRORS_TO_RETRY: tuple[str, str, str]
 PG_CONCURRENCY_EXCEPTIONS_TO_RETRY: tuple[Exception, ...]
 MAX_TRIES_ON_CONCURRENCY_FAILURE: int
 
+def get_public_method(model: BaseModel, name: str): ...
 def dispatch(method: str, params): ...
 def execute_cr(cr: Cursor, uid: int, obj: str, method: str, *args, **kw): ...
 def execute_kw(

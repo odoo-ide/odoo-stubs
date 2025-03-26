@@ -8,10 +8,11 @@ from xmlrpc import client as xmlrpclib
 
 import requests
 from freezegun.api import _freeze_time
-from odoo.addons.base.models.res_currency import Currency
-from odoo.addons.base.models.res_users import Users
 from urllib3.util import Url
 from websocket import WebSocket
+
+from odoo.addons.base.models.res_currency import Currency
+from odoo.addons.base.models.res_users import Users
 
 from ..api import Environment
 from ..http import Session
@@ -262,6 +263,7 @@ class HttpCase(TransactionCase):
         watch: bool = ...,
         success_signal: str = ...,
         debug: bool = ...,
+        cpu_throttling: int | None = ...,
         **kw
     ) -> None: ...
     def start_tour(

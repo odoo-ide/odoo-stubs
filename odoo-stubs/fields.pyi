@@ -269,10 +269,10 @@ class Html(_String):
 
 class Date(Field[datetime.date]):
     type: str
-    start_of = date_utils.start_of
-    end_of = date_utils.end_of
-    add = date_utils.add
-    subtract = date_utils.subtract
+    start_of = staticmethod(date_utils.start_of)
+    end_of = staticmethod(date_utils.end_of)
+    add = staticmethod(date_utils.add)
+    subtract = staticmethod(date_utils.subtract)
     @staticmethod
     def today(*args) -> datetime.date: ...
     @staticmethod
@@ -293,10 +293,10 @@ class Date(Field[datetime.date]):
 
 class Datetime(Field[datetime.datetime]):
     type: str
-    start_of = date_utils.start_of
-    end_of = date_utils.end_of
-    add = date_utils.add
-    subtract = date_utils.subtract
+    start_of = staticmethod(date_utils.start_of)
+    end_of = staticmethod(date_utils.end_of)
+    add = staticmethod(date_utils.add)
+    subtract = staticmethod(date_utils.subtract)
     @staticmethod
     def now(*args) -> datetime.datetime: ...
     @staticmethod
