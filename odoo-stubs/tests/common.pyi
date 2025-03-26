@@ -7,9 +7,10 @@ from unittest.mock import Mock
 from xmlrpc import client as xmlrpclib
 
 import requests
-from odoo.addons.base.models.res_users import Users
 from urllib3.util import Url
 from websocket import WebSocket
+
+from odoo.addons.base.models.res_users import Users
 
 from ..api import Environment
 from ..http import Session
@@ -232,6 +233,7 @@ class HttpCase(TransactionCase):
         cookies: Any | None = ...,
         error_checker: Any | None = ...,
         watch: bool = ...,
+        cpu_throttling: int | None = ...,
         **kw
     ) -> None: ...
     @classmethod

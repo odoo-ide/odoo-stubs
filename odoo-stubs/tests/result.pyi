@@ -4,6 +4,7 @@ from typing import Any, NamedTuple
 
 STDOUT_LINE: str
 STDERR_LINE: str
+ODOO_TEST_MAX_FAILED_TESTS: int
 stats_logger: Logger
 
 class Stat(NamedTuple):
@@ -21,12 +22,16 @@ class OdooTestResult:
     queries_start: int | None
     had_failure: bool
     stats: dict[str, Stat]
+    global_report: OdooTestResult | None
+    shouldStop: bool
     def __init__(
         self,
         stream: Any | None = ...,
         descriptions: Any | None = ...,
         verbosity: Any | None = ...,
+        global_report: OdooTestResult | None = ...,
     ) -> None: ...
+    def total_errors_count(self) -> int: ...
     def printErrors(self) -> None: ...
     def startTest(self, test) -> None: ...
     def stopTest(self, test) -> None: ...

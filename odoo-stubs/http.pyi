@@ -4,13 +4,14 @@ from collections.abc import MutableMapping
 from typing import Any, Callable, Generator, Iterable, Literal, Mapping, TypeVar
 
 import werkzeug
-from odoo.addons.base.models.res_lang import Lang
-from odoo.addons.website.models.website import Website
 from werkzeug.datastructures import Headers
 from werkzeug.exceptions import NotFound
 from werkzeug.middleware.proxy_fix import ProxyFix as ProxyFix_
 from werkzeug.routing import Map, Rule
 from werkzeug.urls import URL
+
+from odoo.addons.base.models.res_lang import Lang
+from odoo.addons.website.models.website import Website
 
 from .api import Environment
 from .models import BaseModel

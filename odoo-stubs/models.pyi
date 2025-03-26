@@ -16,6 +16,7 @@ from typing import (
 )
 
 import psycopg2
+
 from odoo.addons.base.models.res_company import Company
 from odoo.addons.base.models.res_users import Users
 
