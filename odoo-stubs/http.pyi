@@ -245,7 +245,7 @@ class Request:
     def get_json_data(self): ...
     def make_response(
         self,
-        data: str,
+        data: str | bytes | bytearray | None,
         headers: list[tuple[str, Any]] | None = ...,
         cookies: Mapping | None = ...,
         status: int = ...,
