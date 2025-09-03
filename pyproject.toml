@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "odoo-stubs"
+version = "0.0.1"
+description = "Type stubs for Odoo"
+authors = ["Trinh Anh Ngoc <atw1990@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/odoo-ide/odoo-stubs"
+repository = "https://github.com/odoo-ide/odoo-stubs"
+packages = [{include = "odoo-stubs"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.0"
+pytest-cov = "^4.0"
+pytest-mock = "^3.10"
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+    "--cov=odoo-stubs",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-fail-under=80"
+]
+markers = [
+    "unit: marks tests as unit tests (fast)",
+    "integration: marks tests as integration tests (slower)",
+    "slow: marks tests as slow tests"
+]
+
+[tool.coverage.run]
+source = ["odoo-stubs"]
+omit = [
+    "tests/*",
+    "setup.py",
+    "*/__pycache__/*",
+    "*/migrations/*",
+    "*/venv/*",
+    "*/.venv/*"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:"
+]
+show_missing = true
+skip_covered = false
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
