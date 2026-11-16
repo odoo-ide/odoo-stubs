@@ -1,3 +1,0 @@
-from ..core import AbstractComponent as AbstractComponent
-
-class BaseComponent(AbstractComponent): ...
